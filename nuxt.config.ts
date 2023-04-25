@@ -1,12 +1,11 @@
 import vuetify from "vite-plugin-vuetify";
 
 // PWA Config
-const title = "Vuetify 3 + Nuxt 3 Starter";
-const shortTitle = "Vuetify 3 + Nuxt 3 Starter";
-const description =
-  "Template to get you up and running with Nuxt 3 & Vuetify 3";
-const image = "https://vuetify3nuxt3starter.behonbaker.com/starter.png";
-const url = "https://vuetify3nuxt3starter.behonbaker.com/";
+const title = "Sharif Sircar";
+const shortTitle = "Sharif's Website";
+const description = "My personal pet website where I have some of my photograpy photos and some of my software projects";
+const image = "https://www.sharif-sircar.com/puffin.png";
+const url = "https://www.sharif-sircar.com/";
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -120,7 +119,7 @@ export default defineNuxtConfig({
   pwa: {
     meta: {
       name: shortTitle,
-      author: "Behon Baker",
+      author: "Sharif Sircar",
       theme_color: "#4f46e5",
       description: description,
     },
