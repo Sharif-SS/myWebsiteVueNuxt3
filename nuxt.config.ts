@@ -30,8 +30,28 @@ export default defineNuxtConfig({
 
   app: {
     head: {
+
+      script: [
+        {
+          src: 'https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID',
+          async: true
+        },
+        {
+          innerHTML: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-6VSTRJ3QLM', {
+              page_path: window.location.pathname,
+            });
+          `,
+          type: 'text/javascript',
+          
+        }
+      ],
+
       title: "Sharif Sircar",
-      titleTemplate: "%s | Test template",
+      titleTemplate: "%s",
       link: [
         { rel: "stylesheet", href: "https://rsms.me/inter/inter.css" },
         { rel: "preconnect", href: "https://rsms.me/" },
