@@ -1,6 +1,3 @@
-<script lang="ts">
-// align-center
-</script>
 
 <template>
     <v-app>

@@ -118,7 +118,7 @@ export default defineComponent({
 </v-app>
 </template>
 
-<style>
+<style scoped>
 
 @import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400);
 
