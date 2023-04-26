@@ -1,4 +1,5 @@
 <script lang="ts">
+// align-center
 </script>
 
 <template>
@@ -6,15 +7,12 @@
        
       <v-container>
         <v-row no-gutters>
-            <v-col cols="6">
+            <v-col cols="12" md="4"
+            class="mobileOnly">
               <v-sheet class="pa-6 ma-2">
                 <v-img 
-            
-                align-center
-                max-width="600"
-                aspect-ratio="1/1"
-                contain
-                class="imgStyles "
+                
+                class="imgStyles mobilePhotos"
                 src="/contact.jpg" 
                 lazy-src="/contactLazyLoad.jpg"
             >
@@ -69,12 +67,26 @@
 
   @media (max-width: 480px) {
     .mobileOnly {
-      width: 300px;
+      width: 20px;
     }
   }
   
- 
+ .imgStyles {
 
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a drop shadow */
+  max-width: 90%; /* Reduce the width of the image */
+  aspect-ratio: auto;
+  
+}
+
+/* Styles for mobile devices */
+@media (max-width: 959px) {
+  .mobilePhotos {
+    max-width: 50%; /* Reduce the width of the image */
+    display: block; /* Make the image a block element */
+    margin: 0 auto; /* Center the image horizontally */
+  }
+}
 
   .content {
     padding: 16px;

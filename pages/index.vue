@@ -134,7 +134,7 @@ export default defineComponent({
 }
 
 /* Styles for mobile devices */
-@media (max-width: 767px) {
+@media (max-width: 959px) {
   .mobilePhotos {
     max-width: 45%; /* Reduce the width of the image */
     display: block; /* Make the image a block element */
