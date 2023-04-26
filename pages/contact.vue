@@ -40,8 +40,7 @@
                         <v-row >
                           <v-col  >
                             <div class="content">
-                              <!-- action="/thank-you" -->
-                              <form name="contact"  netlify-honeypot="bot-field" method="post" netlify>
+                              <form name="contact" action="/thank-you" netlify-honeypot="bot-field" method="post" netlify>
                                 <input type="hidden" name="form-name" value="contact" />
                                 <p class="hidden">
                                   <label>Don't add anything here <input name="bot-field"></label>
