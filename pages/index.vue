@@ -19,8 +19,8 @@ export default defineComponent({
             lazyPicture: "/profilePhotoLazyLoad.jpg",
             name: "Sharif Sircar",
             jobTitle: "Junior Software Developer",
-            bio: "Website currently still being updated, from place holder images to lorem ipsums in places. From discovering myself to discovering NL, looking forward to moving on the next thing, looking to build a career in the software development industry. I pride myself on the professional work I produce in my current and past workplaces. Always excited to meet new people who have similar interests, love learning from industry experts to add to my own experience and grow! ",
-            skills: ["JavaScript", "Vue.js", "Node.js", "HTML", "CSS", "Python", "Wordpress", "Divi"],
+            bio: "Website currently still being updated, from place holder images to lorem ipsums in places.",//" From discovering myself to discovering NL, looking forward to moving on the next thing, looking to build a career in the software development industry. I pride myself on the professional work I produce in my current and past workplaces. Always excited to meet new people who have similar interests, love learning from industry experts to add to my own experience and grow! ",
+            skills: ["JavaScript", "Vue.js", "Node.js", "HTML", "CSS", "Python", "Wordpress", "Divi", "Typescript"],
             jobs: [
                 {
                     company: "Robot Interactive.",
@@ -32,7 +32,7 @@ export default defineComponent({
                 },
                 {
                     company: "Multiple Resturants :)",
-                    title: "Not Cooking software",
+                    title: "Cooking all sort of software",
                 },
             ] as Job[],
         };
@@ -83,9 +83,9 @@ export default defineComponent({
         <h4>{{ jobTitle }}</h4>
         <p class="bio">{{ bio }}</p>
         
-        <v-row>
+        <v-row class="pt-4">
           <v-col cols="12" sm="6">
-            <v-card>
+            <v-card elevation="3" >
               <v-card-title>Skills</v-card-title>
               <v-card-text class="vCardText">
                 <ul>
@@ -95,7 +95,7 @@ export default defineComponent({
             </v-card>
           </v-col>
           <v-col cols="12" sm="6">
-            <v-card>
+            <v-card elevation="3">
               <v-card-title>Experience</v-card-title>
               <v-card-text class="vCardText">
                 <ul>
@@ -131,6 +131,7 @@ export default defineComponent({
 
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a drop shadow */
   max-width: 90%; /* Reduce the width of the image */
+  border-radius: 1%;
 }
 
 /* Styles for mobile devices */
