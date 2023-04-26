@@ -20,8 +20,8 @@
       <v-col cols="12" sm="6" md="6">
         <v-card elevation="3">
           <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-            height="200px"
+            src="portfolio/oldWebsite.png"
+            height="300px"
             cover
             ></v-img>
           <v-card-title>Old portfolio website:</v-card-title>
