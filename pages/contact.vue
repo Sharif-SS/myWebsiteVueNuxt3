@@ -7,26 +7,28 @@
             <v-col cols="12" md="4"
             class="mobileOnly">
               <v-sheet class="pa-6 ma-2">
+                
                 <v-img 
                 
                 class="imgStyles mobilePhotos"
                 src="/contact.jpg" 
                 lazy-src="/contactLazyLoad.jpg"
-            >
-            <template v-slot:placeholder>
-              <div class="d-flex align-center justify-center fill-height">
-                <v-progress-circular
-                  color="grey-lighten-4"
-                  indeterminate
-                ></v-progress-circular>
-              </div>
-            </template>
-    
-            </v-img>
+                >
+                <template v-slot:placeholder>
+                  <div class="d-flex align-center justify-center fill-height">
+                    <v-progress-circular
+                      color="grey-lighten-4"
+                      indeterminate
+                    ></v-progress-circular>
+                  </div>
+                </template>
+        
+                </v-img>
+
               </v-sheet>
             </v-col>
             <v-col >
-                <v-sheet class="pa-2 ma-2">
+                <v-sheet class="pa-2 ma-2 mt-12 " elevation="3">
     
                         <v-row>
                           <v-col >
@@ -73,6 +75,13 @@
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a drop shadow */
   max-width: 90%; /* Reduce the width of the image */
   border-radius: 1%;
+  
+  
+}
+
+.v-sheet {
+
+  border-radius: 2%;
   
   
 }
