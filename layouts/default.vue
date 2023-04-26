@@ -82,12 +82,19 @@ export default defineComponent({
 			
 			>Nav<v-icon>mdi-hamburger</v-icon>
 		  </v-btn>
-		  </v-app-bar>
-  
+		</v-app-bar>
+
+		<div>
+			<VApp>
+				<VMain>
+					<slot />
+				</VMain>
+			</VApp>
+		</div>
+		
 		  <v-footer 
 		  app
 		  color="#E0D1C8"
-
 		  rounded
 		  height="40"    
   		elevation="5" 
@@ -199,13 +206,7 @@ export default defineComponent({
 		  </v-navigation-drawer>
   
   
-		  <div>
-			<VApp>
-				<VMain>
-					<slot />
-				</VMain>
-			</VApp>
-		</div>
+
   
 
 	</v-app>
