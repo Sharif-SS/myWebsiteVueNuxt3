@@ -1,6 +1,14 @@
 
 <template>
     <v-app>
+       <!--dummy form so netlify knows what's coming-->
+        <form name="contact-speaker" netlify netlify-honeypot="bot-field" hidden>
+          <input type="text" name="name" />
+          <input type="text" name="email" />
+          <textarea name="message"></textarea>
+          <input type="text" name="speaker" />
+        </form>
+       <!-- <Form/> -->
        
       <v-container>
         <v-row no-gutters>
