@@ -29,6 +29,8 @@
             </v-col>
             <v-col >
                 <v-sheet class="pa-2 ma-2 mt-12 " elevation="3">
+                        <v-row>
+                          <v-col >
 
                   <!-- dummy so netlify knows what's coming -->
                     <!-- <div class="container">
@@ -59,8 +61,6 @@
                       </div>
                     </div> -->
 
-                        <v-row>
-                          <v-col >
                             <h2>
                               Contact Me
                             </h2>
