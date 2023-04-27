@@ -56,9 +56,9 @@ export default defineComponent({
       <v-col cols="12" md="4">
 
         <v-img 
-        class="mobilePhotos imgStyles"
+        class="mobilePhotos imgStyles ml-1"
         
-        aspect-ratio="4/3"
+        
         
         :src="profilePicture" 
         :lazy-src="lazyPicture"
@@ -85,11 +85,11 @@ export default defineComponent({
         
         <v-row class="pt-4">
           <v-col cols="12" sm="6">
-            <v-card elevation="3" >
+            <v-card elevation="3">
               <v-card-title>Skills</v-card-title>
-              <v-card-text class="vCardText">
-                <ul>
-                  <li v-for="skill in skills" :key="skill">{{ skill }}</li>
+              <v-card-text class=" ">
+                <ul class="a">
+                  <li class="list" v-for="skill in skills" :key="skill" >{{ skill }}</li>
                 </ul>
               </v-card-text>
             </v-card>
@@ -98,8 +98,8 @@ export default defineComponent({
             <v-card elevation="3">
               <v-card-title>Experience</v-card-title>
               <v-card-text class="vCardText">
-                <ul>
-                  <li v-for="job in jobs" :key="job.company">{{ job.title }} at {{ job.company }}</li>
+                <ul class="a">
+                  <li class="list" v-for="job in jobs" :key="job.company">{{ job.title }} at {{ job.company }}</li>
                 </ul>
               </v-card-text>
             </v-card>
@@ -135,6 +135,7 @@ export default defineComponent({
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a drop shadow */
   max-width: 90%; /* Reduce the width of the image */
   border-radius: 1%;
+
 }
 
 /* Styles for mobile devices */
@@ -150,9 +151,23 @@ export default defineComponent({
   }
 }
 
-.vCardText {
+.v-card-text {
   font-size: 1rem; /* The fit it all in one page */
-
+  margin-left: 10px;
+  
+  
 }
+
+ul.a {
+  list-style-type: "\1F427";
+  
+}
+
+li.list {
+
+  margin-top: 5px;
+}
+
+
 </style>
 

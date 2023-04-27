@@ -7,3 +7,14 @@
   
   </v-app>
   </template>
+
+
+  <style scoped>
+  @import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400);
+
+  * {
+  
+      font-family: Ubuntu;
+  }
+
+</style>
