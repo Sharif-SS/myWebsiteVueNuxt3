@@ -148,7 +148,7 @@ export default defineComponent({
 		  app
 		>
 
-		
+		<!-- prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg" -->
 		  <v-list-item
 		  height="90">
 			<v-btn icon    
