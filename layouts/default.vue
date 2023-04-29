@@ -136,43 +136,39 @@ export default defineComponent({
 		  </v-btn>
   
 		  </v-footer>
-  
-		  <!-- Nav Desktop -->
+
+		<!-- Nav Desktop -->
 		  <v-navigation-drawer
 		  style="background: linear-gradient(rgba(253, 252, 252, 1), rgba(0, 0, 0, 0.0))"
 		  color="#fdfcfc"
 		  width="240"
-		  
 		  expand-on-hover
 		  rail
 		  app
 		>
-
-		<!-- prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg" -->
-		  <v-list-item
-		  height="90">
-			<v-btn icon    
-							> 
-							<img src="/puffin.png" height="24px"/> </v-btn>
-		  </v-list-item>
-	
 		  <v-list>
-			
+			<v-list-item
+			  prepend-avatar="/puffin.png"  
+			></v-list-item>
+		  </v-list>
+  
+		  <v-list density="compact" nav>
 			<NuxtLink v-for="(item, i) in items" :key="i" :to="item.to" exact>
-			  <v-list-item
-			  :prepend-icon="item.icon">
-			  
-				<v-list-item-content>
-					<v-btn height="30" rounded="3" elevation="2" 
-					class="ma-2" color="#D8FBFD" >{{ item.title }}</v-btn>
-				</v-list-item-content>
-			  </v-list-item>
-
-			</NuxtLink>
+				<v-list-item
+				style="color: #000000;"
+				:prepend-icon="item.icon">
+				
+				  <v-list-item-content>
+					  <v-btn height="30" rounded="3" elevation="2" 
+					  class="ma-2" color="#D8FBFD" >{{ item.title }}</v-btn>
+				  </v-list-item-content>
+				</v-list-item>
+  
+			  </NuxtLink>
 		  </v-list>
 
 		</v-navigation-drawer>
-  
+
 		  <!-- Mobile Nav -->
 		  <v-navigation-drawer 
 		  
@@ -184,13 +180,10 @@ export default defineComponent({
 			location="bottom"
 			temporary
 		  >
-		  <v-list-item>
-			<v-btn icon> 
-			<img
-				  src="/puffin.png"
-				  height="25px"/>
-		</v-btn>
-		  </v-list-item>
+		  <v-list-item
+		  class="mt-1"
+		  prepend-avatar="/puffin.png"  
+		></v-list-item>
   
 		  <v-list>
 			<NuxtLink v-for="(item, i) in items" :key="i" :to="item.to" exact>
