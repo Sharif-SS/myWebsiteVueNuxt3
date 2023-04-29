@@ -61,7 +61,7 @@
             >CSS is the language we use to style an HTML document. CSS describes how HTML elements should be displayed.</v-tooltip>
           </v-btn>
 
-          <v-card-text>A fruition of what I learned during my time in my internship.</v-card-text>
+          <v-card-text>A fruition of what I learned during my time in my internship. Updated from time to time :)</v-card-text>
         </v-card>
 
       </v-col>
@@ -74,6 +74,25 @@
             
             ></v-img>
           <v-card-title>Old portfolio website:</v-card-title>
+
+          <v-btn  class="ma-2" rounded="lg"  color="#D8FBFD">
+            HTML
+            <v-tooltip
+            
+              activator="parent"
+              location="top"
+            >The HyperText Markup Language or HTML is the standard markup language for documents designed to be displayed in a web browser.</v-tooltip>
+          </v-btn>
+
+          <v-btn  class="ma-2" rounded="lg"  color="#D8FBFD">
+            CSS
+            <v-tooltip
+            
+              activator="parent"
+              location="top"
+            >CSS is the language we use to style an HTML document. CSS describes how HTML elements should be displayed.</v-tooltip>
+          </v-btn>
+
           <v-card-text>Goal here was to make a website to put things together from my portfolio and have a small taste at what HTML and CSS is like to code.</v-card-text>
         </v-card>
       </v-col>

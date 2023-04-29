@@ -20,7 +20,7 @@ export default defineComponent({
             name: "Sharif Sircar",
             jobTitle: "Junior Software Developer",
             bio: "Website currently still being updated, from place holder images to lorem ipsums in places.",//" From discovering myself to discovering NL, looking forward to moving on the next thing, looking to build a career in the software development industry. I pride myself on the professional work I produce in my current and past workplaces. Always excited to meet new people who have similar interests, love learning from industry experts to add to my own experience and grow! ",
-            skills: ["JavaScript", "Vue.js", "Node.js", "HTML", "CSS", "Python", "Wordpress", "Divi", "Typescript"],
+            skills: ["HTML","CSS","JavaScript","Typescript", "Vue.js", "Vuetify", "Node.js", "Python", "Wordpress", "Photoshop", "Divi"],
             jobs: [
                 {
                     company: "Robot Interactive.",
@@ -34,6 +34,8 @@ export default defineComponent({
                     company: "Multiple Resturants :)",
                     title: "Cooking all sort of software",
                 },
+
+                
             ] as Job[],
         };
     },
@@ -100,6 +102,7 @@ export default defineComponent({
               <v-card-text class="vCardText">
                 <ul class="a">
                   <li class="list" v-for="job in jobs" :key="job.company">{{ job.title }} at {{ job.company }}</li>
+                  <li class="list">Visit my linkedin for more info.</li>
                 </ul>
               </v-card-text>
             </v-card>

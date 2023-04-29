@@ -60,7 +60,11 @@ export default defineComponent({
 			class="ma-0 desktopOnly"
 			style="background-color: #D8FBFD; color: #000000;"
 			href="/oldWebsite/index.html" target="_blank"
-		  >Old Website</v-btn>
+		  >Old Website<v-tooltip
+            
+		  activator="parent"
+		  location="bottom"
+		>Archival of my old page</v-tooltip></v-btn>
 		  
 		  <v-btn
 		  
@@ -70,7 +74,11 @@ export default defineComponent({
 			class="ma-2"
 			style="background-color: #D8FBFD; color: #000000;"
 			href="https://youtu.be/dQw4w9WgXcQ"
-		  >Secret button</v-btn>
+		  >Secret button <v-tooltip
+            
+		  activator="parent"
+		  location="bottom"
+		>Are you ready???? :)</v-tooltip></v-btn>
 		  
 		  <v-btn 
 		  class="mobileOnly"
@@ -110,6 +118,11 @@ export default defineComponent({
 			href="https://www.linkedin.com/in/sharif-sircar/" target="_blank"
 			>
 			<v-icon>mdi-linkedin</v-icon>
+			<v-tooltip
+            
+              activator="parent"
+              location="top"
+            >Linkedin</v-tooltip>
 		  </v-btn>
   
 			<v-btn
@@ -121,6 +134,11 @@ export default defineComponent({
 			href="https://github.com/Sharif-SS" target="_blank"
 			>
 			<v-icon>mdi-github</v-icon>
+			<v-tooltip
+            
+              activator="parent"
+              location="top"
+            >Github</v-tooltip>
 		  </v-btn>
   
 			<v-btn
@@ -132,7 +150,11 @@ export default defineComponent({
 			href="https://www.youtube.com/c/sharifsircar" target="_blank"
 			>
 			<v-icon>mdi-youtube</v-icon>
-  
+			<v-tooltip
+            
+			activator="parent"
+			location="top"
+		  >Youtube</v-tooltip>
 		  </v-btn>
   
 		  </v-footer>

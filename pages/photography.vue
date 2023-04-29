@@ -6,6 +6,8 @@ import ImageGallary from '@/components/imageGallary.vue';
 <template>
   <VApp>
 <VMain>
+  <h2 class="mt-12 mb-1 text-center">Placeholders. Under construction </h2>
+  <v-divider :thickness="4" inset color="error"></v-divider>
   <ImageGallary/>
 </VMain>
 
