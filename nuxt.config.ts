@@ -10,6 +10,8 @@ const url = "https://www.sharif-sircar.com/";
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
 
+  ssr: false,
+
   // import styles
   css: ["@/assets/main.scss"],
   // enable takeover mode
