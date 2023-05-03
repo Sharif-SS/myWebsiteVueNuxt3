@@ -83,9 +83,9 @@ export default defineComponent({
       </v-col>
 
       <v-col cols="12" md="8">
-        <h2>{{ name }}</h2>
-        <h4>{{ jobTitle }}</h4>
-        <p class="bio">{{ bio }}</p>
+        <h2 class="topHeaders">{{ name }}</h2>
+        <h4 class="topHeaders">{{ jobTitle }}</h4>
+        <p class="bio topHeaders">{{ bio }}</p>
         
         <v-row class="pt-4 px-4">
           <v-col cols="12" sm="6">
@@ -154,6 +154,10 @@ export default defineComponent({
   .bio {
     font-size: 1.0rem; /* The fit it all in one page */
 
+  }
+
+  .topHeaders{
+    text-align: center;
   }
 }
 
