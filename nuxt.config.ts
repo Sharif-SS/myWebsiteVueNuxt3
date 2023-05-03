@@ -56,7 +56,7 @@ export default defineNuxtConfig({
       link: [
         { rel: "stylesheet", href: "https://rsms.me/inter/inter.css" },
         { rel: "preconnect", href: "https://rsms.me/" },
-        { rel: "icon", type: "image/x-icon", href: "/puff.ico" },
+        { rel: "icon", type: "image/x-icon", href: "/puffinv2.ico" },
         { rel: "canonical", href: url },
       ],
       meta: [
