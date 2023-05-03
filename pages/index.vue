@@ -49,21 +49,23 @@ export default defineComponent({
   <v-app>
 
   <v-container
-          class="d-flex justify-center align-center text-h5"
+          class="d-flex justify-center align-center text-h5 "
           style="min-height: 300px;"
         >
     
-    <v-row>
+    <v-row >
       
-      <v-col cols="12" md="4">
+      <v-col cols="12" md="4"
+      class="mobilePhotos ">
 
         <v-img 
-        class="mobilePhotos imgStyles ml-1"
+        class="imgStyles ml-1"
         
         
         
         :src="profilePicture" 
         :lazy-src="lazyPicture"
+        
         >
 
 
@@ -85,7 +87,7 @@ export default defineComponent({
         <h4>{{ jobTitle }}</h4>
         <p class="bio">{{ bio }}</p>
         
-        <v-row class="pt-4">
+        <v-row class="pt-4 px-4">
           <v-col cols="12" sm="6">
             <v-card elevation="3">
               <v-card-title>Skills</v-card-title>
@@ -147,6 +149,7 @@ export default defineComponent({
     max-width: 45%; /* Reduce the width of the image */
     display: block; /* Make the image a block element */
     margin: 0 auto; /* Center the image horizontally */
+
   }
   .bio {
     font-size: 1.0rem; /* The fit it all in one page */

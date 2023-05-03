@@ -1,10 +1,10 @@
 <template>
-<v-app>
+<v-app >
   
   <h2 class="mt-12 mb-1 text-center">Projects: </h2>
   <v-divider :thickness="4" inset color="error"></v-divider>
   
-  <v-container fluid>
+  <v-container fluid >
     
     <v-row>
       <v-col cols="12" sm="6" md="6">
@@ -99,7 +99,7 @@
 
     </v-row>
 
-    <v-row>
+    <v-row >
       <v-col cols="12" sm="6" md="6">
         
         <v-card elevation="3">
@@ -283,3 +283,10 @@
 </template>
 
 
+<style scoped> 
+.v-row{
+
+  
+}
+
+</style>
