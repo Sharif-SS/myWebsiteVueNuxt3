@@ -210,6 +210,7 @@ export default defineComponent({
 		  <v-list>
 			<NuxtLink v-for="(item, i) in items" :key="i" :to="item.to" exact>
 			  <v-list-item
+			  style="color: #000000;"
 			  :prepend-icon="item.icon">
 				<v-list-item-content>
 					<v-btn class="ma-2" color="#D8FBFD" >{{ item.title }}</v-btn>
