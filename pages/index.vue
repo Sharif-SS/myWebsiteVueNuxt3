@@ -47,7 +47,9 @@ export default defineComponent({
 
 <template>
   <v-app>
-
+    <v-parallax
+    src="/banner.jpg"
+  >
   <v-container
           class="d-flex justify-center align-center text-h5 "
           style="min-height: 300px;"
@@ -120,7 +122,7 @@ export default defineComponent({
 
       </v-row>
   </v-container>
-
+</v-parallax>
 
 
 </v-app>

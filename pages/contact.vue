@@ -1,7 +1,9 @@
 
 <template>
     <v-app>
-   
+      <v-parallax
+      src="/banner.jpg"
+    >
       <v-container>
         <v-row no-gutters>
             <v-col cols="12" md="4"
@@ -28,7 +30,7 @@
               </v-sheet>
             </v-col>
             <v-col >
-                <v-sheet class="pa-2 ma-2 mt-12 " elevation="3">
+                <v-sheet class="pa-2 ma-2 mt-12 rounded-lg" elevation="3">
                         <v-row>
                           <v-col >
 
@@ -87,7 +89,7 @@
               </v-col>
             </v-row>
       </v-container>
-  
+    </v-parallax>
   </v-app>
   </template>
 
@@ -116,7 +118,7 @@
 
 .v-sheet {
 
-  border-radius: 2%;
+  
   
   
 }

@@ -1,5 +1,8 @@
 <template>
     <v-app>
+      <v-parallax
+      src="/banner.jpg"
+    >
       <v-container >
         <v-row no-gutters>
           <v-col>
@@ -22,6 +25,7 @@
  
         </v-row>
       </v-container>
+    </v-parallax>
   </v-app>
   </template>
 
