@@ -1,10 +1,11 @@
+
 <template>
     <VCard
     class="ma-5"
     >
         <VRow>
             <VCol 
-            v-for="n in 200"
+            v-for="n in 30" :key="n"
             cols="6"
             sm="6"
             md="6"
@@ -13,10 +14,12 @@
                 <VHover>
                     <VCard>
 
-                        <vImg
-                        :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
-                        :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
-
+                        <vImg 
+                                :src="`/photos/image(${n}).jpg`"
+                                :lazy-src="`/photos/thumbnails/image(${n}).jpg`"
+                                aspect-ratio="1"
+                                transition="fab-transition"
+                                style="background: linear-gradient(rgb(245, 253, 255), rgba(0, 0, 0, 0.0))"
                         >
 
                         <template v-slot:placeholder>

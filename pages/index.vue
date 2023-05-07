@@ -61,6 +61,7 @@ export default defineComponent({
       class="mobilePhotos ">
 
         <v-img 
+        transition="fab-transition"
         class="imgStyles ml-1"
         
         

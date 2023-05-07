@@ -11,7 +11,7 @@
               <v-sheet class="pa-6 ma-2">
                 
                 <v-img 
-                
+                transition="fab-transition"
                 class="imgStyles mobilePhotos"
                 src="/contact.jpg" 
                 lazy-src="/contactLazyLoad.jpg"
