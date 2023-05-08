@@ -1,52 +1,36 @@
+<script lang="ts">
+import Portraits from '@/components/Portraits.vue';
+import Outdoors from '@/components/Outdoors.vue';
+import Animals from '@/components/Animals.vue';
+import Misc from '@/components/Misc.vue';
+import Vehicles from '@/components/Vehicles.vue';
+
+
+</script>
 
 <template>
-    <VCard
-    class="ma-5"
-    >
-        <VRow>
-            <VCol 
-            v-for="n in 30" :key="n"
-            cols="6"
-            sm="6"
-            md="6"
-            lg="3"
-            >
-                <VHover>
-                    <VCard>
+    <VCard class="ma-5">
+    <!-- each of these are enclosed in a row -->
 
-                        <vImg 
-                                :src="`/photos/image(${n}).jpg`"
-                                :lazy-src="`/photos/thumbnails/image(${n}).jpg`"
-                                aspect-ratio="1"
-                                transition="fab-transition"
-                                style="background: linear-gradient(rgb(245, 253, 255), rgba(0, 0, 0, 0.0))"
-                        >
+    <h1 class="mt-12 mb-1 text-center">Portraits </h1>
+    <v-divider length="1750px" class="mb-6" :thickness="4" inset color="error"></v-divider>
+    <Portraits/>
 
-                        <template v-slot:placeholder>
+    <h1 class="mt-12 mb-1 text-center">Nature & Outdoors</h1>
+    <v-divider length="1750px" class="mb-6" :thickness="4" inset color="error"></v-divider>
+    <Outdoors/>
 
-                            <VRow
-                                class="fill-height ma-0"
-                                align="center"
-                                justify="center">
+    <h1 class="mt-12 mb-1 text-center">Animals</h1>
+    <v-divider length="1750px" class="mb-6" :thickness="4" inset color="error"></v-divider>
+    <Animals/>
 
-                                <VProgressCircular
-                                    indeterminate
-                                    color="grey-lighten-5"
-                                ></VProgressCircular>
+    <h1 class="mt-12 mb-1 text-center">Vehicles</h1>
+    <v-divider length="1750px" class="mb-6" :thickness="4" inset color="error"></v-divider>
+    <Vehicles/>
 
+    <h1 class="mt-12 mb-1 text-center">Other</h1>
+    <v-divider length="1750px" class="mb-6" :thickness="4" inset color="error"></v-divider>
+    <Misc/>
 
-
-                            </VRow>
-
-                        </template>
-
-                        </vImg>
-
-
-                    </VCard>
-                </VHover>
-            </VCol>
-
-    </VRow>
-</VCard>
+    </VCard>
 </template>
