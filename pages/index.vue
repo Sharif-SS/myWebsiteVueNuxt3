@@ -19,7 +19,7 @@ export default defineComponent({
             lazyPicture: "/profilePhotoLazyLoad.jpg",
             name: "Sharif Sircar",
             jobTitle: "Junior Software Developer",
-            bio: "Website currently still being updated, from place holder images to lorem ipsums in places.",//" From discovering myself to discovering NL, looking forward to moving on the next thing, looking to build a career in the software development industry. I pride myself on the professional work I produce in my current and past workplaces. Always excited to meet new people who have similar interests, love learning from industry experts to add to my own experience and grow! ",
+            bio: "As I embark on a journey of self-discovery and exploration of Newfoundland (Where I am located), I am eagerly anticipating what lies ahead. I am determined to continue building a successful career in the software development industry, and take great pride in the high-quality work I have produced in my past and current positions. I relish the opportunity to connect with like-minded individuals who share my passion for this field, and welcome the chance to learn from industry experts in order to expand my own knowledge and expertise.",
             skills: ["HTML","CSS","JavaScript","Typescript", "Vue.js", "Vuetify", "Node.js", "Python", "Wordpress", "Photoshop", "Divi"],
             jobs: [
                 {
