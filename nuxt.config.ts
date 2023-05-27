@@ -4,7 +4,7 @@ import vuetify from "vite-plugin-vuetify";
 const title = "Sharif Sircar";
 const shortTitle = "Sharif's Website";
 const description = "My personal pet website where I have some of my photograpy photos and some of my software projects";
-const image = "https://www.sharif-sircar.com/puffin.png";
+const image = "https://www.sharif-sircar.com/puffinv2.ico";
 const url = "https://www.sharif-sircar.com/";
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config

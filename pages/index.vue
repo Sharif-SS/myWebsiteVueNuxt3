@@ -57,20 +57,19 @@ export default defineComponent({
     
     <v-row >
       
+      <!-- image -->
       <v-col cols="12" md="4"
-      class="mobilePhotos ">
+      class=" d-flex align-center justify-center pt-0">
 
         <v-img 
         transition="fab-transition"
-        class="imgStyles ml-1"
+        class="imgStyles ml-1 mobilePhotos"
+        height="792"
         
-        
-        
+        contain
         :src="profilePicture" 
         :lazy-src="lazyPicture"
-        
         >
-
 
         <template v-slot:placeholder>
           <div class="d-flex align-center justify-center fill-height">
@@ -85,25 +84,31 @@ export default defineComponent({
 
       </v-col>
 
-      <v-col cols="12" md="8">
+      <!--text beside image -->
+      <v-col cols="12" md="8" class="topRowChunk pt-12">
         <h2 class="topHeaders">{{ name }}</h2>
-        <h4 class="topHeaders">{{ jobTitle }}</h4>
-        <p class="bio topHeaders">{{ bio }}</p>
+        <h4 class="topHeaders jobTitle">{{ jobTitle }}</h4>
+        <p class="bio topHeaders ">{{ bio }}</p>
         
-        <v-row class="pt-4 px-4">
-          <v-col cols="12" sm="6">
+       
+        <v-row class="pt-10 px-4 skillExp">
+
+          <v-col class="skillCard" cols="12" sm="6">
             <v-card elevation="3">
               <v-card-title>Skills</v-card-title>
-              <v-card-text class=" ">
+              <v-divider :thickness="4" color="error"></v-divider>
+              <v-card-text class="two-column ">
                 <ul class="a">
                   <li class="list" v-for="skill in skills" :key="skill" >{{ skill }}</li>
                 </ul>
               </v-card-text>
             </v-card>
           </v-col>
-          <v-col cols="12" sm="6">
+
+          <v-col class="experienceCard" cols="12" sm="6">
             <v-card elevation="3">
               <v-card-title>Experience</v-card-title>
+              <v-divider :thickness="4" color="error"></v-divider>
               <v-card-text class="vCardText">
                 <ul class="a">
                   <li class="list" v-for="job in jobs" :key="job.company">{{ job.title }} at {{ job.company }}</li>
@@ -112,7 +117,9 @@ export default defineComponent({
               </v-card-text>
             </v-card>
           </v-col>
+
         </v-row>
+
       </v-col>
 
        <!-- Mid page -->
@@ -138,24 +145,68 @@ export default defineComponent({
     font-family: Ubuntu;
 }
 
-.imgStyles {
-
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a drop shadow */
-  max-width: 90%; /* Reduce the width of the image */
-  border-radius: 1%;
+.v-divider {
+  margin-left: 2%;
+  margin-right: 2%;
+  opacity: 10%;
 
 }
+
+/* Styles for large devices */
+@media (min-width: 959px) {
+
+  .imgStyles {
+
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a drop shadow */
+    max-height: 90%; /* Reduce the width of the image */
+    border-radius: 1%;
+    /*margin-top: 10%;*/
+    
+  }
+
+  .individualChunk{
+    padding-top: 5%;
+  }
+
+  .jobTitle {
+
+    padding-top: 1.5%;
+  }
+
+  .bio {
+    padding-top: 3%;
+    font-size: 1.2rem; /* The fit it all in one page */
+  }
+
+  .skillExp {
+    
+  }
+
+  .two-column {
+    column-count: 2;
+    column-gap: 1rem; /* Adjust the gap between columns as needed */
+  }
+
+  .skillCard{
+    padding-right: 2rem;
+  }
+}
+
+
 
 /* Styles for mobile devices */
 @media (max-width: 959px) {
   .mobilePhotos {
-    max-width: 45%; /* Reduce the width of the image */
-    display: block; /* Make the image a block element */
-    margin: 0 auto; /* Center the image horizontally */
+    max-width: 50%; /* Reduce the width of the image */
+    display: none; /* Make the image a block element */
 
   }
+
+
   .bio {
     font-size: 1.0rem; /* The fit it all in one page */
+    margin-left: 2%;
+    margin-right: 2%;
 
   }
 
