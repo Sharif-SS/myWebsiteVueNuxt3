@@ -3,7 +3,7 @@ import vuetify from "vite-plugin-vuetify";
 // PWA Config
 const title = "Sharif Sircar";
 const shortTitle = "Sharif's Website";
-const description = "My personal pet website where I have some of my photograpy photos and some of my software projects";
+const description = "Welcome to my personal portfolio website, where I combine my passion for photography with my love for software projects. Explore my creative journey through captivating images and innovative digital endeavors."
 const image = "https://www.sharif-sircar.com/puffinv2.ico";
 const url = "https://www.sharif-sircar.com/";
 
