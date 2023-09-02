@@ -12,7 +12,7 @@ import Vehicles from '@/components/Vehicles.vue';
     <VCard class="ma-5">
     <!-- each of these are enclosed in a row -->
 
-    <h1 class="mt-12 mb-1 text-center">Portraits </h1>
+    <h1 class="mt-4 mb-1 text-center">Portraits </h1>
     <v-divider length="1750px" class="mb-6" :thickness="4" inset color="error"></v-divider>
     <Portraits/>
 

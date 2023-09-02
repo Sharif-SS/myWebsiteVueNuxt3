@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import ImageGallary from '@/components/imageGallary.vue';
-
-
+import Portfolio from '@/components/portfolio.vue';
 </script>
 
 <template>
   <VApp>
 <VMain>
- 
-  <ImageGallary/>
+ <Portfolio/>
 </VMain>
 
   </VApp>

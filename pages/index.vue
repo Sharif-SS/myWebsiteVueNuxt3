@@ -60,11 +60,11 @@ export default defineComponent({
       <!-- image -->
       <v-col cols="12" md="4"
       class=" d-flex align-center justify-center pt-0">
-
+<!-- height="792" -->
         <v-img 
         transition="fab-transition"
         class="imgStyles ml-1 mobilePhotos"
-        height="792"
+        cover
         
         contain
         :src="profilePicture" 
@@ -85,7 +85,7 @@ export default defineComponent({
       </v-col>
 
       <!--text beside image -->
-      <v-col cols="12" md="8" class="topRowChunk pt-12">
+      <v-col cols="12" md="8" class="topRowChunk pt-6">
         <h2 class="topHeaders">{{ name }}</h2>
         <h4 class="topHeaders jobTitle">{{ jobTitle }}</h4>
         <p class="bio topHeaders ">{{ bio }}</p>
@@ -121,12 +121,6 @@ export default defineComponent({
         </v-row>
 
       </v-col>
-
-       <!-- Mid page -->
-       <Portfolio/>
-
-  
-
 
       </v-row>
   </v-container>

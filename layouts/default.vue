@@ -22,6 +22,14 @@ export default defineComponent({
         to: '/photography',
         
       },
+
+	  {
+        icon: 'mdi-account-hard-hat',
+        title: 'Portfolio',
+        to: '/portfolio',
+        
+      },
+
       {
         icon: 'mdi-card-account-mail',
         title: 'Contact Me',

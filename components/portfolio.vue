@@ -1,7 +1,6 @@
 <template>
 <v-app >
-  
-  <h2 class="mt-12 mb-1 text-center">Projects: </h2>
+  <h1 class="mt-6 mb-1 text-center">Projects: </h1>
   <v-divider :thickness="4" inset color="error"></v-divider>
   
   <v-container fluid >

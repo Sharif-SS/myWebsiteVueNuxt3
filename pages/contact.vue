@@ -8,7 +8,7 @@
         <v-row no-gutters>
             <v-col cols="12" md="4"
             class="mobileOnly">
-              <v-sheet class="pa-6 ma-2">
+              <v-sheet class="pa-4 ma-2">
                 
                 <v-img 
                 transition="fab-transition"
@@ -30,7 +30,7 @@
               </v-sheet>
             </v-col>
             <v-col >
-                <v-sheet class="pa-2 ma-2 mt-12 rounded-lg" elevation="3">
+                <v-sheet class="pa-2 ma-2 mt-6 rounded-lg" elevation="3">
                         <v-row>
                           <v-col >
 
