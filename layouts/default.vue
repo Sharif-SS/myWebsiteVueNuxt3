@@ -17,7 +17,7 @@ export default defineComponent({
        
     //   },
       {
-        icon: 'mdi-camera-enhance',
+        icon: 'mdi-camera-iris',
         title: 'Photography',
         to: '/photography',
         
@@ -31,7 +31,7 @@ export default defineComponent({
       },
 
       {
-        icon: 'mdi-card-account-mail',
+        icon: 'mdi-email',
         title: 'Contact Me',
         to: '/contact',
         
