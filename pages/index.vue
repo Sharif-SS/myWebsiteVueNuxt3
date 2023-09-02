@@ -18,9 +18,9 @@ export default defineComponent({
             profilePicture: "/profilePhoto.jpg",
             lazyPicture: "/profilePhotoLazyLoad.jpg",
             name: "Sharif Sircar",
-            jobTitle: "Junior Software Developer",
+            jobTitle: "Web Developer",
             bio: "Embarking on a journey of self-discovery and improvement, I am eagerly anticipating what lies ahead. I am determined to continue building a successful career in the software development industry and take great pride in the high-quality work I have produced in my past and current positions. I relish the opportunity to connect with like-minded individuals who share my passion for this field and welcome the chance to learn from industry experts to expand my knowledge and expertise.",
-            skills: ["HTML","CSS","JavaScript","Typescript", "Vue.js", "Vuetify", "Node.js", "Python", "Wordpress", "Photoshop", "Divi"],
+            skills: ["HTML","CSS","Typescript", "Vue.js", "Express","WebSocket", "NodeJS", "Python", "Squarespace", "Wordpress", "Divi", "Photoshop", "Tag Manager", "Google Analytics"],
             jobs: [
                 {
                     company: "Robot Interactive.",
@@ -91,7 +91,7 @@ export default defineComponent({
         <p class="bio topHeaders ">{{ bio }}</p>
         
        
-        <v-row class="pt-10 px-4 skillExp">
+        <v-row class="pt-5 px-4 skillExp">
 
           <v-col class="skillCard" cols="12" sm="6">
             <v-card elevation="3">
@@ -168,7 +168,7 @@ export default defineComponent({
   }
 
   .bio {
-    padding-top: 3%;
+    padding-top: 1.5%;
     font-size: 1.2rem; /* The fit it all in one page */
   }
 

@@ -10,12 +10,12 @@ export default defineComponent({
     const drawer = ref(false)
     
     const items = [
-      {
-        icon: 'mdi-home-flood',
-        title: 'Home',
-        to: '/',
+    //   {
+    //     icon: 'mdi-home-flood',
+    //     title: 'Home',
+    //     to: '/',
        
-      },
+    //   },
       {
         icon: 'mdi-camera-enhance',
         title: 'Photography',
@@ -24,7 +24,7 @@ export default defineComponent({
       },
 
 	  {
-        icon: 'mdi-account-hard-hat',
+        icon: 'mdi-robot-happy',
         title: 'Portfolio',
         to: '/portfolio',
         
@@ -179,7 +179,9 @@ export default defineComponent({
 		  <v-list>
 			<v-list-item
 			  prepend-avatar="/puffin.png"  
+			  href="/"
 			></v-list-item>
+
 		  </v-list>
   
 		  <v-list density="compact" nav>

@@ -8,7 +8,7 @@ import ImageGallary from '@/components/imageGallary.vue';
   <VApp>
 <VMain>
  
-  <ImageGallary/>
+  <ImageGallary class="desktop-left-padding"/>
 </VMain>
 
   </VApp>
@@ -21,7 +21,15 @@ import ImageGallary from '@/components/imageGallary.vue';
 
     font-family: Ubuntu;
 }
+
+/* CSS for screens with a width less than 768px */
+@media (min-width: 959px) {
+  .desktop-left-padding {
+    padding-left: 4%;
+  }
+}
 </style>
+
 
 
 

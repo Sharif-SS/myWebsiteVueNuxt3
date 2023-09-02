@@ -5,7 +5,7 @@ import Portfolio from '@/components/portfolio.vue';
 <template>
   <VApp>
 <VMain>
- <Portfolio/>
+ <Portfolio class="desktop-left-padding"/>
 </VMain>
 
   </VApp>
@@ -17,6 +17,13 @@ import Portfolio from '@/components/portfolio.vue';
 * {
 
     font-family: Ubuntu;
+}
+
+/* CSS for screens with a width less than 768px */
+@media (min-width: 959px) {
+  .desktop-left-padding {
+    margin-left: 4%;
+  }
 }
 </style>
 
