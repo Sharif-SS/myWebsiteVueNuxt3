@@ -34,7 +34,7 @@ export default defineNuxtConfig({
 
       script: [
         {
-          src: 'https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID',
+          src: 'https://www.googletagmanager.com/gtag/js?id=G-6VSTRJ3QLM',
           async: true
         },
         {
@@ -54,8 +54,6 @@ export default defineNuxtConfig({
       title: "Sharif Sircar",
       titleTemplate: "%s",
       link: [
-        { rel: "stylesheet", href: "https://rsms.me/inter/inter.css" },
-        { rel: "preconnect", href: "https://rsms.me/" },
         { rel: "icon", type: "image/x-icon", href: "/puffinv2.ico" },
         { rel: "canonical", href: url },
       ],
