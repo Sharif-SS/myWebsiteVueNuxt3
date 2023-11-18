@@ -172,9 +172,6 @@ export default defineComponent({
     font-size: 1.2rem; /* The fit it all in one page */
   }
 
-  .skillExp {
-    
-  }
 
   .two-column {
     column-count: 2;
@@ -185,8 +182,6 @@ export default defineComponent({
     padding-right: 2rem;
   }
 }
-
-
 
 /* Styles for mobile devices */
 @media (max-width: 959px) {
@@ -201,7 +196,6 @@ export default defineComponent({
     font-size: 1.0rem; /* The fit it all in one page */
     margin-left: 2%;
     margin-right: 2%;
-
   }
 
   .topHeaders{
