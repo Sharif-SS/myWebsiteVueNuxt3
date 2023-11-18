@@ -212,10 +212,13 @@ export default defineComponent({
 			location="bottom"
 			temporary
 		  >
-		  <v-list-item
-		  class="mt-1"
-		  prepend-avatar="/puffin.png"  
-		></v-list-item>
+		  <v-list>
+			<v-list-item
+			  prepend-avatar="/puffin.png"  
+			  href="/"
+			></v-list-item>
+
+		  </v-list>
   
 		  <v-list>
 			<NuxtLink v-for="(item, i) in items" :key="i" :to="item.to" exact>
