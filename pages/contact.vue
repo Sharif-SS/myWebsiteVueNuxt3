@@ -11,6 +11,7 @@
               <v-sheet class="pa-4 ma-2">
                 
                 <v-img 
+                alt="An image of Sharif in an old telephone booth."
                 transition="fab-transition"
                 class="imgStyles mobilePhotos"
                 src="/contact.jpg" 
