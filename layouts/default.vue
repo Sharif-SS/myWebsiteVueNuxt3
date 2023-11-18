@@ -178,9 +178,12 @@ export default defineComponent({
 		>
 		  <v-list>
 			<v-list-item
+			height="70"
 			  prepend-avatar="/puffin.png"  
 			  href="/"
-			></v-list-item>
+			  
+			  
+			>~</v-list-item>
 
 		  </v-list>
   
@@ -216,7 +219,8 @@ export default defineComponent({
 			<v-list-item
 			  prepend-avatar="/puffin.png"  
 			  href="/"
-			></v-list-item>
+			  
+			>~</v-list-item>
 
 		  </v-list>
   
