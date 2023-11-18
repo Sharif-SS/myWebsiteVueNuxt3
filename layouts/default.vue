@@ -81,7 +81,7 @@ export default defineComponent({
 		  elevation="2"
 			class="ma-2"
 			style="background-color: #D8FBFD; color: #000000;"
-			href="https://youtu.be/dQw4w9WgXcQ"
+			href="https://youtu.be/dQw4w9WgXcQ" aria-label="Rick Roll button, says secret button as a little joke"
 		  >Secret button <v-tooltip
             
 		  activator="parent"
@@ -94,6 +94,8 @@ export default defineComponent({
 		  height="30"   
 		  rounded="3"
 		  elevation="2"
+		  aria-label="Brings up navigation"
+
 			@click.stop="drawer = !drawer"
 			
 			>Nav<v-icon>mdi-hamburger</v-icon>
@@ -123,7 +125,7 @@ export default defineComponent({
 			elevation="2"
 			color="#D8FBFD" 
 			class="ma-2"
-			href="https://www.linkedin.com/in/sharif-sircar/" target="_blank"
+			href="https://www.linkedin.com/in/sharif-sircar/" target="_blank" aria-label="Sharif's linkedin button"
 			>
 			<v-icon>mdi-linkedin</v-icon>
 			<v-tooltip
@@ -139,7 +141,7 @@ export default defineComponent({
 			elevation="2"
 			color="#D8FBFD" 
 			class="ma-2"
-			href="https://github.com/Sharif-SS" target="_blank"
+			href="https://github.com/Sharif-SS" target="_blank" aria-label="Sharif's github button"
 			>
 			<v-icon>mdi-github</v-icon>
 			<v-tooltip
@@ -155,7 +157,7 @@ export default defineComponent({
 			elevation="2"
 			color="#D8FBFD" 
 			class="ma-2"
-			href="https://www.youtube.com/c/sharifsircar" target="_blank"
+			href="https://www.youtube.com/c/sharifsircar" target="_blank" aria-label="Sharif's youtube button"
 			>
 			<v-icon>mdi-youtube</v-icon>
 			<v-tooltip

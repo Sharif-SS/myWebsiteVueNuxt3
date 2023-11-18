@@ -102,7 +102,7 @@
         <v-col cols="12" sm="6" md="6">
 
           <v-card elevation="3">
-            <v-img src="portfolio/dvgui-min.png" height="300px"></v-img>
+            <v-img src="portfolio/dvgui-min.png" height="300px" alt="A screenshot of DVGUI project."></v-img>
             <v-card-title>Data Visualization GUI - <a href="https://engagecreative.ca/">Engage
                 Creative</a>:</v-card-title>
 
@@ -145,7 +145,7 @@
         <v-col cols="12" sm="6" md="6">
 
           <v-card elevation="3">
-            <v-img src="/puffin.png" height="300px"></v-img>
+            <v-img src="/puffin.png" height="300px" alt="A vector image of a puffin logo."></v-img>
             <v-card-title>This website:</v-card-title>
 
             <v-btn class="ma-2" rounded="lg" color="#D8FBFD">

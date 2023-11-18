@@ -65,7 +65,8 @@ export default defineComponent({
         transition="fab-transition"
         class="imgStyles ml-1 mobilePhotos"
         cover
-        
+        alt="An image of Sharif with a lake backdrop."
+
         contain
         :src="profilePicture" 
         :lazy-src="lazyPicture"
