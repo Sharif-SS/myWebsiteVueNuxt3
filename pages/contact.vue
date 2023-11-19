@@ -3,6 +3,7 @@
     <v-app>
       <v-parallax
       src="/banner.jpg"
+      alt="Parallax image of banner."
     >
       <v-container>
         <v-row no-gutters>

@@ -48,7 +48,8 @@ export default defineComponent({
 <template>
   <v-app>
     <v-parallax
-    src="/banner.jpg"
+    src="/banner.jpg" 
+    alt="Parallax image of banner."
   >
   <v-container
           class="d-flex justify-center align-center text-h5 "
