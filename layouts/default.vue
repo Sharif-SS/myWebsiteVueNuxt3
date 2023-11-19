@@ -69,7 +69,7 @@ export default defineComponent({
 			style="background-color: #D8FBFD; color: #000000;"
 			href="/oldWebsite/index.html" target="_blank"
 		  >Old Website<v-tooltip
-            
+		  aria-label="Shows additional text mentioning it being an archival."
 		  activator="parent"
 		  location="bottom"
 		>Archival of my old page</v-tooltip></v-btn>
@@ -83,7 +83,7 @@ export default defineComponent({
 			style="background-color: #D8FBFD; color: #000000;"
 			href="https://youtu.be/dQw4w9WgXcQ" aria-label="Rick Roll button, says secret button as a little joke"
 		  >Secret button <v-tooltip
-            
+		  aria-label="Tooltip shows are you ready on hover, in a cheeky way"
 		  activator="parent"
 		  location="bottom"
 		>Are you ready???? :)</v-tooltip></v-btn>
@@ -130,6 +130,7 @@ export default defineComponent({
 			<v-icon>mdi-linkedin</v-icon>
 			<v-tooltip
             
+			aria-label="Tooltip shows linkedin on hover."
               activator="parent"
               location="top"
             >Linkedin</v-tooltip>
@@ -145,7 +146,7 @@ export default defineComponent({
 			>
 			<v-icon>mdi-github</v-icon>
 			<v-tooltip
-            
+            aria-label="Tooltip shows github on hover."
               activator="parent"
               location="top"
             >Github</v-tooltip>
@@ -161,7 +162,7 @@ export default defineComponent({
 			>
 			<v-icon>mdi-youtube</v-icon>
 			<v-tooltip
-            
+            aria-label="Tooltip shows Youtube on hover."
 			activator="parent"
 			location="top"
 		  >Youtube</v-tooltip>
