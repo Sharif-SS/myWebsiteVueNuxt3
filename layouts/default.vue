@@ -111,6 +111,8 @@ export default defineComponent({
 		</div>
 		
 		  <v-footer 
+
+		  aria-label="This is the footer bar of the page."
 		  app
 		  color="#E0D1C8"
 		  rounded
@@ -172,6 +174,7 @@ export default defineComponent({
 
 		<!-- Nav Desktop -->
 		  <v-navigation-drawer
+		  aria-label="Left side navigation slider on hover"
 		  style="background: linear-gradient(rgba(253, 252, 252, 1), rgba(0, 0, 0, 0.0))"
 		  color="#fdfcfc"
 		  width="240"
@@ -184,7 +187,7 @@ export default defineComponent({
 			height="70"
 			  prepend-avatar="/puffin.png"  
 			  href="/"
-			  
+			  aria-label="Clicking this takes you back to the homepage if already not there."
 			  
 			>~</v-list-item>
 
@@ -198,7 +201,7 @@ export default defineComponent({
 				
 				  <v-list-item-content>
 					  <v-btn height="30" rounded="3" elevation="2" 
-					  class="ma-2" color="#D8FBFD" >{{ item.title }}</v-btn>
+					  class="ma-2" color="#D8FBFD" :aria-label="`Clicking this will take you to ${item.title}`">{{ item.title }}</v-btn>
 				  </v-list-item-content>
 				</v-list-item>
   
