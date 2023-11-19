@@ -67,7 +67,7 @@ export default defineComponent({
 			elevation="2"
 			class="ma-0 desktopOnly"
 			style="background-color: #D8FBFD; color: #000000;"
-			href="/oldWebsite/index.html" target="_blank"
+			href="/oldWebsite/index.html" target="_blank" aria-label="Button leads to my old website."
 		  >Old Website<v-tooltip
 		  aria-label="Shows additional text mentioning it being an archival."
 		  activator="parent"

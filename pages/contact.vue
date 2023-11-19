@@ -78,10 +78,10 @@
                                 <p class="hidden">
                                   <label>Don't add anything here <input name="bot-field"></label>
                                 </p>
-                                <v-text-field class="form-field" name="name" id="name" label="Name"></v-text-field>
-                                <v-text-field class="form-field" name="email" id="email" label="Email"></v-text-field>
-                                <v-textarea class="form-field" name="message" id="message" label="Message"></v-textarea>
-                                <v-btn color="#D8FBFD" class="form-button" type="submit">Send message</v-btn>
+                                <v-text-field class="form-field" name="name" id="name" label="Name" aria-label="Enter your name here."></v-text-field>
+                                <v-text-field class="form-field" name="email" id="email" label="Email" aria-label="Enter your email here."></v-text-field>
+                                <v-textarea class="form-field" name="message" id="message" label="Message" aria-label="Enter the message here."></v-textarea>
+                                <v-btn color="#D8FBFD" class="form-button" type="submit" aria-label="This button sends the form.">Send message</v-btn>
                               </form>
                             </div>
                           </v-col>
