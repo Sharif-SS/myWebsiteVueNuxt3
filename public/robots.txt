@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /photography
+Allow: /portfolio
+Allow: /contact
+Allow: /$
+
+Disallow: /*/
+
+Sitemap: https://www.sharif-sircar.com/sitemap.xml
