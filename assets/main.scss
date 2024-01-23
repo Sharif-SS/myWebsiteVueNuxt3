@@ -3,5 +3,10 @@ $family: "Inter var", "Inter", apple-system, BlinkMacSystemFont, "Segoe UI", Rob
 
 @use "vuetify" with (
   $body-font-family: $family
+  
 );
+
+.global-cursor {
+  cursor: url('/pointer.png'), auto;
+}
 
