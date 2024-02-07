@@ -1,8 +1,21 @@
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  data() {
+    return {
+      // Adjust this value based on the maximum number of images you anticipate having
+      imageCount: 5,
+    };
+  },
+});
+</script>
+
 <template>
 
     <VRow>
         <VCol 
-        v-for="n in 4" :key="n"
+        v-for="n in imageCount" :key="n"
         cols="6"
         sm="6"
         md="6"
@@ -12,8 +25,8 @@
                 <VCard>
 
                     <vImg 
-                            :src="`/photos/Animals/image(${n}).jpg`"
-                            :lazy-src="`/photos/Animals/thumbnails/image(${n}).jpg`"
+                            :src="`/photos/Animals/image(${imageCount - n + 1}).jpg`"
+                            :lazy-src="`/photos/Animals/thumbnails/image(${imageCount - n + 1}).jpg`"
                             aspect-ratio="1"
                             transition="fab-transition"
                             style="background: linear-gradient(rgb(245, 253, 255), rgba(0, 0, 0, 0.0))"
@@ -45,4 +58,5 @@
         </VCol>
 
     </VRow>
+
 </template>
