@@ -46,7 +46,7 @@ export default defineComponent({
 
 <template>
 	<v-app>
-		<v-app-bar location="top" app rounded color="#E0D1C8" height="50" elevation="5">
+		<v-app-bar location="top" app rounded color="#F8EDEB" height="50" elevation="5">
 			<v-spacer></v-spacer>
 			<v-app-bar-title>{{ title }}</v-app-bar-title>
 
@@ -79,7 +79,7 @@ export default defineComponent({
 			</VApp>
 		</div>
 
-		<v-footer aria-label="This is the footer bar of the page." app color="#E0D1C8" rounded height="40" elevation="5">
+		<v-footer aria-label="This is the footer bar of the page." app color="#F8EDEB" rounded height="40" elevation="5">
 			<span>&copy; {{ new Date().getFullYear() }}</span>
 
 			<v-btn height="30" rounded="3" elevation="2" color="#D8FBFD" class="ma-2"
