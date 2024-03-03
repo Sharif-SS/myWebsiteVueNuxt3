@@ -67,7 +67,7 @@ export default defineComponent({
 
 			<v-btn class="mobileOnly" style="background-color: #D8FBFD; color: #000000;" height="30" rounded="3"
 				elevation="2" aria-label="Brings up navigation"
-				@click.stop="drawer = !drawer">Nav<v-icon>mdi-hamburger</v-icon>
+				@click.stop="drawer = !drawer"><v-icon>mdi-menu</v-icon>
 			</v-btn>
 		</v-app-bar>
 
