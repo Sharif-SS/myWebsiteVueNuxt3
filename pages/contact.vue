@@ -118,12 +118,6 @@
   
 }
 
-.v-sheet {
-
-  
-  
-  
-}
 
 /* Styles for mobile devices */
 @media (max-width: 959px) {

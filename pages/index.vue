@@ -20,8 +20,12 @@ export default defineComponent({
             name: "Sharif Sircar",
             jobTitle: "Web Developer",
             bio: "Embarking on a journey of self-discovery and improvement, I am eagerly anticipating what lies ahead. I am determined to continue building a successful career in the software development industry and take great pride in the high-quality work I have produced in my past and current positions. I relish the opportunity to connect with like-minded individuals who share my passion for this field and welcome the chance to learn from industry experts to expand my knowledge and expertise.",
-            skills: ["HTML","CSS","Typescript", "Vue.js", "Express","WebSocket", "NodeJS", "Python", "Squarespace", "Wordpress", "Divi", "Photoshop", "Tag Manager", "Google Analytics"],
+            skills: ["HTML","CSS","Typescript", "Vue.js", "Express","WebSocket", "NodeJS", "Python", "Wordpress", "Photoshop", "Tag Manager", "Google Analytics", "Web Hosting"],
             jobs: [
+                {
+                    company: "The Leap Method (Carol Bartlett)",
+                    title: "Web Development Consultant",
+                },
                 {
                     company: "Robot Interactive.",
                     title: "Junior Software Developer",

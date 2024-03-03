@@ -110,7 +110,10 @@ export default defineComponent({
 			expand-on-hover rail app>
 			<v-list>
 				<v-list-item height="70" prepend-avatar="/puffin.png" href="/"
-					aria-label="Clicking this takes you back to the homepage if already not there.">~</v-list-item>
+					aria-label="Clicking this takes you back to the homepage if already not there.">
+					<v-btn height="30" rounded="3" elevation="2" class="ma-2" color="#D8FBFD">Home</v-btn>
+				
+				</v-list-item>
 
 			</v-list>
 
@@ -132,9 +135,12 @@ export default defineComponent({
 
 		<!-- Mobile Nav -->
 		<v-navigation-drawer style="background: linear-gradient(to right, rgba(253, 252, 252, 1), rgba(0, 0, 0, 0.0))"
-			color="#fdfcfc" app v-model="drawer" location="bottom" temporary>
+			color="#fdfcfc" app v-model="drawer" location="top" width="300" temporary>
 			<v-list>
-				<v-list-item prepend-avatar="/puffin.png" href="/">~</v-list-item>
+				<v-list-item prepend-avatar="/puffin.png" href="/">
+					<v-btn class="ma-2" color="#D8FBFD">Home</v-btn>
+
+				</v-list-item>
 
 			</v-list>
 
