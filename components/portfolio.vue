@@ -4,13 +4,47 @@
     <v-divider :thickness="4" inset color="error"></v-divider>
 
     <v-container fluid>
+
+      <v-row align-content="center" justify="center">
+        <v-col cols="12" sm="12" md="8">
+          <v-card elevation="3">
+
+
+            <v-carousel show-arrows="hover" height="300px" hide-delimiter-background cycle delimiter-icon="mdi-bird">
+              <v-carousel-item src="portfolio/soon.jpg"></v-carousel-item>
+
+              <v-carousel-item src="/puffin.png"></v-carousel-item>
+            </v-carousel>
+
+            <v-card-title>React and Tailwind - <a href="https://elitewelding-nl.netlify.app">Elite Welding NL</a>:</v-card-title>
+
+
+
+            <v-btn class="ma-2" rounded="lg" color="#D8FBFD">
+              React
+              <v-tooltip activator="parent" location="top">React is a free and open-source front-end JavaScript library 
+                for building user interfaces based on components.</v-tooltip>
+            </v-btn>
+
+
+            <v-btn class="ma-2" rounded="lg" color="#D8FBFD">
+              Tailwind
+              <v-tooltip activator="parent" location="top">Tailwind CSS is an open source CSS framework.</v-tooltip>
+            </v-btn>
+
+            <v-card-text>Website based on React and Tailwind, wanted exposure to React, so I decided to pickup a project utilizing 
+              it, while simultaneously helping a friend to get more reach for his business. In Progress</v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+
       <v-row>
         <v-col cols="12" sm="6" md="6">
           <v-card elevation="3">
 
 
             <v-carousel show-arrows="hover" height="300px" hide-delimiter-background cycle delimiter-icon="mdi-bird">
-              <v-carousel-item src="portfolio/EST.png"></v-carousel-item>
+              <v-carousel-item src="portfolio/EST.jpg"></v-carousel-item>
 
               <v-carousel-item src="portfolio/NAIA.png"></v-carousel-item>
             </v-carousel>
@@ -145,8 +179,8 @@
         <v-col cols="12" sm="6" md="6">
 
           <v-card elevation="3">
-            <v-img src="/puffin.png" height="300px" alt="A vector image of a puffin logo."></v-img>
-            <v-card-title>This website:</v-card-title>
+            <v-img src="portfolio/thiswebsite.jpg" height="300px" alt="A vector image of a puffin logo."></v-img>
+            <v-card-title>Current Portfolio Website:</v-card-title>
 
             <v-btn class="ma-2" rounded="lg" color="#D8FBFD">
               Vue.js
@@ -178,8 +212,7 @@
                 describes how HTML elements should be displayed.</v-tooltip>
             </v-btn>
 
-            <v-card-text>A fruition of what I learned during my time in my internship. Updated from time to time
-              :)</v-card-text>
+            <v-card-text>A fruition of what I learned during my time in my internship. Tweaked regularly, it's also my CSS testing ground.</v-card-text>
           </v-card>
 
         </v-col>
@@ -192,7 +225,7 @@
         <v-col cols="12" sm="6" md="6">
           <v-card elevation="3">
             <v-img src="portfolio/oldWebsite.jpg" height="300px"></v-img>
-            <v-card-title>Old portfolio website:</v-card-title>
+            <v-card-title>Portfolio Website v0.5:</v-card-title>
 
             <v-btn class="ma-2" rounded="lg" color="#D8FBFD">
               HTML
@@ -220,7 +253,7 @@
               <v-carousel-item src="portfolio/pi2.png"></v-carousel-item>
             </v-carousel>
 
-            <v-card-title>Plant monitoring system: </v-card-title>
+            <v-card-title>Smart Soil: </v-card-title>
 
             <v-btn class="ma-2" rounded="lg" color="#D8FBFD">
               Python
