@@ -1,7 +1,7 @@
 <script lang="ts">
 import Portfolio from '@/components/portfolio.vue';
 
-import { defineComponent} from 'vue';
+import { defineComponent } from 'vue';
 
 
 interface Job {
@@ -12,134 +12,112 @@ interface Job {
 }
 
 export default defineComponent({
-    name: "AboutMe",
-    data() {
-        return {
-            profilePicture: "/profilePhoto.jpg",
-            lazyPicture: "/profilePhotoLazyLoad.jpg",
-            name: "Sharif Sircar",
-            jobTitle: "Web Developer",
-            bio: "Embarking on a journey of self-discovery and improvement, I am eagerly anticipating what lies ahead. I am determined to continue building a successful career in the software development industry and take great pride in the high-quality work I have produced in my past and current positions. I relish the opportunity to connect with like-minded individuals who share my passion for this field and welcome the chance to learn from industry experts to expand my knowledge and expertise.",
-            skills: ["HTML","CSS","Typescript", "Vue.js", "Express","WebSocket", "NodeJS", "Python", "Wordpress", "CMS Systems", "Photoshop", "Tag Manager", "Google Analytics", "Web Hosting"],
-            jobs: [
-                {
-                    company: "The Leap Method (Carol Bartlett)",
-                    title: "Web Development Consultant",
-                },
-                {
-                    company: "Robot Interactive.",
-                    title: "Junior Software Developer",
-                },
-                {
-                    company: "Memorial University of NL.",
-                    title: "Project Assistant",
-                },
+  name: "AboutMe",
+  data() {
+    return {
+      profilePicture: "/profilePhoto.jpg",
+      lazyPicture: "/profilePhotoLazyLoad.jpg",
+      name: "Sharif Sircar",
+      jobTitle: "Web Developer",
+      bio: "Never ending journey of self-discovery and improvement, I am determined to continue building a successful career in the software development industry and take great pride in the high-quality work I have produced in my past and current positions.",
+      skills: ["HTML", "CSS", "Typescript", "Vue.js", "Express", "WebSocket", "NodeJS", "Python", "Wordpress", "CMS Systems", "Photoshop", "Tag Manager", "Google Analytics"],
+      jobs: [
+        {
+          company: "The Leap Method (Carol Bartlett)",
+          title: "Web Development Consultant",
+        },
+        {
+          company: "Robot Interactive.",
+          title: "Junior Software Developer",
+        },
+        {
+          company: "Memorial University of NL.",
+          title: "Project Assistant",
+        },
 
 
-                
-            ] as Job[],
-        };
-    },
-    
-    
+
+      ] as Job[],
+    };
+  },
+
+
 });
 </script>
 
 
 <template>
   <v-app>
-    <v-parallax
-    src="/banner.jpg" 
-    alt="Parallax image of banner."
-  >
-  <v-container
-          class="d-flex justify-center align-center text-h5 "
-          style="min-height: 300px;"
-        >
-    
-    <v-row >
-      
-      <!-- image -->
-      <v-col cols="12" md="4"
-      class=" d-flex align-center justify-center pt-0">
-<!-- height="792" -->
-        <v-img 
-        transition="fab-transition"
-        class="imgStyles ml-1 mobilePhotos"
-        cover
-        alt="An image of Sharif with a lake backdrop."
-
-        contain
-        :src="profilePicture" 
-        :lazy-src="lazyPicture"
-        >
-
-        <template v-slot:placeholder>
-          <div class="d-flex align-center justify-center fill-height">
-            <v-progress-circular
-              color="grey-lighten-4"
-              indeterminate
-            ></v-progress-circular>
-          </div>
-        </template>
-
-        </v-img>
-
-      </v-col>
-
-      <!--text beside image -->
-      <v-col cols="12" md="8" class="topRowChunk pt-6">
-        <h2 class="topHeaders">{{ name }}</h2>
-        <h4 class="topHeaders jobTitle">{{ jobTitle }}</h4>
-        <p class="bio topHeaders ">{{ bio }}</p>
-        
-       
-        <v-row class="pt-5 px-4 skillExp">
-
-          <v-col class="skillCard" cols="12" sm="6">
-            <v-card elevation="3">
-              <v-card-title>Skills</v-card-title>
-              <v-divider :thickness="4" color="error"></v-divider>
-              <v-card-text class="two-column ">
-                <ul class="a">
-                  <li class="list" v-for="skill in skills" :key="skill" >{{ skill }}</li>
-                </ul>
-              </v-card-text>
-            </v-card>
+    <v-parallax src="/banner.jpg" alt="Parallax image of banner.">
+      <v-container justify="center" class="d-flex text-h5 ">
+        <v-row justify="center"  class="d-flex justify-center">
+          <v-col cols="12">
+            <h2 class="mt-5 text-center">{{ name }}</h2>
           </v-col>
+          <v-col cols="12">
+            <h4 class="text-center">Web Developer
 
-          <v-col class="experienceCard" cols="12" sm="6">
-            <v-card elevation="3">
-              <v-card-title>Experience</v-card-title>
-              <v-divider :thickness="4" color="error"></v-divider>
-              <v-card-text class="vCardText">
-                <ul class="a">
-                  <li class="list" v-for="job in jobs" :key="job.company">{{ job.title }} at {{ job.company }}</li>
-                  <li class="list">Visit my linkedin for more info.</li>
-                </ul>
-              </v-card-text>
-            </v-card>
+              <v-btn height="30" rounded="3" elevation="2" color="#D8FBFD" class="ma-2"
+                href="https://www.sharif-sircar.com/portfolio" 
+                aria-label="Sharif's portfolio shortcut button">
+                To Portfolio section
+                <v-tooltip aria-label="Tooltip shows link to portfolio page on hover." activator="parent"
+                  location="top">Takes you to portfolio section :)</v-tooltip>
+              </v-btn>
+            </h4>
           </v-col>
+          <p class="bio text-center ">{{ bio }}</p>
 
+          <v-row justify="center"  >
+            <div class="container">
+
+              <v-col cols="12" sm="6">
+
+                <div class="box">
+                  <span></span>
+                  <div class="content">
+                    <h2>Experience</h2>
+                    <ul class="a">
+                      <li class="list" v-for="job in jobs" :key="job.company">{{ job.title }} at {{ job.company }}</li>
+                      <li class="list"> <a href="https://www.linkedin.com/in/sharif-sircar/">Visit my linkedin for
+                          more!</a> </li>
+                    </ul>
+                  </div>
+                </div>
+
+              </v-col>
+
+              <v-col justify="center" cols="12" sm="6">
+
+                <div class="box">
+                  <span></span>
+                  <div class="content">
+                    <h2>Stack</h2>
+                    <ul class="a two-column">
+                      <li class="list" v-for="skill in skills" :key="skill">{{ skill }}</li>
+                    </ul>
+                  </div>
+                </div>
+
+              </v-col>
+
+            </div>
+          </v-row>
         </v-row>
 
-      </v-col>
-
-      </v-row>
-  </v-container>
-</v-parallax>
+      </v-container>
+    </v-parallax>
 
 
-</v-app>
+  </v-app>
 </template>
 
 <style scoped>
-
 @import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400);
 
 * {
 
-    font-family: Ubuntu;
+  font-family: Ubuntu;
 }
 
 .v-divider {
@@ -152,70 +130,48 @@ export default defineComponent({
 /* Styles for large devices */
 @media (min-width: 959px) {
 
-  .imgStyles {
-
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a drop shadow */
-    max-height: 90%; /* Reduce the width of the image */
-    border-radius: 1%;
-    /*margin-top: 10%;*/
-    
-  }
-
-  .individualChunk{
-    padding-top: 5%;
-  }
-
-  .jobTitle {
-
-    padding-top: 1.5%;
-  }
 
   .bio {
-    padding-top: 1.5%;
-    font-size: 1.2rem; /* The fit it all in one page */
+    font-size: 1.5rem;
+    /* The fit it all in one page */
   }
 
 
   .two-column {
     column-count: 2;
-    column-gap: 1rem; /* Adjust the gap between columns as needed */
-  }
-
-  .skillCard{
-    padding-right: 2rem;
+    column-gap: 1rem;
+    /* Adjust the gap between columns as needed */
   }
 }
 
 /* Styles for mobile devices */
 @media (max-width: 959px) {
-  .mobilePhotos {
-    max-width: 50%; /* Reduce the width of the image */
-    display: none; /* Make the image a block element */
-
-  }
-
 
   .bio {
-    font-size: 1.0rem; /* The fit it all in one page */
-    margin-left: 2%;
-    margin-right: 2%;
-  }
-
-  .topHeaders{
-    text-align: center;
+    font-size: 1.0rem;
+    /* The fit it all in one page */
+    margin-left: 4%;
+    margin-right: 4%;
   }
 }
 
 .v-card-text {
-  font-size: 1rem; /* The fit it all in one page */
+  font-size: 1rem;
+  /* The fit it all in one page */
   margin-left: 10px;
-  
-  
+
+
+}
+
+.two-column {
+  column-count: 2;
+  column-gap: 1rem;
+  /* Adjust the gap between columns as needed */
 }
 
 ul.a {
   list-style-type: "\1F427";
-  
+
 }
 
 li.list {
@@ -223,6 +179,195 @@ li.list {
   margin-top: 5px;
 }
 
+/* test code */
 
+
+
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 40px 0;
+}
+
+.container .box {
+  position: relative;
+  width: 350px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 30px;
+  transition: 0.5s;
+}
+
+.container .box::before {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  left: 50px;
+  width: 50%;
+  height: 100%;
+  text-decoration: none;
+  background: #ffffff;
+  border-radius: 8px;
+  transform: skewX(25deg);
+  transition: 0.5s;
+}
+
+.container .box::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50;
+  width: 50%;
+  height: 100%;
+  background: #fff;
+  border-radius: 8px;
+  transform: skewX(15deg);
+  transition: 0.5s;
+  filter: blur(30px);
+}
+
+.container .box:hover:before,
+.container .box:hover:after {
+  transform: skewX(0deg);
+  left: 20px;
+  width: calc(100% - 90px);
+
+}
+
+.container .box:nth-child(1):before,
+.container .box:nth-child(1):after {
+  background: linear-gradient(315deg, #ffc0c0, #d8fbfd)
+}
+
+.container .box:nth-child(2):before,
+.container .box:nth-child(2):after {
+  background: linear-gradient(315deg, #ffc0c0, #d8fbfd)
+}
+
+.container .box span {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.container .box span::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(0.1spx);
+  opacity: 0;
+  transition: 0.1s;
+  animation: animate 2s ease-in-out infinite;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.211)
+}
+
+.container .box:hover span::before {
+  top: -50px;
+  left: 50px;
+  width: 100px;
+  height: 100px;
+  opacity: 1;
+}
+
+.container .box span::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.033);
+  backdrop-filter: blur(0px);
+  opacity: 0;
+  transition: 0.5s;
+  animation: animate 2s ease-in-out infinite;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.275);
+  animation-delay: -2s;
+}
+
+.container .box:hover span:after {
+  bottom: -50px;
+  right: 50px;
+  width: 100px;
+  height: 100px;
+  opacity: 1;
+}
+
+@keyframes animate {
+
+  0%,
+  100% {
+    transform: translateY(10px);
+  }
+
+  50% {
+    transform: translate(-10px);
+  }
+}
+
+.container .box .content {
+  position: relative;
+  left: 0;
+  padding: 20px 40px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(30px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  z-index: 1;
+  transform: 0.5s;
+  color: #000000;
+  font-size: 1rem;
+}
+
+.container .box:hover .content {
+  /* left: -25px;*/
+  padding: 60px 40px;
+}
+
+.container .box .content h2 {
+  font-size: 1.2rem;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.container .box .content p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  line-height: 1.4em;
+}
+
+.container .box .content a {
+  display: inline-block;
+  font-size: 1rem;
+  color: #111;
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+.container .box .content a:hover {
+  background: #d8fbfd;
+  /*border: 1px solid rgba(255, 0, 88, 0.4);*/
+  box-shadow: 0 1px 15px rgba(1, 1, 1, 0.2);
+
+}
 </style>
-
