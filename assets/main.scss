@@ -10,3 +10,93 @@ $family: "Inter var", "Inter", apple-system, BlinkMacSystemFont, "Segoe UI", Rob
   cursor: url('/pointer.png'), auto;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+
+.glow-effect {
+  --glow-line-color: #ffbdbd;
+  --glow-line-thickness: 3px;
+  --glow-line-length: 20px;
+  --glow-blur-color: #ffc5c5;
+  --glow-blur-size: 6px;
+  --glow-offset: 0px;
+  --animation-speed: 15000ms;
+  /* do not change, used for calculations */
+  --container-offset: 100px;
+  position: relative;
+}
+
+.glow-container {
+  pointer-events: none;
+  position: absolute;
+  inset: calc(var(--container-offset) / -2);
+  width: calc(100% + var(--container-offset));
+  height: calc(100% + var(--container-offset));
+  opacity: 0;
+}
+
+.glow-blur,
+.glow-line {
+  width: calc(100% - var(--container-offset) + var(--glow-offset));
+  height: calc(100% - var(--container-offset) + var(--glow-offset));
+  x: calc((var(--container-offset) / 2) + calc(var(--glow-offset) / -2));
+  y: calc((var(--container-offset) / 2) + calc(var(--glow-offset) / -2));
+  fill: transparent;
+  stroke: black;
+  stroke-width: 5px;
+  stroke-dasharray: var(--glow-line-length) calc(50px - var(--glow-line-length));
+}
+
+.glow-effect .glow-line,
+.glow-effect .glow-blur {
+  stroke-dashoffset: -80px;
+  animation: glow-animation var(--animation-speed) infinite linear;
+}
+
+.glow-line {
+  stroke: var(--glow-line-color);
+  stroke-width: var(--glow-line-thickness);
+}
+
+.glow-blur {
+  filter: blur(var(--glow-blur-size));
+  stroke: var(--glow-blur-color);
+  stroke-width: var(--glow-blur-size);
+}
+
+@keyframes glow-animation {
+  0% {
+    stroke-dashoffset: -80px;
+  }
+  100% {
+    stroke-dashoffset: 80px;
+  }
+}
+
+.glow-container {
+  animation: glow-visibility ease-in-out var(--animation-speed);
+}
+
+@keyframes glow-visibility {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  25%,
+  75% {
+    opacity: 1;
+  }
+}
+
+.glow-effect[data-glow-animation="false"] {
+  --glow-line-length: 50px;
+}
+
+.glow-effect[data-glow-offset="true"] {
+  --glow-offset: 10px;
+}

@@ -61,13 +61,20 @@ export default defineComponent({
 
 			<v-btn height="30" rounded="3" elevation="2" class="ma-2" style="background-color: #D8FBFD; color: #000000;"
 				href="https://youtu.be/dQw4w9WgXcQ"
-				aria-label="Rick Roll button, says secret button as a little joke">Secret button <v-tooltip
+				aria-label="Rick Roll button, says secret button as a little joke">
+
+				Secret button <v-tooltip
 					aria-label="Tooltip shows are you ready on hover, in a cheeky way" activator="parent"
 					location="bottom">Are you ready???? :)</v-tooltip></v-btn>
 
-			<v-btn class="mobileOnly" style="background-color: #D8FBFD; color: #000000;" height="30" rounded="3"
+			<v-btn class="mobileOnly glow-effect" style="background-color: #D8FBFD; color: #000000;" height="30" rounded="3"
 				elevation="2" aria-label="Brings up navigation"
-				@click.stop="drawer = !drawer"><v-icon>mdi-menu</v-icon>
+				@click.stop="drawer = !drawer">
+				<svg class="glow-container">
+					<rect pathLength="100" stroke-linecap="round" class="glow-blur"></rect>
+					<rect pathLength="100" stroke-linecap="round" class="glow-line"></rect>
+				  </svg>
+				<v-icon>mdi-menu</v-icon>
 			</v-btn>
 		</v-app-bar>
 
