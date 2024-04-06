@@ -17,6 +17,9 @@ npm run dev
 
 This file here just set global props on different vuetify components. You can learn more here [Global Configuration](https://next.vuetifyjs.com/en/features/global-configuration/)
 
+### Homepage v2 
+The fancy animations are from - https://codepen.io/kodplay/pen/oNBreRJ
+
 
 #### Photograpy section 
 
