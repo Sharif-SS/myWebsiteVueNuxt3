@@ -1,44 +1,28 @@
-
-
 <template>
 
     <VRow>
-        <VCol 
-        
-        v-for="n in 11" :key="n"
-        cols="6"
-        sm="6"
-        md="6"
-        lg="3"
-        >
+        <VCol v-for="n in 15" :key="n" cols="6" sm="6" md="6" lg="3">
             <VHover>
                 <VCard>
 
                     <vImg 
-                            :src="`/photos/Portraits/image(${n}).jpg`"
-                            :lazy-src="`/photos/Portraits/thumbnails/image(${n}).jpg`"
-                            aspect-ratio="1"
-                            transition="fab-transition"
-                            style="background: linear-gradient(rgb(245, 253, 255), rgba(0, 0, 0, 0.0))"
-                    >
+                        :src="`/photos/Portraits/image(${16 - n}).jpg`"
+                        :lazy-src="`/photos/Portraits/thumbnails/image(${16 - n}).jpg`"
+                        aspect-ratio="1"
+                        transition="fab-transition"
+                        style="background: linear-gradient(rgb(245, 253, 255), rgba(0, 0, 0, 0.0))">
 
-                    <template v-slot:placeholder>
+                        <template v-slot:placeholder>
 
-                        <VRow
-                            class="fill-height ma-0"
-                            align="center"
-                            justify="center">
+                            <VRow class="fill-height ma-0" align="center" justify="center">
 
-                            <VProgressCircular
-                                indeterminate
-                                color="grey-lighten-5"
-                            ></VProgressCircular>
+                                <VProgressCircular indeterminate color="grey-lighten-5"></VProgressCircular>
 
 
 
-                        </VRow>
+                            </VRow>
 
-                    </template>
+                        </template>
 
                     </vImg>
 
