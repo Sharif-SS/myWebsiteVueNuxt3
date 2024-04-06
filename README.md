@@ -25,6 +25,10 @@ The fancy animations are from - https://codepen.io/kodplay/pen/oNBreRJ
 
 This needs to be updated at some point. Currently the new files need to be added, with the number updated, in the source code.
 
+
+### Contact section
+If you plan on switching from netlfiy, lot more robust - https://web3forms.com/
+
 #### Updating
 
 npm audit fix --force (This command is used to run a security audit on your project's dependencies. It checks for known vulnerabilities in the packages you have installed.)

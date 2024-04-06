@@ -212,7 +212,7 @@
                 describes how HTML elements should be displayed.</v-tooltip>
             </v-btn>
 
-            <v-card-text>A fruition of what I learned during my time in my internship. Tweaked regularly, it's also my CSS testing ground.</v-card-text>
+            <v-card-text>A fruition of how far I have come. Contact form is powered my netlify and homepage is not vuetify v-cards anymore, instead a combination of HTML, and CSS (Vuetify V card got old). Designed with SEO and UX in mind.</v-card-text>
           </v-card>
 
         </v-col>
