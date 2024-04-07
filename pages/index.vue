@@ -56,9 +56,8 @@ export default defineComponent({
           </v-col>
           <v-col cols="12">
             <h4 class="text-center">Web Developer
-
+              <NuxtLink to="/portfolio">
               <v-btn height="30" rounded="3" elevation="2" color="#D8FBFD" class="ma-2 glow-effect"
-                href="https://www.sharif-sircar.com/portfolio" 
                 aria-label="Sharif's portfolio shortcut button">
                 <svg class="glow-container">
                   <rect pathLength="100" stroke-linecap="round" class="glow-blur"></rect>
@@ -68,6 +67,7 @@ export default defineComponent({
                 <v-tooltip aria-label="Tooltip shows link to portfolio page on hover." activator="parent"
                   location="top">Takes you to portfolio section :)</v-tooltip>
               </v-btn>
+            </NuxtLink>
             </h4>
           </v-col>
           <p class="bio text-center ">{{ bio }}</p>
