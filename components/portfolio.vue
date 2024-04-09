@@ -11,7 +11,7 @@
 
 
             <v-carousel show-arrows="hover" height="300px" hide-delimiter-background cycle delimiter-icon="mdi-bird">
-              <v-carousel-item src="/soon.jpg"></v-carousel-item>
+              <v-carousel-item src="portfolio/soon.jpg"></v-carousel-item>
 
               <v-carousel-item src="/puffin.png"></v-carousel-item>
             </v-carousel>
