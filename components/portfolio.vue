@@ -44,9 +44,9 @@
 
 
             <v-carousel show-arrows="hover" height="300px" hide-delimiter-background cycle delimiter-icon="mdi-bird">
-              <v-carousel-item src="portfolio/EST.jpg"></v-carousel-item>
+              <v-carousel-item src="/portfolio/EST.jpg"></v-carousel-item>
 
-              <v-carousel-item src="portfolio/NAIA.png"></v-carousel-item>
+              <v-carousel-item src="/portfolio/NAIA.png"></v-carousel-item>
             </v-carousel>
 
             <v-card-title>WordPress and Vue 2 + BootstrapVue Project - <a href="https://engagecreative.ca/">Engage
@@ -93,9 +93,9 @@
           <v-card elevation="3">
 
             <v-carousel show-arrows="hover" height="300px" hide-delimiter-background cycle delimiter-icon="mdi-bird">
-              <v-carousel-item src="portfolio/nlfdrogues-min.png"></v-carousel-item>
+              <v-carousel-item src="/portfolio/nlfdrogues-min.png"></v-carousel-item>
 
-              <v-carousel-item src="portfolio/oceanicReleaf-min.png"></v-carousel-item>
+              <v-carousel-item src="/portfolio/oceanicReleaf-min.png"></v-carousel-item>
             </v-carousel>
 
             <v-card-title>WordPress sites - <a href="https://gorobot.ca">Robot Interactive + Marketing</a>:
@@ -136,7 +136,7 @@
         <v-col cols="12" sm="6" md="6">
 
           <v-card elevation="3">
-            <v-img src="portfolio/dvgui-min.png" height="300px" alt="A screenshot of DVGUI project."></v-img>
+            <v-img src="/portfolio/dvgui-min.png" height="300px" alt="A screenshot of DVGUI project."></v-img>
             <v-card-title>Data Visualization GUI - <a href="https://engagecreative.ca/">Engage
                 Creative</a>:</v-card-title>
 
@@ -179,7 +179,7 @@
         <v-col cols="12" sm="6" md="6">
 
           <v-card elevation="3">
-            <v-img src="portfolio/thiswebsite.jpg" height="300px" alt="A vector image of a puffin logo."></v-img>
+            <v-img src="/portfolio/thiswebsite.jpg" height="300px" alt="A vector image of a puffin logo."></v-img>
             <v-card-title>Current Portfolio Website:</v-card-title>
 
             <v-btn class="ma-2" rounded="lg" color="#D8FBFD">
@@ -224,7 +224,7 @@
       <v-row>
         <v-col cols="12" sm="6" md="6">
           <v-card elevation="3">
-            <v-img src="portfolio/oldWebsite.jpg" height="300px"></v-img>
+            <v-img src="/portfolio/oldWebsite.jpg" height="300px"></v-img>
             <v-card-title>Portfolio Website v0.5:</v-card-title>
 
             <v-btn class="ma-2" rounded="lg" color="#D8FBFD">
@@ -248,9 +248,9 @@
           <v-card elevation="3">
 
             <v-carousel show-arrows="hover" height="300px" hide-delimiter-background cycle delimiter-icon="mdi-bird">
-              <v-carousel-item src="portfolio/pi.jpg"></v-carousel-item>
+              <v-carousel-item src="/portfolio/pi.jpg"></v-carousel-item>
 
-              <v-carousel-item src="portfolio/pi2.png"></v-carousel-item>
+              <v-carousel-item src="/portfolio/pi2.png"></v-carousel-item>
             </v-carousel>
 
             <v-card-title>Smart Soil: </v-card-title>
@@ -312,9 +312,9 @@
           <v-card elevation="3">
 
             <v-carousel show-arrows="hover" height="300px" hide-delimiter-background cycle delimiter-icon="mdi-bird">
-              <v-carousel-item src="portfolio/DatabaseDemo.PNG"></v-carousel-item>
+              <v-carousel-item src="/portfolio/DatabaseDemo.PNG"></v-carousel-item>
 
-              <v-carousel-item src="portfolio/HomePageDemo.jpg"></v-carousel-item>
+              <v-carousel-item src="/portfolio/HomePageDemo.jpg"></v-carousel-item>
             </v-carousel>
 
             <v-card-title>Web course - Database Project:</v-card-title>
@@ -360,11 +360,11 @@
 
           <v-card elevation="3">
             <v-carousel show-arrows="hover" height="300px" hide-delimiter-background cycle delimiter-icon="mdi-bird">
-              <v-carousel-item src="portfolio/mal1.png"></v-carousel-item>
+              <v-carousel-item src="/portfolio/mal1.png"></v-carousel-item>
 
-              <v-carousel-item src="portfolio/mal2.png"></v-carousel-item>
+              <v-carousel-item src="/portfolio/mal2.png"></v-carousel-item>
 
-              <v-carousel-item src="portfolio/mal3.png"></v-carousel-item>
+              <v-carousel-item src="/portfolio/mal3.png"></v-carousel-item>
             </v-carousel>
 
             <v-card-title>Barricade Board Game Group Project:
