@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-parallax src="/banner.jpg" alt="Parallax image of banner.">
+    <v-parallax src="/banner.webp" alt="Parallax image of banner.">
       <v-container class="form mt-5">
         <v-row no-gutters>
 
