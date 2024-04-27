@@ -20,7 +20,7 @@ export default defineComponent({
       name: "Sharif Sircar",
       jobTitle: "Web Developer",
       bio: "Never ending journey of self-discovery and improvement, I am determined to continue building a successful career in the software development industry and take great pride in the high-quality work I have produced in my past and current positions.",
-      skills: ["HTML", "CSS", "Typescript", "Vue.js", "Express", "WebSocket", "NodeJS", "Python", "Wordpress", "CMS Systems", "Photoshop", "Google Tag Manager", "Google Analytics"],
+      skills: ["HTML", "CSS", "Typescript", "Vue.js", "Nuxt.js", "Express", "WebSocket", "NodeJS", "Python", "Wordpress", "CMS Systems", "Photoshop", "Google Tag Manager", "Google Analytics"],
       jobs: [
         {
           company: "The Leap Method (Carol Bartlett)",
