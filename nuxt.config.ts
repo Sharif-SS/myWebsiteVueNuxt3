@@ -1,10 +1,10 @@
 import vuetify from "vite-plugin-vuetify";
 
 // PWA Config
-const title = "Sharif Sircar";
-const shortTitle = "Sharif's Website";
-const description = "Welcome to my personal portfolio website, where I combine my passion for photography with my love for software projects. Explore my creative journey through captivating images and innovative digital endeavors."
-const image = "https://www.sharif-sircar.com/puffinv2.ico";
+const title = "Photography and Software Projects by Sharif Sircar 🙋";
+const shortTitle = "Sharif's portfolio Website";
+const description = "Welcome to my portfolio! I merge photography with software projects, offering captivating visuals and innovative digital solutions. Explore the synergy of art and tech as I tell compelling stories and drive impactful results. Let's collaborate on something extraordinary."
+const image = "https://www.sharif-sircar.com/ogImage.jpg";
 const url = "https://www.sharif-sircar.com/";
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
@@ -54,7 +54,7 @@ export default defineNuxtConfig({
       title: "Sharif Sircar",
       titleTemplate: "%s",
       link: [
-        { rel: "icon", type: "image/x-icon", href: "/puffinv2.ico" },
+        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
         { rel: "canonical", href: url },
       ],
       meta: [
