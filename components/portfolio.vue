@@ -9,11 +9,11 @@
         <v-col cols="12" sm="12" md="8">
           <v-card elevation="3">
 
-
+            
             <v-carousel show-arrows="hover" height="300px" hide-delimiter-background cycle delimiter-icon="mdi-bird">
-              <v-carousel-item src="/portfolio/soon.jpg"></v-carousel-item>
+              <v-carousel-item src="/portfolio/oakley-preview.webp"></v-carousel-item>
 
-              <v-carousel-item src="/puffin.png"></v-carousel-item>
+              <v-carousel-item src="/portfolio/soon.jpg"></v-carousel-item>
             </v-carousel>
 
             <v-card-title>React and Tailwind - <a href="https://oakleysdetails.netlify.app/">Oakley's Details NL</a>:</v-card-title>
