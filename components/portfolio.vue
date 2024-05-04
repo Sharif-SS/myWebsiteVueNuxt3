@@ -16,7 +16,7 @@
               <v-carousel-item src="/puffin.png"></v-carousel-item>
             </v-carousel>
 
-            <v-card-title>React and Tailwind - <a href="https://elitewelding-nl.netlify.app">Elite Welding NL</a>:</v-card-title>
+            <v-card-title>React and Tailwind - <a href="https://oakleysdetails.netlify.app/">Oakley's Details NL</a>:</v-card-title>
 
 
 
