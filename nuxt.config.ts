@@ -11,9 +11,19 @@ const url = "https://www.sharif-sircar.com/";
 export default defineNuxtConfig({
 
   ssr: false,
-
+  
   // import styles
-  css: ["@/assets/main.scss"],
+  css: ["@/assets/main.scss",
+  "@/assets/tailwind.css"
+  ],
+
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
+  
   // enable takeover mode
   typescript: { shim: false },
   build: { transpile: ["vuetify"] },
@@ -132,4 +142,6 @@ export default defineNuxtConfig({
 
   },
   
+  
+
 });

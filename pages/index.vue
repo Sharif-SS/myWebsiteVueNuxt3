@@ -53,6 +53,8 @@ export default defineComponent({
         <v-row justify="center"  class="d-flex justify-center">
           <v-col cols="12">
             <h2 class="mt-5 text-center">{{ name }}</h2>
+            <input class="tw-border-2 tw-border-rose-600 ...">
+
           </v-col>
           <v-col cols="12">
             <h4 class="text-center">Web Developer
