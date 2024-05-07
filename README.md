@@ -11,7 +11,9 @@ npm install
 ```bash
 npm run dev
 ```
-
+##### Switching NPM versions
+nvm list 
+nvm use "the version"
 
 #### Global Defaults - `defaults.ts`
 
@@ -39,4 +41,5 @@ npm outdated
 
 This updates them all
 npm update
+
 
