@@ -53,7 +53,21 @@ export default defineComponent({
         <v-row justify="center"  class="d-flex justify-center">
           <v-col cols="12">
             <h2 class="mt-5 text-center">{{ name }}</h2>
-            <input class="tw-border-2 tw-border-rose-600 ...">
+            <div class="tw-cursor-zoom-in tw-border-4 tw-border-indigo-200 tw-border-t-indigo-500">
+              <div class=" tw-rounded-lg tw-text-lg md:tw-text-xl tw-bg-red-500 hover:tw-bg-blue-500">
+                <p class="tw-cursor-zoom-in tw-border-4 tw-border-indigo-200 tw-border-t-indigo-500">Random words</p>
+              </div>
+            </div>
+
+            <div class="tw-text-center">
+              <h1 class="tw-text-4xl tw-font-bold tw-tracking-tight tw-text-gray-900 tw-sm:text-6xl">Data to enrich your online business</h1>
+              <p class="tw-mt-6 tw-text-lg tw-leading-8 tw-text-gray-600">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.</p>
+              <div class="tw-mt-10 tw-flex tw-items-center tw-justify-center tw-gap-x-6">
+                <a href="#" class="tw-rounded-md tw-bg-indigo-600 tw-px-3.5 tw-py-2.5 tw-text-sm tw-font-semibold tw-text-white tw-shadow-sm tw-hover:bg-indigo-500 tw-focus-visible:outline tw-focus-visible:outline-2 tw-focus-visible:outline-offset-2 tw-focus-visible:outline-indigo-600">Get started</a>
+                <a href="#" class="tw-text-sm tw-font-semibold tw-leading-6 tw-text-gray-900">Learn more <span aria-hidden="true">→</span></a>
+              </div>
+            </div>
+
 
           </v-col>
           <v-col cols="12">
