@@ -36,6 +36,13 @@ export default defineComponent({
 				to: '/contact',
 
 			},
+
+			{
+				icon: 'mdi-email',
+				title: 'Blogs',
+				to: '/blogs',
+
+			},
 		]
 
 		return { drawer, items, title }
