@@ -87,8 +87,8 @@ defineOgImageComponent('Test', {
 </script>
 
 <template>
-  <div class="px-6 container max-w-5xl mx-auto sm:grid grid-cols-12 gap-x-12 ">
-    <div class="col-span-12 lg:col-span-9">
+  <div class="tw-px-6 tw-container tw-max-w-5xl tw-mx-auto tw-sm:grid tw-grid-cols-12 tw-gap-x-12 ">
+    <div class="tw-col-span-12 tw-lg:col-span-9">
       <BlogHeader
         :title="data.title"
         :image="data.image"
@@ -98,8 +98,8 @@ defineOgImageComponent('Test', {
         :tags="data.tags"
       />
       <div
-        class="prose prose-pre:max-w-xs sm:prose-pre:max-w-full prose-sm sm:prose-base md:prose-lg
-        prose-h1:no-underline max-w-5xl mx-auto prose-zinc dark:prose-invert prose-img:rounded-lg"
+        class="tw-prose tw-prose-pre:max-w-xs tw-sm:prose-pre:max-w-full tw-prose-sm tw-sm:prose-base tw-md:prose-lg
+        tw-prose-h1:no-underline tw-max-w-5xl tw-mx-auto tw-prose-zinc tw-dark:prose-invert tw-prose-img:rounded-lg"
       >
         <ContentRenderer v-if="articles" :value="articles">
           <template #empty>

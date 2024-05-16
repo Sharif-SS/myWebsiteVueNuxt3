@@ -80,20 +80,20 @@ defineOgImage({
 </script>
 
 <template>
-  <main class="container max-w-5xl mx-auto text-zinc-600">
+  <main class="tw-container tw-max-w-5xl tw-mx-auto tw-text-zinc-600">
     <ArchiveHero />
 
-    <div class="px-6">
+    <div class="tw-px-6">
       <input
         v-model="searchTest"
         placeholder="Search"
         type="text"
-        class="block w-full bg-[#F1F2F4] dark:bg-slate-900 dark:placeholder-zinc-500 text-zinc-300  rounded-md border-gray-300 dark:border-gray-800 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        class="tw-block tw-w-full tw-bg-[#F1F2F4] tw-dark:bg-slate-900 tw-dark:placeholder-zinc-500 tw-text-zinc-300  tw-rounded-md border-gray-300 tw-dark:border-gray-800 tw-shadow-sm tw-focus:border-indigo-300 tw-focus:ring tw-focus:ring-indigo-200 tw-focus:ring-opacity-50"
       >
     </div>
 
     <ClientOnly>
-      <div v-auto-animate class="space-y-5 my-5 px-4">
+      <div v-auto-animate class="tw-space-y-5 tw-my-5 tw-px-4">
         <template v-for="post in paginatedData" :key="post.title">
           <ArchiveCard
             :path="post.path"
@@ -122,13 +122,13 @@ defineOgImage({
       </template>
     </ClientOnly>
 
-    <div class="flex justify-center items-center space-x-6 ">
+    <div class="tw-flex tw-justify-center tw-items-center tw-space-x-6 ">
       <button :disabled="pageNumber <= 1" @click="onPreviousPageClick">
-        <Icon name="mdi:code-less-than" size="30" :class="{ 'text-sky-700 dark:text-sky-400': pageNumber > 1 }" />
+        <Icon name="mdi:code-less-than" size="30" :class="{ 'tw-text-sky-700 tw-dark:tw-text-sky-400': pageNumber > 1 }" />
       </button>
       <p>{{ pageNumber }} / {{ totalPage }}</p>
       <button :disabled="pageNumber >= totalPage" @click="onNextPageClick">
-        <Icon name="mdi:code-greater-than" size="30" :class="{ 'text-sky-700 dark:text-sky-400': pageNumber < totalPage }" />
+        <Icon name="mdi:code-greater-than" size="30" :class="{ 'tw-text-sky-700 tw-dark:tw-text-sky-400': pageNumber < totalPage }" />
       </button>
     </div>
   </main>
