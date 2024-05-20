@@ -25,6 +25,7 @@
 
         <v-row justify="center" align-content="center" class="pa-2 ma-2">
 
+          <NuxtLink to="/">
           <v-btn height="30" rounded="3" elevation="2" color="#D8FBFD" class=" ma-2 glow-effect "
             aria-label="Back to homepage">
             <svg class="glow-container">
@@ -35,7 +36,7 @@
             <v-tooltip aria-label="What else is here?" activator="parent" location="top">What else is on my
               website?</v-tooltip>
           </v-btn>
-
+        </NuxtLink>
         </v-row>
 
       </v-container>

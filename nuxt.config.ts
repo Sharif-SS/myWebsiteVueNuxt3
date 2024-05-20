@@ -17,8 +17,9 @@ export default defineNuxtConfig({
   // enable takeover mode
   typescript: { shim: false },
   build: { transpile: ["vuetify"] },
+ 
   modules: [
-   
+    '@nuxt/image',
     "@kevinmarrec/nuxt-pwa",
     async (options, nuxt) => {
       nuxt.hooks.hook("vite:extendConfig", (config) =>
@@ -28,6 +29,11 @@ export default defineNuxtConfig({
     },
 
   ],
+
+  // nuxt image properties
+  image: {
+    format: ['webp']
+  },
 
   app: {
     head: {
