@@ -4,7 +4,7 @@
       <v-container class="containerAbove mt-5">
         <v-row justify="center" align-content="center">
 
-          <v-sheet class="pa-2 ma-2">
+          <v-sheet class="pa-2 ma-2 translucent">
             <h1 align="center">The link to the event photos! </h1>
             <h3 class="pa-2 ma-2">Thank you for coming to the DO. IT Hackathon! 😃</h3>
           </v-sheet>
@@ -14,9 +14,9 @@
 
         <v-row justify="center" align-content="center">
 
-          <v-sheet class="pa-2 ma-2">
+          <v-sheet class="pa-2 ma-2 translucent">
             <NuxtLink to="https://ecumene.github.io/dontoverthinkit/" target="_blank">
-              <NuxtImg src="/hackathon/hackathonLogo.webp" format="webp,jpg"
+              <NuxtImg src="/hackathon/hackathonLogo.webp" 
                 sizes="100vw sm:50vw md:400px placeholder " />
             </NuxtLink>
           </v-sheet>
@@ -61,6 +61,10 @@
   font-family: Ubuntu;
 }
 
+.translucent {
+
+  background: #fff1f176;
+}
 
 .containerAbove {
   background: #fff1f176;

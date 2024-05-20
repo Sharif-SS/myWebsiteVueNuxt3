@@ -4,7 +4,7 @@
       <v-container class="containerAbove mt-5">
         <v-row justify="center" align-content="center">
 
-          <v-sheet class="pa-2 ma-2">
+          <v-sheet class="pa-2 ma-2 translucent">
             <h1 align="center">Thank you! 😃</h1>
             <h3>We will talk soon, in the meantime, here is an old video from 2007.</h3>
           </v-sheet>
@@ -53,6 +53,10 @@
   font-family: Ubuntu;
 }
 
+.translucent {
+
+  background: #fff1f176;
+}
 
 .containerAbove {
   background: #fff1f176;
