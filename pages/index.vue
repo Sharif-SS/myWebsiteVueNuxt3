@@ -17,7 +17,7 @@ useHead({
 
     // Twitter card
     { hid: 'twitter:description', name: 'twitter:description', content: description.value },
-    { hid: "twitter:image", name: "twitter:image", content: `${process.env.BASE_URL}${ogImage}` },
+    { hid: "twitter:image", name: "twitter:image", content: `https://www.sharif-sircar.com${ogImage}` },
   ],
   link: [
     {

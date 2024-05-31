@@ -3,7 +3,7 @@
 const { path } = useRoute()
 const pageTitle = computed(() => 'DO. IT Hackathon Photos!') // Replace with your logic
 const description = computed(() => 'All the photos from three days can be found in the dropbox link. Enjoy!') // Replace with your logic
-const ogImage = '/hackathon/oghack.webp' // Adjust as needed
+const ogImage = '/hackathon/oghack.webp' 
 
 
 useHead({
@@ -18,7 +18,7 @@ useHead({
     // Twitter card
     { hid: "twitter:title", name: "twitter:title", content: pageTitle.value },
     { hid: 'twitter:description', name: 'twitter:description', content: description.value },
-    { hid: "twitter:image", name: "twitter:image", content: `${process.env.BASE_URL}${ogImage}` },
+    { hid: "twitter:image", name: "twitter:image", content: `https://www.sharif-sircar.com${ogImage}` },
   ],
   link: [
     {
