@@ -2,6 +2,7 @@ User-agent: *
 Allow: /photography
 Allow: /portfolio
 Allow: /contact
+Allow: /doithackathon
 Allow: /$
 
 Disallow: /*/
