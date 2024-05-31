@@ -6,7 +6,6 @@ const description = computed(() => 'All the photos from three days can be found 
 const ogImage = '/hackathon/oghack.webp' // Adjust as needed
 
 
-
 useHead({
   title: pageTitle.value,
   meta: [
@@ -24,7 +23,7 @@ useHead({
     {
       key: "canonical",
       rel: 'canonical',
-      href: `https://www.sharif-sircar.com/${path}`,
+      href: `https://www.sharif-sircar.com${path}`,
     },
   ],
 })
