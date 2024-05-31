@@ -1,4 +1,31 @@
+<script setup lang="ts">
+
+const pageTitle = computed(() => 'DO. IT Hackathon Photos!') // Replace with your logic
+const description = computed(() => 'All the photos from three days can be found in the dropbox link. Enjoy!') // Replace with your logic
+const ogImage = '/hackathon/oghack.webp' // Adjust as needed
+
+
+
+useHead({
+  title: pageTitle.value,
+  meta: [
+    { hid: 'description', name: 'description', content: description.value },
+    { hid: 'og:title', property: 'og:title', content: pageTitle.value },
+    { hid: 'og:description', property: 'og:description', content: description.value },
+    { hid: 'og:image', property: 'og:image', content: `${process.env.BASE_URL}${ogImage}` },
+
+    // Twitter card
+    { hid: "twitter:title", name: "twitter:title", content: pageTitle.value },
+    { hid: 'twitter:description', name: 'twitter:description', content: description.value },
+    { hid: "twitter:image", name: "twitter:image", content: `${process.env.BASE_URL}${ogImage}` },
+  ],
+
+})
+</script>
+
+
 <template>
+
   <v-app>
     <v-parallax src="/banner.webp" alt="Parallax image of banner.">
       <v-container class="containerAbove mt-5">
