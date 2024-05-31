@@ -13,7 +13,8 @@ useHead({
   meta: [
     { hid: 'description', name: 'description', content: description.value },
     { hid: 'og:description', property: 'og:description', content: description.value },
-    { hid: 'og:image', property: 'og:image', content: `${process.env.BASE_URL}${ogImage}` },
+    // { hid: 'og:image', property: 'og:image', content: `${process.env.BASE_URL}${ogImage}` },
+    { hid: 'og:image', property: 'og:image', content: `https://www.sharif-sircar.com${ogImage}` },
 
     // Twitter card
     { hid: 'twitter:description', name: 'twitter:description', content: description.value },

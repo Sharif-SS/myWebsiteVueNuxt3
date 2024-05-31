@@ -12,8 +12,9 @@ useHead({
     { hid: 'description', name: 'description', content: description.value },
     { hid: 'og:title', property: 'og:title', content: pageTitle.value },
     { hid: 'og:description', property: 'og:description', content: description.value },
-    { hid: 'og:image', property: 'og:image', content: `${process.env.BASE_URL}${ogImage}` },
+    { hid: 'og:image', property: 'og:image', content: `https://www.sharif-sircar.com${ogImage}` },
 
+   
     // Twitter card
     { hid: "twitter:title", name: "twitter:title", content: pageTitle.value },
     { hid: 'twitter:description', name: 'twitter:description', content: description.value },
