@@ -4,13 +4,13 @@ import Portfolio from '@/components/portfolio.vue';
 import { defineComponent } from 'vue';
 
 const description = 'Welcome to my portfolio! I merge photography with software projects, offering captivating visuals and innovative digital solutions. Explore the synergy of art and tech as I tell compelling stories and drive impactful results. Lets collaborate on something extraordinary.' // Replace with your logic
-const ogImage = '/ogImage.jpg' 
-
-
+const ogImage = '/ogImage.jpg'
 
 useHead({
-  
+
   meta: [
+    { hid: 'og:url', property: "og:url", content: "https://www.sharif-sircar.com" },
+    { hid: 'og:site_name', property: "og:site_name", content: "Sharif Sircar's Website" },
     { hid: 'description', name: 'description', content: description },
     { hid: 'og:description', property: 'og:description', content: description },
     { hid: 'og:image', property: 'og:image', content: `https://www.sharif-sircar.com${ogImage}` },
@@ -75,29 +75,29 @@ export default defineComponent({
   <v-app>
     <v-parallax src="/banner.webp" alt="Parallax image of banner.">
       <v-container justify="center" class="d-flex text-h5 ">
-        <v-row justify="center"  class="d-flex justify-center">
+        <v-row justify="center" class="d-flex justify-center">
           <v-col cols="12">
             <h2 class="mt-5 text-center">{{ name }}</h2>
           </v-col>
           <v-col cols="12">
             <h4 class="text-center">Web Developer
               <NuxtLink to="/portfolio">
-              <v-btn height="30" rounded="3" elevation="2" color="#D8FBFD" class="ma-2 glow-effect"
-                aria-label="Sharif's portfolio shortcut button">
-                <svg class="glow-container">
-                  <rect pathLength="100" stroke-linecap="round" class="glow-blur"></rect>
-                  <rect pathLength="100" stroke-linecap="round" class="glow-line"></rect>
-                </svg>
-                To Portfolio section
-                <v-tooltip aria-label="Tooltip shows link to portfolio page on hover." activator="parent"
-                  location="top">Takes you to portfolio section :)</v-tooltip>
-              </v-btn>
-            </NuxtLink>
+                <v-btn height="30" rounded="3" elevation="2" color="#D8FBFD" class="ma-2 glow-effect"
+                  aria-label="Sharif's portfolio shortcut button">
+                  <svg class="glow-container">
+                    <rect pathLength="100" stroke-linecap="round" class="glow-blur"></rect>
+                    <rect pathLength="100" stroke-linecap="round" class="glow-line"></rect>
+                  </svg>
+                  To Portfolio section
+                  <v-tooltip aria-label="Tooltip shows link to portfolio page on hover." activator="parent"
+                    location="top">Takes you to portfolio section :)</v-tooltip>
+                </v-btn>
+              </NuxtLink>
             </h4>
           </v-col>
           <p class="bio text-center ">{{ bio }}</p>
 
-          <v-row justify="center"  >
+          <v-row justify="center">
             <div class="container">
 
               <v-col cols="12" sm="6">
@@ -221,7 +221,7 @@ li.list {
 
 .container .box {
   position: relative;
- /* width: 320px;*/
+  /* width: 320px;*/
   height: 400px;
   display: flex;
   justify-content: center;

@@ -20,7 +20,7 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxt/image',
-    "@kevinmarrec/nuxt-pwa",
+    
     async (options, nuxt) => {
       nuxt.hooks.hook("vite:extendConfig", (config) =>
         // @ts-ignore
@@ -63,21 +63,21 @@ export default defineNuxtConfig({
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
         // { rel: "canonical", href: url },
       ],
-      // meta: [
-      //   // { hid: "global-description", name: "description", content: description },
-      //   { property: "og:site_name", content: title },
-      //   { hid: "global-og:type", property: "og:type", content: "website" },
-      //   // { hid: "global-og:url", property: "og:url", content: url },
-      //   // { hid: "global-og:image:secure_url", property: "og:image:secure_url", content: image },
-      //   { hid: "global-og:title", property: "og:title", content: title },
-      //   // { hid: "global-og:description", property: "og:description", content: description },
-      //   // { hid: "global-og:image", property: "og:image", content: image },
-      //   { name: "twitter:card", content: "summary_large_image" },
-      //   // { hid: "global-twitter:url", name: "twitter:url", content: url },
-      //   { hid: "global-twitter:title", name: "twitter:title", content: title },
-      //   // { hid: "global-twitter:description", name: "twitter:description", content: description },
-      //   // { hid: "global-twitter:image", name: "twitter:image", content: image },
-      // ],
+      meta: [
+        // { hid: "global-description", name: "description", content: description },
+        { property: "og:site_name", content: title },
+        { hid: "global-og:type", property: "og:type", content: "website" },
+        // { hid: "global-og:url", property: "og:url", content: url },
+        // { hid: "global-og:image:secure_url", property: "og:image:secure_url", content: image },
+        { hid: "global-og:title", property: "og:title", content: title },
+        // { hid: "global-og:description", property: "og:description", content: description },
+        // { hid: "global-og:image", property: "og:image", content: image },
+        { name: "twitter:card", content: "summary_large_image" },
+        // { hid: "global-twitter:url", name: "twitter:url", content: url },
+        { hid: "global-twitter:title", name: "twitter:title", content: title },
+        // { hid: "global-twitter:description", name: "twitter:description", content: description },
+        // { hid: "global-twitter:image", name: "twitter:image", content: image },
+      ],
     },
   },
 
