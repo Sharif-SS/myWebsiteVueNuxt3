@@ -81,20 +81,20 @@ export default defineNuxtConfig({
     },
   },
 
-  pwa: {
-    meta: {
-      name: shortTitle,
-      author: "Sharif Sircar",
-      theme_color: "#4f46e5",
-      description: description,
-    },
-    manifest: {
-      name: shortTitle,
-      short_name: shortTitle,
-      theme_color: "#4f46e5",
-      description: description,
-    },
+  // pwa: {
+  //   meta: {
+  //     name: shortTitle,
+  //     author: "Sharif Sircar",
+  //     theme_color: "#4f46e5",
+  //     description: description,
+  //   },
+  //   manifest: {
+  //     name: shortTitle,
+  //     short_name: shortTitle,
+  //     theme_color: "#4f46e5",
+  //     description: description,
+  //   },
 
-  },
+  // },
 
 });
