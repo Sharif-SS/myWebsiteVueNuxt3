@@ -3,25 +3,23 @@
 const { path } = useRoute()
 const pageTitle = 'DO. IT Hackathon Photos!' // Replace with your logic
 const description = 'All the photos from three days can be found in the dropbox link. Enjoy!' // Replace with your logic
-const ogImage = '/hackathon/oghack.webp' 
+const ogImage = '/hackathon/oghack.webp'
 
 console.log(pageTitle);
 
 useHead({
   title: pageTitle,
-  
-  
+
+
   meta: [
 
-    {property:"og:url", content:`https://www.sharif-sircar.com${path}`},
-    {property:"og:site_name", content:"Sharif Sircar's Website"},
-    { name: 'description', content: description },
-    { property: 'og:title', content: pageTitle },
-    { property: 'og:description', content: description },
-    { property: 'og:image', content: `https://www.sharif-sircar.com${ogImage}` },
-    
+    { hid: 'og:url', property: "og:url", content: `https://www.sharif-sircar.com${path}` },
+    { hid: 'og:site_name', property: "og:site_name", content: "Sharif Sircar's Website" },
+    { hid: 'description', name: 'description', content: description },
+    { hid: 'og:title', property: 'og:title', content: pageTitle },
+    { hid: 'og:description', property: 'og:description', content: description },
+    { hid: 'og:image', property: 'og:image', content: `https://www.sharif-sircar.com${ogImage}` },
 
-   
     // Twitter card
     { hid: "twitter:title", name: "twitter:title", content: pageTitle },
     { hid: 'twitter:description', name: 'twitter:description', content: description },
@@ -57,15 +55,16 @@ useHead({
 
           <v-sheet class="pa-2 ma-2 translucent">
             <NuxtLink to="https://ecumene.github.io/dontoverthinkit/" target="_blank">
-              <NuxtImg src="/hackathon/hackathonLogo.webp" 
-                sizes="100vw sm:50vw md:400px placeholder " />
+              <NuxtImg src="/hackathon/hackathonLogo.webp" sizes="100vw sm:50vw md:400px placeholder " />
             </NuxtLink>
           </v-sheet>
 
         </v-row>
 
         <v-row justify="center" align-content="center" class="pa-2 ma-2">
-          <h3>Dropbox <a href="https://www.dropbox.com/scl/fo/xphlg3zzl9yd2po9xo4ks/ADjwv9YN7RrzwT0V-4LKxLg?rlkey=n8gd09cwmknxnf7c34b25fgbg&st=rn0zeap6&dl=0" id="style-2" data-replace="link here" target="_blank" ><span>link here</span></a></h3>
+          <h3>Dropbox <a
+              href="https://www.dropbox.com/scl/fo/xphlg3zzl9yd2po9xo4ks/ADjwv9YN7RrzwT0V-4LKxLg?rlkey=n8gd09cwmknxnf7c34b25fgbg&st=rn0zeap6&dl=0"
+              id="style-2" data-replace="link here" target="_blank"><span>link here</span></a></h3>
         </v-row>
 
         <v-row justify="center" align-content="center" class="pa-2 ma-2">

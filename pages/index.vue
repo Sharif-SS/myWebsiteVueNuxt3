@@ -4,6 +4,7 @@ const description = 'Welcome to my portfolio! I merge photography with software 
 const ogImage = '/ogImage.jpg';
 
 useHead({
+  title: "Sharif's Homepage",
   meta: [
     { hid: 'og:url', property: 'og:url', content: 'https://www.sharif-sircar.com' },
     { hid: 'og:site_name', property: 'og:site_name', content: "Sharif Sircar's Website" },
@@ -132,6 +133,7 @@ const jobs = [
   .bio {
     font-size: 1.5rem;
     /* The fit it all in one page */
+    max-width: 70%;
   }
 
 

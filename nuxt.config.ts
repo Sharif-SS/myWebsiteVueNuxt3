@@ -58,7 +58,7 @@ export default defineNuxtConfig({
         }
       ],
 
-      // title: "Sharif Sircar's Website",
+      title: "Sharif Sircar's Website",
       // titleTemplate: "%s",
       link: [
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },

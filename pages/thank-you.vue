@@ -1,3 +1,12 @@
+<script setup lang="ts">
+const pageTitle = 'Thank you!' // Replace with your logic
+
+
+useHead({
+  title: pageTitle,
+})
+</script>
+
 <template>
   <v-app>
     <v-parallax src="/banner.webp" alt="Parallax image of banner.">
