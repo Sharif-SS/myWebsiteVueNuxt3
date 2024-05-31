@@ -17,7 +17,7 @@ export default defineNuxtConfig({
   // enable takeover mode
   typescript: { shim: false },
   build: { transpile: ["vuetify"] },
- 
+
   modules: [
     '@nuxt/image',
     "@kevinmarrec/nuxt-pwa",
@@ -53,7 +53,7 @@ export default defineNuxtConfig({
             });
           `,
           type: 'text/javascript',
-          
+
         }
       ],
 
@@ -64,60 +64,19 @@ export default defineNuxtConfig({
         { rel: "canonical", href: url },
       ],
       meta: [
-        {
-          hid: "description",
-          name: "description",
-          content: description,
-        },
+        { hid: "global-description", name: "description", content: description },
         { property: "og:site_name", content: title },
-        { hid: "og:type", property: "og:type", content: "website" },
-        {
-          hid: "og:url",
-          property: "og:url",
-          content: url,
-        },
-        {
-          hid: "og:image:secure_url",
-          property: "og:image:secure_url",
-          content: image,
-        },
-        {
-          hid: "og:title",
-          property: "og:title",
-          content: title,
-        },
-        {
-          hid: "og:description",
-          property: "og:description",
-          content: description,
-        },
-        {
-          hid: "og:image",
-          property: "og:image",
-          content: image,
-        },
-        //Twitter
+        { hid: "global-og:type", property: "og:type", content: "website" },
+        { hid: "global-og:url", property: "og:url", content: url },
+        { hid: "global-og:image:secure_url", property: "og:image:secure_url", content: image },
+        { hid: "global-og:title", property: "og:title", content: title },
+        { hid: "global-og:description", property: "og:description", content: description },
+        { hid: "global-og:image", property: "og:image", content: image },
         { name: "twitter:card", content: "summary_large_image" },
-        {
-          hid: "twitter:url",
-          name: "twitter:url",
-          content: url,
-        },
-        {
-          hid: "twitter:title",
-          name: "twitter:title",
-          content: title,
-        },
-        {
-          hid: "twitter:description",
-          name: "twitter:description",
-          content: description,
-        },
-        {
-          hid: "twitter:image",
-          name: "twitter:image",
-          content: image,
-        },
+        { hid: "global-twitter:url", name: "twitter:url", content: url },
+        { hid: "global-twitter:title", name: "twitter:title", content: title },
+        { hid: "global-twitter:description", name: "twitter:description", content: description },
+        { hid: "global-twitter:image", name: "twitter:image", content: image },
       ],
     },
   },
@@ -137,5 +96,5 @@ export default defineNuxtConfig({
     },
 
   },
-  
+
 });

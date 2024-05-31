@@ -22,11 +22,11 @@ useHead({
   ],
   link: [
     {
+      key: "canonical",
       rel: 'canonical',
       href: `https://www.sharif-sircar.com/${path}`,
     },
   ],
-
 })
 </script>
 
