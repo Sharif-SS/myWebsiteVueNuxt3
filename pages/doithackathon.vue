@@ -1,23 +1,27 @@
 <script setup lang="ts">
 
 const { path } = useRoute()
-const pageTitle = computed(() => 'DO. IT Hackathon Photos!') // Replace with your logic
-const description = computed(() => 'All the photos from three days can be found in the dropbox link. Enjoy!') // Replace with your logic
+const pageTitle = 'DO. IT Hackathon Photos!' // Replace with your logic
+const description = 'All the photos from three days can be found in the dropbox link. Enjoy!' // Replace with your logic
 const ogImage = '/hackathon/oghack.webp' 
 
+console.log(pageTitle);
 
 useHead({
-  title: pageTitle.value,
+  title: pageTitle,
+  
+  
   meta: [
-    { hid: 'description', name: 'description', content: description.value },
-    { hid: 'og:title', property: 'og:title', content: pageTitle.value },
-    { hid: 'og:description', property: 'og:description', content: description.value },
+    { hid: 'description', name: 'description', content: description },
+    { hid: 'og:title', property: 'og:title', content: pageTitle },
+    { hid: 'og:description', property: 'og:description', content: description },
     { hid: 'og:image', property: 'og:image', content: `https://www.sharif-sircar.com${ogImage}` },
+    
 
    
     // Twitter card
-    { hid: "twitter:title", name: "twitter:title", content: pageTitle.value },
-    { hid: 'twitter:description', name: 'twitter:description', content: description.value },
+    { hid: "twitter:title", name: "twitter:title", content: pageTitle },
+    { hid: 'twitter:description', name: 'twitter:description', content: description },
     { hid: "twitter:image", name: "twitter:image", content: `https://www.sharif-sircar.com${ogImage}` },
   ],
   link: [

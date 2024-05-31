@@ -3,7 +3,7 @@ import Portfolio from '@/components/portfolio.vue';
 
 import { defineComponent } from 'vue';
 
-const description = computed(() => 'Welcome to my portfolio! I merge photography with software projects, offering captivating visuals and innovative digital solutions. Explore the synergy of art and tech as I tell compelling stories and drive impactful results. Lets collaborate on something extraordinary.') // Replace with your logic
+const description = 'Welcome to my portfolio! I merge photography with software projects, offering captivating visuals and innovative digital solutions. Explore the synergy of art and tech as I tell compelling stories and drive impactful results. Lets collaborate on something extraordinary.' // Replace with your logic
 const ogImage = '/ogImage.jpg' 
 
 
@@ -11,12 +11,12 @@ const ogImage = '/ogImage.jpg'
 useHead({
   
   meta: [
-    { hid: 'description', name: 'description', content: description.value },
-    { hid: 'og:description', property: 'og:description', content: description.value },
+    { hid: 'description', name: 'description', content: description },
+    { hid: 'og:description', property: 'og:description', content: description },
     { hid: 'og:image', property: 'og:image', content: `https://www.sharif-sircar.com${ogImage}` },
 
     // Twitter card
-    { hid: 'twitter:description', name: 'twitter:description', content: description.value },
+    { hid: 'twitter:description', name: 'twitter:description', content: description },
     { hid: "twitter:image", name: "twitter:image", content: `https://www.sharif-sircar.com${ogImage}` },
   ],
   link: [
