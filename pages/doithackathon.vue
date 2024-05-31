@@ -1,5 +1,6 @@
 <script setup lang="ts">
 
+const { path } = useRoute()
 const pageTitle = computed(() => 'DO. IT Hackathon Photos!') // Replace with your logic
 const description = computed(() => 'All the photos from three days can be found in the dropbox link. Enjoy!') // Replace with your logic
 const ogImage = '/hackathon/oghack.webp' // Adjust as needed
@@ -18,6 +19,12 @@ useHead({
     { hid: "twitter:title", name: "twitter:title", content: pageTitle.value },
     { hid: 'twitter:description', name: 'twitter:description', content: description.value },
     { hid: "twitter:image", name: "twitter:image", content: `${process.env.BASE_URL}${ogImage}` },
+  ],
+  link: [
+    {
+      rel: 'canonical',
+      href: `https://www.sharif-sircar.com/${path}`,
+    },
   ],
 
 })
