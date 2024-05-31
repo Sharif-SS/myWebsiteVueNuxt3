@@ -3,6 +3,31 @@ import Portfolio from '@/components/portfolio.vue';
 
 import { defineComponent } from 'vue';
 
+const description = computed(() => 'Welcome to my portfolio! I merge photography with software projects, offering captivating visuals and innovative digital solutions. Explore the synergy of art and tech as I tell compelling stories and drive impactful results. Lets collaborate on something extraordinary.') // Replace with your logic
+const ogImage = '/ogImage.jpg' 
+
+
+
+useHead({
+  
+  meta: [
+    { hid: 'description', name: 'description', content: description.value },
+    { hid: 'og:description', property: 'og:description', content: description.value },
+    { hid: 'og:image', property: 'og:image', content: `${process.env.BASE_URL}${ogImage}` },
+
+    // Twitter card
+    { hid: 'twitter:description', name: 'twitter:description', content: description.value },
+    { hid: "twitter:image", name: "twitter:image", content: `${process.env.BASE_URL}${ogImage}` },
+  ],
+  link: [
+    {
+      key: "canonical",
+      rel: 'canonical',
+      href: `https://www.sharif-sircar.com/`,
+    },
+  ],
+})
+
 
 interface Job {
   company: string;
