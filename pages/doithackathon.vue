@@ -179,9 +179,9 @@ a:hover span {
 /* Presentational Styles */
 
 a {
-  text-decoration: none;
-  color: #000000;
-  font-weight: 700;
+  text-decoration: underline;
+  color: #0000ff;
   vertical-align: top;
+
 }
 </style>
