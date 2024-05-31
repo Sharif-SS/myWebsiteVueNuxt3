@@ -20,7 +20,7 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxt/image',
-    
+
     async (options, nuxt) => {
       nuxt.hooks.hook("vite:extendConfig", (config) =>
         // @ts-ignore
@@ -36,6 +36,7 @@ export default defineNuxtConfig({
   },
 
   app: {
+
     head: {
 
       script: [
@@ -57,7 +58,7 @@ export default defineNuxtConfig({
         }
       ],
 
-      // title: "Sharif Sircar",
+      // title: "Sharif Sircar's Website",
       // titleTemplate: "%s",
       link: [
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
@@ -80,21 +81,5 @@ export default defineNuxtConfig({
       ],
     },
   },
-
-  // pwa: {
-  //   meta: {
-  //     name: shortTitle,
-  //     author: "Sharif Sircar",
-  //     theme_color: "#4f46e5",
-  //     description: description,
-  //   },
-  //   manifest: {
-  //     name: shortTitle,
-  //     short_name: shortTitle,
-  //     theme_color: "#4f46e5",
-  //     description: description,
-  //   },
-
-  // },
 
 });
