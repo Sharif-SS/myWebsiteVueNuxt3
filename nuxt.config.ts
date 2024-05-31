@@ -10,7 +10,7 @@ const description = "Welcome to my portfolio! I merge photography with software 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
 
-  ssr: false,
+  ssr: true,
 
   // import styles
   css: ["@/assets/main.scss"],

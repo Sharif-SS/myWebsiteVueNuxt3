@@ -1,75 +1,46 @@
-<script lang="ts">
-import Portfolio from '@/components/portfolio.vue';
+<script setup lang="ts">
 
-import { defineComponent } from 'vue';
-
-const description = 'Welcome to my portfolio! I merge photography with software projects, offering captivating visuals and innovative digital solutions. Explore the synergy of art and tech as I tell compelling stories and drive impactful results. Lets collaborate on something extraordinary.' // Replace with your logic
-const ogImage = '/ogImage.jpg'
+const description = 'Welcome to my portfolio! I merge photography with software projects, offering captivating visuals and innovative digital solutions. Explore the synergy of art and tech as I tell compelling stories and drive impactful results. Lets collaborate on something extraordinary.';
+const ogImage = '/ogImage.jpg';
 
 useHead({
-
   meta: [
-    { hid: 'og:url', property: "og:url", content: "https://www.sharif-sircar.com" },
-    { hid: 'og:site_name', property: "og:site_name", content: "Sharif Sircar's Website" },
+    { hid: 'og:url', property: 'og:url', content: 'https://www.sharif-sircar.com' },
+    { hid: 'og:site_name', property: 'og:site_name', content: "Sharif Sircar's Website" },
     { hid: 'description', name: 'description', content: description },
     { hid: 'og:description', property: 'og:description', content: description },
     { hid: 'og:image', property: 'og:image', content: `https://www.sharif-sircar.com${ogImage}` },
-
-    // Twitter card
     { hid: 'twitter:description', name: 'twitter:description', content: description },
-    { hid: "twitter:image", name: "twitter:image", content: `https://www.sharif-sircar.com${ogImage}` },
+    { hid: 'twitter:image', name: 'twitter:image', content: `https://www.sharif-sircar.com${ogImage}` },
   ],
   link: [
     {
-      key: "canonical",
+      key: 'canonical',
       rel: 'canonical',
-      href: `https://www.sharif-sircar.com/`,
+      href: 'https://www.sharif-sircar.com/',
     },
   ],
-})
-
-
-interface Job {
-  company: string;
-  title: string;
-  startDate: string;
-  endDate: string;
-}
-
-export default defineComponent({
-  name: "AboutMe",
-  data() {
-    return {
-      profilePicture: "/profilePhoto.jpg",
-      lazyPicture: "/profilePhotoLazyLoad.jpg",
-      name: "Sharif Sircar",
-      jobTitle: "Web Developer",
-      bio: "Never ending journey of self-discovery and improvement, I am determined to continue building a successful career in the software development industry and take great pride in the high-quality work I have produced in my past and current positions.",
-      skills: ["HTML", "CSS", "Typescript", "Vue.js", "Nuxt.js", "Express", "WebSocket", "NodeJS", "Python", "Wordpress", "CMS Systems", "Photoshop", "Google Tag Manager", "Google Analytics"],
-      jobs: [
-        {
-          company: "The Leap Method (Carol Bartlett)",
-          title: "Web Development Consultant",
-        },
-        {
-          company: "Robot Interactive.",
-          title: "Junior Software Developer",
-        },
-        {
-          company: "Memorial University of NL.",
-          title: "Project Assistant",
-        },
-
-
-
-      ] as Job[],
-    };
-  },
-
-
 });
-</script>
 
+const name = 'Sharif Sircar';
+const jobTitle = 'Web Developer';
+const bio = 'Never ending journey of self-discovery and improvement, I am determined to continue building a successful career in the software development industry and take great pride in the high-quality work I have produced in my past and current positions.';
+const skills = ['HTML', 'CSS', 'Typescript', 'Vue.js', 'Nuxt.js', 'Express', 'WebSocket', 'NodeJS', 'Python', 'Wordpress', 'CMS Systems', 'Photoshop', 'Google Tag Manager', 'Google Analytics'];
+const jobs = [
+  {
+    company: 'The Leap Method (Carol Bartlett)',
+    title: 'Web Development Consultant',
+  },
+  {
+    company: 'Robot Interactive.',
+    title: 'Junior Software Developer',
+  },
+  {
+    company: 'Memorial University of NL.',
+    title: 'Project Assistant',
+  },
+];
+</script>
 
 <template>
   <v-app>
