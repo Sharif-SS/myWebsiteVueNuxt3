@@ -12,6 +12,9 @@ useHead({
   
   
   meta: [
+
+    {property:"og:url", content:`https://www.sharif-sircar.com${path}`},
+    {property:"og:site_name", content:"Sharif Sircar's Website"},
     {  name: 'description', content: description },
     {  property: 'og:title', content: pageTitle },
     {  property: 'og:description', content: description },
