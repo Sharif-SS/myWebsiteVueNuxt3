@@ -12,10 +12,10 @@ useHead({
   
   
   meta: [
-    { hid: 'description', name: 'description', content: description },
-    { hid: 'og:title', property: 'og:title', content: pageTitle },
-    { hid: 'og:description', property: 'og:description', content: description },
-    { hid: 'og:image', property: 'og:image', content: `https://www.sharif-sircar.com${ogImage}` },
+    {  name: 'description', content: description },
+    {  property: 'og:title', content: pageTitle },
+    {  property: 'og:description', content: description },
+    { property: 'og:image', content: `https://www.sharif-sircar.com${ogImage}` },
     
 
    
