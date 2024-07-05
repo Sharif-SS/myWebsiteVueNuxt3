@@ -2,13 +2,13 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  data() {
-    return {
-      // Adjust this value based on the maximum number of images you anticipate having
-      imageCount: 20,
-      subtractValue: 20+1,
-    };
-  },
+    data() {
+        return {
+            // Adjust this value based on the maximum number of images you anticipate having
+            imageCount: 20,
+            subtractValue: 20 + 1,
+        };
+    },
 });
 </script>
 
@@ -29,11 +29,7 @@ export default defineComponent({
                         <template v-slot:placeholder>
 
                             <VRow class="fill-height ma-0" align="center" justify="center">
-
                                 <VProgressCircular indeterminate color="grey-lighten-5"></VProgressCircular>
-
-
-
                             </VRow>
 
                         </template>
