@@ -2,7 +2,7 @@
 
     <VRow>
         <VCol 
-        v-for="n in 4" :key="n"
+        v-for="n in 5" :key="n"
         cols="6"
         sm="6"
         md="6"
