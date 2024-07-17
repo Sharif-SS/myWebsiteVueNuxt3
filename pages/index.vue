@@ -24,9 +24,9 @@ useHead({
 });
 
 const name = 'Sharif Sircar';
-const jobTitle = 'Web Developer';
-const bio = 'Never ending journey of self-discovery and improvement, I am determined to continue building a successful career in the tech industry and take great pride in the high-quality work I have produced in my past and current positions. Check out my photos while you are here :)';
-const skills = ['HTML', 'CSS', 'Typescript', 'Vue.js', 'Nuxt.js', 'Express', 'WebSocket', 'NodeJS', 'Python', 'Wordpress', 'CMS Systems', 'Photoshop', 'Google Tag Manager', 'Google Analytics'];
+const jobTitle = 'Holistic Developer: Code, Life, and Creativity';
+const bio = 'On a never-ending journey of self-discovery and improvement, I blend technology, creativity, and personal growth in my successful career. I take great pride in the high-quality work I produce in my various roles. Feel free to explore my photography while you are here! :)';
+const skills = ['HTML+CSS', 'Typescript', 'Vue.js', 'Nuxt.js', 'Express', 'NodeJS', 'Python', 'Wordpress', 'CMS Systems', 'Photoshop', 'Google Tag Manager', 'Google Analytics', 'Storytelling','Empathy' ];
 const jobs = [
   {
     company: 'The Leap Method (Carol Bartlett)',
@@ -52,7 +52,7 @@ const jobs = [
             <h2 class="mt-5 text-center">{{ name }}</h2>
           </v-col>
           <v-col cols="12">
-            <h4 class="text-center">Web Developer
+            <h4 class="text-center">{{ jobTitle }} 
               <NuxtLink to="/portfolio">
                 <v-btn height="30" rounded="3" elevation="2" color="#D8FBFD" class="ma-2 glow-effect"
                   aria-label="Sharif's portfolio shortcut button">

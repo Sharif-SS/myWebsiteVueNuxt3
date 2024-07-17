@@ -5,8 +5,8 @@ export default defineComponent({
     data() {
         return {
             // Adjust this value based on the maximum number of images you anticipate having
-            imageCount: 19,
-            subtractValue: 19 + 1,
+            imageCount: 17,
+            subtractValue: 17 + 1,
         };
     },
 });
