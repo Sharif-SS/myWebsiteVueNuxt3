@@ -55,7 +55,7 @@ export default defineComponent({
 
 			<v-btn height="30" rounded="3" elevation="2" class="ma-0 desktopOnly"
 				style="background-color: #D8FBFD; color: #000000;" href="/oldWebsite/index.html" target="_blank"
-				aria-label="Button leads to my old website.">Old Website<v-tooltip
+				aria-label="Button leads to my old website from 2022.">Old Website - 2022<v-tooltip
 					aria-label="Shows additional text mentioning it being an archival." activator="parent"
 					location="bottom">Archival of my old page</v-tooltip></v-btn>
 
