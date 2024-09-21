@@ -9,12 +9,7 @@
         <v-col cols="12" sm="12" md="8">
           <v-card elevation="3">
 
-            
-            <v-carousel show-arrows="hover" height="300px" hide-delimiter-background cycle delimiter-icon="mdi-bird">
-              <v-carousel-item src="/portfolio/oakley-preview.webp"></v-carousel-item>
-
-              <v-carousel-item src="/portfolio/soon.jpg"></v-carousel-item>
-            </v-carousel>
+            <v-img src="/portfolio/oakley-preview.webp" height="300px" alt="Homepage Preview of concept page."></v-img>
 
             <v-card-title>React and Tailwind - <a href="https://oakleysdetails.netlify.app/">Oakley's Details NL</a>:</v-card-title>
 
@@ -33,7 +28,7 @@
             </v-btn>
 
             <v-card-text>Website based on React and Tailwind, wanted exposure to React, so I decided to pickup a project utilizing 
-              it, while simultaneously helping a friend to get more reach for his business. In Progress</v-card-text>
+              it, while simultaneously helping a friend to get more reach for his business. Proof of concept.</v-card-text>
           </v-card>
         </v-col>
       </v-row>
