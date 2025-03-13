@@ -11,7 +11,12 @@ npm install
 ```bash
 npm run dev
 ```
+111. To change NPM, using NPM package manenger 
 
+```bash
+nvm use
+nvm list
+```
 
 #### Global Defaults - `defaults.ts`
 

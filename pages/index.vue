@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-const description = 'Welcome to my portfolio! I merge photography with software projects, offering captivating visuals and innovative digital solutions. Explore the synergy of art and tech as I tell compelling stories and drive impactful results. Lets collaborate on something extraordinary.';
+const description = 'I am on a continuous journey of self-improvement, always seeking to learn, refine, and build. Whether it is new skills, creative projects, or innovative solutions. My curiosity drives me to explore different disciplines, connect ideas, and help others navigate challenges. Explore my photography while you are here! :).';
 const ogImage = '/ogImage.jpg';
 
 useHead({
@@ -24,9 +24,9 @@ useHead({
 });
 
 const name = 'Sharif Sircar';
-const jobTitle = 'Holistic Developer: Code, Life, and Creativity';
-const bio = 'On a never-ending journey of self-discovery and improvement, I blend technology, creativity, and personal growth in my successful career. I take great pride in the high-quality work I produce in my various roles. Feel free to explore my photography while you are here! :)';
-const skills = ['HTML+CSS', 'Typescript', 'Vue.js', 'Nuxt.js', 'Express', 'NodeJS', 'Python', 'Wordpress', 'CMS Systems', 'Photoshop', 'Google Tag Manager', 'Google Analytics', 'Storytelling','Empathy' ];
+const jobTitle = 'Exploring Growth, Learning, and Innovation';
+const bio = 'I am on a continuous journey of self-improvement, always seeking to learn, refine, and build. Whether it is new skills, creative projects, or innovative solutions. My curiosity drives me to explore different disciplines, connect ideas, and help others navigate challenges. Explore my photography while you are here! :)';
+const skills = ['Training & Support', 'Reporting', 'Data Analysis', 'Documentation',  'CRM Systems', 'CMS Systems', 'Event Photography', 'Photoshop', 'Google Tag Manager', 'Google Analytics', 'Storytelling','Mistakes' ];
 const jobs = [
   {
     company: 'The Leap Method (Carol Bartlett)',
@@ -53,16 +53,16 @@ const jobs = [
           </v-col>
           <v-col cols="12">
             <h4 class="text-center">{{ jobTitle }} 
-              <NuxtLink to="/portfolio">
+              <NuxtLink to="/photography">
                 <v-btn height="30" rounded="3" elevation="2" color="#D8FBFD" class="ma-2 glow-effect"
-                  aria-label="Sharif's portfolio shortcut button">
+                  aria-label="Sharif's photography shortcut button">
                   <svg class="glow-container">
                     <rect pathLength="100" stroke-linecap="round" class="glow-blur"></rect>
                     <rect pathLength="100" stroke-linecap="round" class="glow-line"></rect>
                   </svg>
-                  To Portfolio section
-                  <v-tooltip aria-label="Tooltip shows link to portfolio page on hover." activator="parent"
-                    location="top">Takes you to portfolio section :)</v-tooltip>
+                  To photography section
+                  <v-tooltip aria-label="Tooltip shows link to photography page on hover." activator="parent"
+                    location="top">Takes you to photography section :)</v-tooltip>
                 </v-btn>
               </NuxtLink>
             </h4>
@@ -93,7 +93,7 @@ const jobs = [
                 <div class="box">
                   <span></span>
                   <div class="content">
-                    <h2>Stack</h2>
+                    <h2>Skill Stack</h2>
                     <ul class="a two-column">
                       <li class="list" v-for="skill in skills" :key="skill">{{ skill }}</li>
                     </ul>

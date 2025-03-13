@@ -23,12 +23,12 @@ export default defineComponent({
 
 			},
 
-			{
-				icon: 'mdi-robot-happy',
-				title: 'Portfolio',
-				to: '/portfolio',
+	//		{
+//				icon: 'mdi-robot-happy',
+	//			title: 'Portfolio',
+	//			to: '/portfolio',
 
-			},
+	//		},
 
 			{
 				icon: 'mdi-email',
@@ -96,10 +96,10 @@ export default defineComponent({
 					location="top">Linkedin</v-tooltip>
 			</v-btn>
 
-			<v-btn height="30" rounded="3" elevation="2" color="#D8FBFD" class="ma-2" href="https://github.com/Sharif-SS"
+			<v-btn height="30" rounded="3" elevation="2" color="#D8FBFD" class="ma-2" href="https://www.instagram.com/sharifsircarphoto/"
 				target="_blank" aria-label="Sharif's github button">
-				<v-icon>mdi-github</v-icon>
-				<v-tooltip aria-label="Tooltip shows github on hover." activator="parent" location="top">Github</v-tooltip>
+				<v-icon>mdi-instagram</v-icon>
+				<v-tooltip aria-label="Tooltip shows Instagram on hover." activator="parent" location="top">Instagram</v-tooltip>
 			</v-btn>
 
 			<v-btn height="30" rounded="3" elevation="2" color="#D8FBFD" class="ma-2"
