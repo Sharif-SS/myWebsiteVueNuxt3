@@ -1,9 +1,9 @@
 import vuetify from "vite-plugin-vuetify";
 
 // PWA Config
-const title = "Photography and Software Projects by Sharif Sircar 🙋";
-const shortTitle = "Sharif's portfolio Website";
-const description = "Welcome to my portfolio! I merge photography with software projects, offering captivating visuals and innovative digital solutions. Explore the synergy of art and tech as I tell compelling stories and drive impactful results. Let's collaborate on something extraordinary."
+const title = "Photography Projects by Sharif Sircar 🙋";
+const shortTitle = "Sharif's Personal Website";
+const description = "Exploring growth, problem-solving, and creativity through technology and continuous learning. Join me on the journey of building skills and meaningful projects."
 // const image = "https://www.sharif-sircar.com/ogImage.jpg";
 // const url = "https://www.sharif-sircar.com/";
 
