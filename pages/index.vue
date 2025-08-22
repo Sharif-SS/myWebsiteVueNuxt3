@@ -28,13 +28,13 @@ const jobTitle = 'Exploring Growth, Learning, and Innovation';
 const bio = 'I am on a continuous journey of self-improvement, always seeking to learn, refine, and build. Whether it is new skills, creative projects, or innovative solutions. My curiosity drives me to explore different disciplines, connect ideas, and help others navigate challenges. Explore my photography while you are here! :)';
 const skills = ['Training & Support', 'Reporting', 'Data Analysis', 'Documentation',  'CRM Systems', 'CMS Systems', 'Event Photography', 'Photoshop', 'Google Tag Manager', 'Google Analytics', 'Storytelling','Mistakes' ];
 const jobs = [
-  {
-    company: 'The Leap Method (Carol Bartlett)',
-    title: 'Web Development Consultant',
+    {
+    company: 'VOCM',
+    title: 'Sales & Marketing Administration Specialist',
   },
   {
-    company: 'Robot Interactive.',
-    title: 'Junior Software Developer',
+    company: 'The Leap Method',
+    title: 'Web Development Consultant',
   },
   {
     company: 'Memorial University of NL.',
