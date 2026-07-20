@@ -19,6 +19,7 @@ export default defineNuxtConfig({
   build: { transpile: ["vuetify"] },
 
   modules: [
+    '@nuxt/eslint',
     '@nuxt/image',
 
     async (options, nuxt) => {
