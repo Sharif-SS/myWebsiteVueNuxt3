@@ -7,7 +7,7 @@ This repository is undergoing a **complete overhaul**, not an incremental update
 - Current branch: `personal-site-v3.0` (created 2026-07-20 from `origin`).
 - The "Legacy Stack" section below describes the **old** site as it exists in this branch right now. It is provided for **reference only** — to understand what content/assets/routes existed before, and to help migrate photos, copy, and page structure.
 - **Do not preserve, refactor, or extend the legacy stack** (Vuetify 3, manual `vite-plugin-vuetify` wiring, hardcoded GA snippet, Iconify custom icons) unless explicitly told to.
-- The "Target Stack" section is what you should actually build toward. Choose **best-in-class modern tooling** compatible with Nuxt 3 and Netlify static generation — don't artificially limit to custom-components-only. Great UI/UX is the goal.
+- The "Target Stack" section is what you should actually build toward. Choose **best-in-class modern tooling** compatible with Nuxt 3 and Netlify static generation — great UI/UX is the goal.
 - If a legacy file conflicts with the target architecture, replace it. Do not try to make old and new code coexist unless explicitly asked.
 - When in doubt about whether something is legacy or target, ask before writing code.
 
@@ -19,7 +19,7 @@ This repository is undergoing a **complete overhaul**, not an incremental update
 - **Vuetify 3** — wired manually, NOT via Nuxt module (`vite-plugin-vuetify` injected via `vite:extendConfig` hook in `nuxt.config.ts`, plus `plugins/vuetify.ts` calling `createVuetify`)
 - **Sass/SCSS** — global styles in `assets/main.scss`
 - **Iconify** (`@iconify/vue`) with custom aliases in `utils/customIcons.ts`
-- **Google Analytics** — hardcoded gtag snippet in `nuxt.config.ts` (`G-6VSTRJ3QLM`)
+- **Google Analytics** — hardcoded gtag snippet in `nuxt.config.ts` (`G-6VSTRJ3QLM`). **To be replaced** with `@nuxtjs/gtag` module in rebuild.
 - **@nuxt/image** — configured for WebP output only
 - No lint/typecheck/test scripts exist; Prettier config present but unused
 
@@ -39,24 +39,27 @@ Legacy structure (for migration reference):
 
 Legacy quirks worth knowing during migration:
 
-- Custom cursor is a PNG sprite (`/pointer.png`) applied via `.global-cursor` on `#app` — decide if this survives the rebuild.
+- Custom cursor is a PNG sprite (`/pointer.png`) applied via `.global-cursor` on `#app` — **kept in rebuild**.
+- Glow animations defined in `assets/main.scss` — **kept in rebuild** (ported to new SCSS).
 - Theme colors pull from Tailwind values in `utils/tw-colors.ts` via `utils/themes.ts`.
 - `doithackathon.vue` and `thank-you.vue` may be dead pages — confirm before deleting.
-- `public/oldWebsite/` is an archive folder — do not touch without asking.
+- `public/oldWebsite/` — **to be removed** per owner decision (2026-07-20).
+- `pages/portfolio.vue`, `components/portfolio.vue` — **to be removed** per owner decision (2026-07-20).
 
 ---
 
 ## Target Stack (what to actually build)
 
 - **Nuxt 3, Vue 3, TypeScript** — Composition API only (`<script setup lang="ts">`). Strict mode preferred if compatible.
-- **Vuetify is out.** Choose the best modern tools for the job that are compatible with Nuxt 3 + Netlify static generation. Great options to consider:
-  - **Styling**: Tailwind CSS v4, UnoCSS, or plain SCSS — propose your pick with rationale
-  - **UI primitives**: Radix Vue, Reka UI, Shadcn Vue, PrimeVue (headless), or build custom — choose what delivers the best UX without fighting the framework
-  - **Animations**: Motion (Framer Motion for Vue), GSAP, or CSS-first approach
-  - **Icons**: Nuxt Icon module (auto-loads Iconify sets) — much cleaner than the legacy manual wiring
-  - **Forms**: VeeValidate + Zod, or built-in Nuxt approach
-- **Photo catalog**: folder-scanning via `import.meta.glob` on `assets/photos/<category>/` — no manual registration
-- **Static generation**: `npm run generate` → deploy to Netlify
+- **Vuetify is out.** Choose the best modern tools for the job that are compatible with Nuxt 3 + Netlify static generation:
+  - **Styling**: **Tailwind CSS v4** via `@nuxtjs/tailwindcss` as primary approach. SCSS allowed only for custom cursor (`/pointer.png`) and glow effects (ported from legacy `assets/main.scss`).
+  - **UI primitives**: Radix Vue, Reka UI, Shadcn Vue, PrimeVue (headless), or build custom — choose what delivers the best UX without fighting the framework.
+  - **Animations**: Motion (Framer Motion for Vue), GSAP, or CSS-first approach.
+  - **Icons**: `@nuxt/icon` module (auto-loads Iconify sets) — replaces legacy manual Iconify wiring.
+  - **Forms**: VeeValidate + Zod for validation, but preserve the **exact Netlify form submission mechanism** (native HTML POST, honeypot, form-name hidden field) — do not change how the form submits.
+  - **Analytics**: `@nuxtjs/gtag` module — replaces hardcoded gtag snippet. Same tracking ID (`G-6VSTRJ3QLM`).
+- **Photo catalog**: folder-scanning via `import.meta.glob` on `assets/photos/<category>/` — no manual registration.
+- **Static generation**: `npm run generate` → deploy to Netlify.
 
 **Action item for agent:** propose and set up lint (ESLint with `@nuxt/eslint`), typecheck (`vue-tsc`), and a minimal test script early in the rebuild — these do not exist yet in `package.json`. Ask before choosing tooling versions.
 
@@ -81,7 +84,8 @@ pages/
   index.vue            # Landing page: responsive slideshow, one image per category
   photography.vue      # Category-first gallery
   about.vue            # Brand story (lorem ipsum placeholder for now)
-  contact.vue          # Contact section
+  contact.vue          # Contact section (Netlify form, native HTML POST, honeypot)
+  thank-you.vue        # Netlify form success page (modern layout)
 
 components/
   layout/              # Header, footer, nav
@@ -116,6 +120,7 @@ public/
 - Composition API only (`<script setup lang="ts">`).
 - Component names: `PascalCase.vue`. Composables: `useX.ts`.
 - Keep dependencies minimal but don't sacrifice UX — a well-chosen library beats a buggy hand-rolled solution.
+- Tailwind CSS v4 for all layout/styling. SCSS only for custom cursor (`/pointer.png`) and glow effects.
 
 ## Gallery Behavior
 
@@ -145,6 +150,7 @@ public/
 - Keep photo catalog drag-and-drop compatible (folder scan via `import.meta.glob`, no manual registration).
 - Append to `docs/changelog.md` for every meaningful change.
 - Run `npm run generate` (or `build`) to verify no errors before finishing a task.
+- Preserve the exact Netlify form submission mechanism (native HTML POST, honeypot, form-name hidden field) when rebuilding contact.vue. Do not change how the form submits.
 
 ### Ask First
 - Ask before deleting any legacy page, component, or the `oldWebsite/` archive.
@@ -156,7 +162,6 @@ public/
 - Never reintroduce Vuetify.
 - Never commit secrets or `.env` files.
 - Never touch `netlify.toml` without approval.
-- Never silently delete `public/oldWebsite/`.
 
 ## Brand & UX Summary
 
@@ -164,8 +169,8 @@ public/
 - **Typography**: Neutral serif placeholder (Inter currently set in legacy SCSS — swap when ready).
 - **Color**: Warm palette — to be defined in `docs/brand-guide.md`. Pull from legacy `utils/tw-colors.ts` as a starting reference.
 - **Puffin logo**: subtle identity marker, not a primary motif.
-- **Custom cursor**: `/pointer.png` — allowed, already implemented. Decide during rebuild if it stays.
-- **Glow animations**: defined in legacy `assets/main.scss` — decide during rebuild if they survive.
+- **Custom cursor**: `/pointer.png` — kept in rebuild.
+- **Glow animations**: kept in rebuild (ported to SCSS alongside Tailwind).
 
 ## Explicitly Out of Scope (For Now)
 
