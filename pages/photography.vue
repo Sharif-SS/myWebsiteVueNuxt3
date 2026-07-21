@@ -53,7 +53,7 @@ useHead({
   <div class="bg-white min-h-screen">
     <div class="max-w-7xl mx-auto px-4 py-12">
       <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">Photography</h1>
-      <p class="text-gray-500 mb-8 max-w-lg">
+      <p class="text-gray-600 mb-8 max-w-lg">
         A collection of moments captured over the years.
       </p>
 
@@ -70,7 +70,7 @@ useHead({
           :images="allImages"
           @open="openLightbox"
         />
-        <p v-else class="text-gray-400">No images in this category yet.</p>
+        <p v-else class="text-gray-600">No images in this category yet.</p>
       </div>
     </div>
 

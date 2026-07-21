@@ -18,6 +18,9 @@ export default defineNuxtConfig({
 
   app: {
     head: {
+      htmlAttrs: {
+        lang: 'en',
+      },
       title: 'Sharif Sircar\'s Website',
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
       meta: [

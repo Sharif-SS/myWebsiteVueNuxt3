@@ -131,3 +131,12 @@
   - Fixed all 33 lint errors (brace style, indent, member delimiters, trailing commas, attribute order, etc.)
   - `npm run lint`, `npm run typecheck`, and `npm run generate` all pass clean
 - **Files touched**: `components/AboutPhoto.vue`, `nuxt.config.ts`, `eslint.config.mjs` (already existed), `package.json`, `pages/contact.vue`, `pages/index.vue`, `pages/photography.vue`, `pages/thank-you.vue`, `components/ui/SecretButton.vue`, `components/layout/SiteNav.vue`, `components/gallery/GalleryLightbox.vue`, `components/landing/HeroSlideshow.vue`, `components/ui/EasterEgg.vue`, `composables/useLandingSlideshow.ts`, `composables/rules.ts` (deleted), `tailwind.config.mjs`, `docs/brand-guide.md` (expanded)
+
+## 2026-07-21 06:00 UTC — Accessibility pass + header cleanup
+
+- **Summary**: Fixed Lighthouse accessibility issues:
+  - Added `lang="en"` to `<html>` element via `nuxt.config.ts` `htmlAttrs`
+  - Fixed low-contrast `text-gray-400` text (2.8:1 ratio) → `text-gray-600` on white backgrounds across homepage, footer, and photography page
+  - Fixed borderline `text-gray-500` (4.6:1 ratio) subtitles → `text-gray-600` on homepage, photography and contact pages
+  - Removed "&amp; Event Hosting" from site header subtitle per owner request (to be revisited later)
+- **Files touched**: `nuxt.config.ts`, `pages/index.vue`, `pages/photography.vue`, `pages/contact.vue`, `components/layout/SiteFooter.vue`, `components/layout/SiteHeader.vue`
