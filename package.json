@@ -30,15 +30,14 @@
     "tailwindcss": "^3.4.19",
     "typescript": "^6.0.3",
     "vitest": "^4.1.10",
-    "vue-tsc": "^2.1.10",
-    "vuetify": "^3.1.12"
+    "vue-tsc": "^2.1.10"
   },
   "dependencies": {
     "@jridgewell/sourcemap-codec": "^1.4.15",
     "@vee-validate/nuxt": "^4.15.1",
     "@vee-validate/zod": "^4.15.1",
     "vee-validate": "^4.15.1",
-    "vite-plugin-vuetify": "^1.0.2",
+    "nuxt-gtag": "^4.1.0",
     "zod": "^4.4.3"
   }
 }

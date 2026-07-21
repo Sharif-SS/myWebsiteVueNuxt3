@@ -1,16 +1,13 @@
-import vuetify from 'vite-plugin-vuetify'
 import { pathToFileURL } from 'node:url'
 import { resolve } from 'node:path'
 import { readFile, writeFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 
-// PWA Config
 const title = 'Photography Projects by Sharif Sircar 🙋'
 const shortTitle = 'Sharif\'s Personal Website'
 const description
   = 'Exploring growth, problem-solving, and creativity through technology and continuous learning. Join me on the journey of building skills and meaningful projects.'
 
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
 
   modules: [
@@ -18,38 +15,17 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxtjs/tailwindcss',
     '@vee-validate/nuxt',
-
-    async (options, nuxt) => {
-      nuxt.hooks.hook('vite:extendConfig', config =>
-        // @ts-ignore
-        config.plugins.push(vuetify()),
-      )
-    },
+    'nuxt-gtag',
   ],
   ssr: true,
 
+  gtag: {
+    id: 'G-6VSTRJ3QLM',
+  },
+
   app: {
     head: {
-      script: [
-        {
-          src: 'https://www.googletagmanager.com/gtag/js?id=G-6VSTRJ3QLM',
-          async: true,
-        },
-        {
-          innerHTML: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-6VSTRJ3QLM', {
-              page_path: window.location.pathname,
-            });
-          `,
-          type: 'text/javascript',
-        },
-      ],
-
       title: 'Sharif Sircar\'s Website',
-      // titleTemplate: "%s",
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
       meta: [
         { property: 'og:site_name', content: title },
@@ -65,7 +41,6 @@ export default defineNuxtConfig({
     },
   },
 
-  // import styles
   css: ['@/assets/main.scss'],
 
   vite: {
@@ -77,10 +52,8 @@ export default defineNuxtConfig({
       },
     },
   },
-  build: { transpile: ['vuetify'] },
 
   compatibilityDate: '2026-07-20',
-  // enable takeover mode
   typescript: { shim: false },
 
   hooks: {
@@ -106,7 +79,6 @@ export default defineNuxtConfig({
     },
   },
 
-  // nuxt image properties
   image: {
     format: ['webp'],
   },

@@ -3,7 +3,7 @@ const drawer = ref(false)
 </script>
 
 <template>
-  <v-app class="flex flex-col min-h-screen">
+  <div class="flex flex-col min-h-screen">
     <LayoutSiteHeader @toggle-nav="drawer = !drawer" />
     <LayoutSiteNav v-model="drawer" />
     <main class="pt-[50px] flex-1">
@@ -11,5 +11,5 @@ const drawer = ref(false)
     </main>
     <LayoutSiteFooter />
     <UiCursorFollower />
-  </v-app>
+  </div>
 </template>
