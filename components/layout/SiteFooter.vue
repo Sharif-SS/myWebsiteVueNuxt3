@@ -29,7 +29,6 @@ const year = new Date().getFullYear()
           <Icon name="mdi:instagram" class="w-4 h-4" />
           Instagram
         </a>
-       
       </div>
     </div>
   </footer>
