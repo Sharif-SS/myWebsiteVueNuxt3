@@ -1,32 +1,29 @@
 <script setup lang="ts">
-
 const { path } = useRoute()
 const pageTitle = 'Contact Me' // Replace with your logic
 const description = 'Fill in the information.' // Replace with your logic
 // const ogImage = '/hackathon/oghack.webp'
 
-
 useHead({
   title: pageTitle,
 
-
   meta: [
 
-    { hid: 'og:url', property: "og:url", content: `https://www.sharif-sircar.com${path}` },
-    { hid: 'og:site_name', property: "og:site_name", content: "Sharif Sircar's Website" },
+    { hid: 'og:url', property: 'og:url', content: `https://www.sharif-sircar.com${path}` },
+    { hid: 'og:site_name', property: 'og:site_name', content: 'Sharif Sircar\'s Website' },
     { hid: 'description', name: 'description', content: description },
     { hid: 'og:title', property: 'og:title', content: pageTitle },
     { hid: 'og:description', property: 'og:description', content: description },
     // { hid: 'og:image', property: 'og:image', content: `https://www.sharif-sircar.com${ogImage}` },
 
     // Twitter card
-    { hid: "twitter:title", name: "twitter:title", content: pageTitle },
+    { hid: 'twitter:title', name: 'twitter:title', content: pageTitle },
     { hid: 'twitter:description', name: 'twitter:description', content: description },
     // { hid: "twitter:image", name: "twitter:image", content: `https://www.sharif-sircar.com${ogImage}` },
   ],
   link: [
     {
-      key: "canonical",
+      key: 'canonical',
       rel: 'canonical',
       href: `https://www.sharif-sircar.com${path}`,
     },
@@ -39,18 +36,16 @@ useHead({
     <v-parallax src="/banner.webp" alt="Parallax image of banner.">
       <v-container class="form mt-5">
         <v-row no-gutters>
-
           <v-col cols="12" md="5" class="mobileOnly" justify="center" align-self="center">
-
-            <v-img cover alt="An image of Sharif in an old telephone booth." transition="fab-transition"
-              class="imgStyles mobilePhotos" src="/contact.jpg" lazy-src="/contactLazyLoad.jpg">
-
-              <template v-slot:placeholder>
+            <v-img
+              cover alt="An image of Sharif in an old telephone booth." transition="fab-transition"
+              class="imgStyles mobilePhotos" src="/contact.jpg" lazy-src="/contactLazyLoad.jpg"
+            >
+              <template #placeholder>
                 <div class="d-flex align-center justify-center fill-height">
-                  <v-progress-circular color="grey-lighten-4" indeterminate></v-progress-circular>
+                  <v-progress-circular color="grey-lighten-4" indeterminate />
                 </div>
               </template>
-
             </v-img>
           </v-col>
 
@@ -61,11 +56,11 @@ useHead({
                         Contact
                       </h1>
                       <div class="content">
-                        
+
                     <form name="contact" action="/thank-you" netlify-honeypot="bot-field" method="post" netlify>
                           <input type="hidden" name="form-name" value="contact" />
-                          <p class="hidden">     
-                            <label>Don’t fill this out: <input name="bot-field"></label>   
+                          <p class="hidden">
+                            <label>Don’t fill this out: <input name="bot-field"></label>
                           </p>
                           <label class="form-label" for="name">
                             Name:
@@ -86,32 +81,36 @@ useHead({
 
             <div class="content">
               <form name="contact" action="/thank-you" netlify-honeypot="bot-field" method="post" netlify>
-
                 <h2 class="pageTitle title">Contact Me</h2>
 
-                <input type="hidden" name="form-name" value="contact" />
+                <input type="hidden" name="form-name" value="contact">
                 <p class="hidden">
                   <label>Don't add anything here <input name="bot-field"></label>
                 </p>
 
-                <input type="text" placeholder="Name" class=" name formEntry" name="name" id="name" label="Name" />
+                <input id="name" type="text" placeholder="Name" class=" name formEntry" name="name" label="Name">
 
-                <input type="text" class="form-field  email formEntry" name="email" id="email" label="Email"
-                  placeholder="Email" />
+                <input
+                  id="email" type="text" class="form-field  email formEntry" name="email" label="Email"
+                  placeholder="Email"
+                >
 
-                <textarea class="form-field message formEntry" name="message" id="message" label="Message"
-                  placeholder="Message"></textarea>
+                <textarea
+                  id="message" class="form-field message formEntry" name="message" label="Message"
+                  placeholder="Message"
+                />
 
-                <v-btn color="#D8FBFD" class="form-button formEntry glow-effect .submit" rounded="3" elevation="2"
-                  type="submit" aria-label="This button sends the form.">Send
-                  message</v-btn>
-
+                <v-btn
+                  color="#D8FBFD" class="form-button formEntry glow-effect .submit" rounded="3" elevation="2"
+                  type="submit" aria-label="This button sends the form."
+                >
+                  Send
+                  message
+                </v-btn>
               </form>
             </div>
           </v-col>
-
         </v-row>
-
       </v-container>
     </v-parallax>
   </v-app>
@@ -143,7 +142,6 @@ useHead({
   max-height: 75vh;
 }
 
-
 /* Styles for mobile devices */
 @media (max-width: 959px) {
   .mobilePhotos {
@@ -155,7 +153,6 @@ useHead({
   .mobilePhotos {}
 }
 
-
 .form-button {
   margin-top: 16px;
 }
@@ -163,7 +160,6 @@ useHead({
 .hidden {
   display: none;
 }
-
 
 /* form animation starts */
 /* All custom effects are here */
@@ -194,7 +190,6 @@ useHead({
   margin: 10px auto 5px;
   width: 80%;
 }
-
 
 .pageTitle {
   font-size: 2em;
@@ -229,7 +224,6 @@ useHead({
   background-color: #ebebeb;
   overflow: hidden;
   height: 10rem;
-
 
 }
 

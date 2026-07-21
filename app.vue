@@ -1,8 +1,7 @@
 <template>
-	<div id="app" class="global-cursor">
-		<NuxtLayout class="py-12">
-			<NuxtPage />
-		</NuxtLayout>
-	</div>
+  <div id="app" class="global-cursor">
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </div>
 </template>
-

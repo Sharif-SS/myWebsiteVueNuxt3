@@ -1,10 +1,6 @@
-$family: "Inter var", "Inter", apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans,
-  Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-
-@use "vuetify" with (
-  $body-font-family: $family
-  
-);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .global-cursor {
   cursor: url('/pointer.png'), auto;
@@ -16,8 +12,6 @@ $family: "Inter var", "Inter", apple-system, BlinkMacSystemFont, "Segoe UI", Rob
   box-sizing: border-box;
 }
 
-
-
 .glow-effect {
   --glow-line-color: #ffbdbd;
   --glow-line-thickness: 3px;
@@ -25,8 +19,6 @@ $family: "Inter var", "Inter", apple-system, BlinkMacSystemFont, "Segoe UI", Rob
   --glow-blur-color: #ffc5c5;
   --glow-blur-size: 6px;
   --glow-offset: 0px;
-  --animation-speed: 15000ms;
-  /* do not change, used for calculations */
   --container-offset: 100px;
   position: relative;
 }
@@ -38,6 +30,7 @@ $family: "Inter var", "Inter", apple-system, BlinkMacSystemFont, "Segoe UI", Rob
   width: calc(100% + var(--container-offset));
   height: calc(100% + var(--container-offset));
   opacity: 0;
+  transition: none;
 }
 
 .glow-blur,
@@ -50,12 +43,7 @@ $family: "Inter var", "Inter", apple-system, BlinkMacSystemFont, "Segoe UI", Rob
   stroke: black;
   stroke-width: 5px;
   stroke-dasharray: var(--glow-line-length) calc(50px - var(--glow-line-length));
-}
-
-.glow-effect .glow-line,
-.glow-effect .glow-blur {
   stroke-dashoffset: -80px;
-  animation: glow-animation var(--animation-speed) infinite linear;
 }
 
 .glow-line {
@@ -69,34 +57,23 @@ $family: "Inter var", "Inter", apple-system, BlinkMacSystemFont, "Segoe UI", Rob
   stroke-width: var(--glow-blur-size);
 }
 
-@keyframes glow-animation {
-  0% {
-    stroke-dashoffset: -80px;
-  }
-  100% {
-    stroke-dashoffset: 80px;
-  }
+.glow-animate .glow-container {
+  animation: glow-visibility 1.8s ease forwards;
 }
 
-.glow-container {
-  animation: glow-visibility ease-in-out var(--animation-speed);
+.glow-animate .glow-line,
+.glow-animate .glow-blur {
+  animation: glow-stroke 1.8s ease forwards;
 }
 
 @keyframes glow-visibility {
-  0%,
-  100% {
-    opacity: 0;
-  }
-  25%,
-  75% {
-    opacity: 1;
-  }
+  0% { opacity: 0; }
+  15% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
-.glow-effect[data-glow-animation="false"] {
-  --glow-line-length: 50px;
-}
-
-.glow-effect[data-glow-offset="true"] {
-  --glow-offset: 10px;
+@keyframes glow-stroke {
+  0% { stroke-dashoffset: -80px; }
+  100% { stroke-dashoffset: 80px; }
 }

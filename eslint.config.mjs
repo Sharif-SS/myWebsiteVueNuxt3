@@ -1,3 +1,13 @@
-import withNuxt from './.nuxt/eslint.config.mjs'
+import { createConfigForNuxt } from '@nuxt/eslint-config/flat'
 
-export default withNuxt()
+export default createConfigForNuxt({
+  features: {
+    stylistic: true,
+    tooling: true,
+  },
+}, {
+  rules: {
+    'vue/max-attributes-per-line': 'off',
+    'vue/singleline-html-element-content-newline': 'off',
+  },
+})

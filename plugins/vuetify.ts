@@ -1,4 +1,4 @@
-import { createVuetify } from "vuetify";
+import { createVuetify } from 'vuetify'
 
 export default defineNuxtPlugin((app) => {
   const vuetify = createVuetify({
@@ -20,13 +20,13 @@ export default defineNuxtPlugin((app) => {
     },
     // Add the custom iconset
     icons: {
-      defaultSet: "custom",
+      defaultSet: 'custom',
       aliases,
       sets: {
         custom,
       },
     },
-  });
+  })
 
-  app.vueApp.use(vuetify);
-});
+  app.vueApp.use(vuetify)
+})

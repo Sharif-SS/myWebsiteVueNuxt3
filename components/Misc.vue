@@ -4,33 +4,33 @@ import { ref, onMounted } from 'vue'
 const images = ref<string[]>([])
 
 onMounted(async () => {
-    const imageModules = import.meta.glob('/public/photos/Misc/*.{png,jpg,jpeg,webp}')
-    for (const path in imageModules) {
-        const imagePath = path.replace('/public', '')
-        images.value.push(imagePath)
-    }
+  const imageModules = import.meta.glob('/public/photos/Misc/*.{png,jpg,jpeg,webp}')
+  for (const path in imageModules) {
+    const imagePath = path.replace('/public', '')
+    images.value.push(imagePath)
+  }
 })
 </script>
 
 <template>
-    <VRow>
-        <VCol v-for="(image, index) in images" :key="index" cols="6" sm="6" md="6" lg="3">
-            <VHover>
-                <VCard class="image-card">
-                    <div class="image-container">
-                        <NuxtImg 
-                            :src="image" 
-                            :placeholder="[50, 50]"
-                            placeholder-class="loading-placeholder"
-                            sizes="(max-width: 600px) 50vw, (max-width: 1200px) 25vw, 400px"
-                            loading="lazy"
-                            class="event-image"
-                        />
-                    </div>
-                </VCard>
-            </VHover>
-        </VCol>
-    </VRow>
+  <VRow>
+    <VCol v-for="(image, index) in images" :key="index" cols="6" sm="6" md="6" lg="3">
+      <VHover>
+        <VCard class="image-card">
+          <div class="image-container">
+            <NuxtImg
+              :src="image"
+              :placeholder="[50, 50]"
+              placeholder-class="loading-placeholder"
+              sizes="(max-width: 600px) 50vw, (max-width: 1200px) 25vw, 400px"
+              loading="lazy"
+              class="event-image"
+            />
+          </div>
+        </VCard>
+      </VHover>
+    </VCol>
+  </VRow>
 </template>
 
 <style scoped>
@@ -61,7 +61,7 @@ onMounted(async () => {
 img:not(.loading-placeholder) {
     filter: blur(0);
     transform: scale(1);
-    
+
 }
 
 /* Optional: Add a fade-in effect */
