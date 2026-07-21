@@ -3,7 +3,7 @@ import { useRoute } from 'vue-router'
 
 const route = useRoute()
 
-defineProps<{
+const props = defineProps<{
   modelValue: boolean
 }>()
 const emit = defineEmits<{
@@ -23,20 +23,30 @@ function close() {
 function isActive(path: string): boolean {
   return route.path === path
 }
+
+function onKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape' && props.modelValue) close()
+}
+
+onMounted(() => document.addEventListener('keydown', onKeydown))
+onUnmounted(() => document.removeEventListener('keydown', onKeydown))
 </script>
 
 <template>
   <Teleport to="body">
     <Transition name="slide-down">
-      <div
+      <nav
         v-if="modelValue"
+        id="mobile-nav"
         class="md:hidden fixed top-[50px] left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-lg border-b border-white/20"
+        aria-label="Mobile navigation"
       >
         <div class="flex flex-col p-3 gap-1">
           <NuxtLink
             v-for="item in navItems"
             :key="item.to"
             :to="item.to"
+            :aria-current="isActive(item.to) ? 'page' : undefined"
             class="flex items-center gap-3 py-2.5 px-3 rounded-lg transition-colors"
             :class="isActive(item.to) ? 'bg-gray-100 text-gray-900' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'"
             @click="close"
@@ -45,7 +55,7 @@ function isActive(path: string): boolean {
             <span class="font-medium text-sm">{{ item.label }}</span>
           </NuxtLink>
         </div>
-      </div>
+      </nav>
     </Transition>
   </Teleport>
 </template>

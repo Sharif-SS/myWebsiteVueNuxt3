@@ -8,6 +8,10 @@ defineEmits<{
   'toggle-nav': []
 }>()
 
+defineProps<{
+  navOpen: boolean
+}>()
+
 const navLinks = [
   { label: 'Home', to: '/' },
   { label: 'Photography', to: '/photography' },
@@ -31,16 +35,17 @@ function isActive(path: string): boolean {
       <img src="/puffin.png" alt="Home" class="w-8 h-8 rounded-full">
       <div class="flex flex-col leading-tight">
         <span class="text-sm font-semibold text-gray-800">Sharif Sircar</span>
-        <span class="text-[10px] text-gray-500 tracking-wide">Photography &amp; Hosting</span>
+        <span class="text-[10px] text-gray-500 tracking-wide">Photography &amp; Event Hosting</span>
       </div>
     </NuxtLink>
 
     <!-- Desktop nav links -->
-    <nav class="hidden md:flex items-center gap-1">
+    <nav class="hidden md:flex items-center gap-1" aria-label="Main navigation">
       <NuxtLink
         v-for="link in navLinks"
         :key="link.to"
         :to="link.to"
+        :aria-current="isActive(link.to) ? 'page' : undefined"
         class="relative px-3 py-1.5 text-sm font-medium rounded-md transition-colors"
         :class="isActive(link.to) ? 'text-gray-900 bg-gray-100/80' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'"
       >
@@ -54,7 +59,9 @@ function isActive(path: string): boolean {
     <!-- Mobile hamburger -->
     <button
       class="md:hidden h-[30px] px-2 rounded bg-accent glow-effect flex items-center relative"
-      aria-label="Open navigation menu"
+      :aria-label="navOpen ? 'Close navigation menu' : 'Open navigation menu'"
+      :aria-expanded="navOpen"
+      aria-controls="mobile-nav"
       @click="$emit('toggle-nav')"
       @mouseenter="handleGlowHover"
     >

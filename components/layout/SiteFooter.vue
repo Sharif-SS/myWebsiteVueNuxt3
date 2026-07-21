@@ -3,7 +3,7 @@ const year = new Date().getFullYear()
 </script>
 
 <template>
-  <footer class="border-t border-gray-100 bg-white py-8 px-4">
+  <footer class="border-t border-gray-100 bg-white py-8 px-4" aria-label="Site footer">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-3">
         <span class="text-sm text-gray-400">&copy; {{ year }} Sharif Sircar</span>
@@ -29,6 +29,7 @@ const year = new Date().getFullYear()
           <Icon name="mdi:instagram" class="w-4 h-4" />
           Instagram
         </a>
+       
       </div>
     </div>
   </footer>

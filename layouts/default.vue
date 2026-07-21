@@ -4,7 +4,7 @@ const drawer = ref(false)
 
 <template>
   <div class="flex flex-col min-h-screen">
-    <LayoutSiteHeader @toggle-nav="drawer = !drawer" />
+    <LayoutSiteHeader :nav-open="drawer" @toggle-nav="drawer = !drawer" />
     <LayoutSiteNav v-model="drawer" />
     <main class="pt-[50px] flex-1">
       <slot />
