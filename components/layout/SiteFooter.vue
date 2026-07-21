@@ -6,7 +6,7 @@ const year = new Date().getFullYear()
   <footer class="border-t border-gray-100 bg-white py-8 px-4" aria-label="Site footer">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-3">
-        <span class="text-sm text-gray-400">&copy; {{ year }} Sharif Sircar</span>
+        <span class="text-sm text-gray-600">&copy; {{ year }} Sharif Sircar</span>
         <UiEasterEgg />
       </div>
 

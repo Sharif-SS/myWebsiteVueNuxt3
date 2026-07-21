@@ -55,7 +55,7 @@ function advanceSlideshow() {
             catches your eye, I'd love to hear about it.
           </p>
           <div class="pt-6 border-t border-gray-100">
-            <p class="text-gray-400 text-sm">Based in St. John's, NL. Available for event, portrait, and commercial work.</p>
+            <p class="text-gray-600 text-sm">Based in St. John's, NL. Available for event, portrait, and commercial work.</p>
           </div>
         </div>
       </div>
@@ -63,7 +63,7 @@ function advanceSlideshow() {
 
     <section class="max-w-6xl mx-auto px-4 py-20 border-t border-gray-100">
       <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Outside of Events and Portraits</h2>
-      <p class="text-gray-500 mb-10 max-w-xl">
+      <p class="text-gray-600 mb-10 max-w-xl">
         I like to explore other genres of photography, and I often find myself drawn to the challenge of capturing something new. Here are a few examples of my work in other areas of photography.
       </p>
 

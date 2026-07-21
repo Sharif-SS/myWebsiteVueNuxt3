@@ -35,7 +35,7 @@ function isActive(path: string): boolean {
       <img src="/puffin.png" alt="Home" class="w-8 h-8 rounded-full">
       <div class="flex flex-col leading-tight">
         <span class="text-sm font-semibold text-gray-800">Sharif Sircar</span>
-        <span class="text-[10px] text-gray-500 tracking-wide">Photography &amp; Event Hosting</span>
+        <span class="text-[10px] text-gray-500 tracking-wide">Photography</span>
       </div>
     </NuxtLink>
 

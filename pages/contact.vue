@@ -64,7 +64,7 @@ useHead({
           <div class="w-full md:w-3/5 animate-bounce-card">
             <div class="bg-white/80 backdrop-blur-md rounded-xl shadow-lg border-t-4 border-accent p-8">
               <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">Contact</h1>
-              <p class="text-gray-500 mb-8 max-w-lg">
+              <p class="text-gray-600 mb-8 max-w-lg">
                 Have a project in mind or just want to say hello? Drop me a message.
               </p>
 
@@ -126,7 +126,7 @@ useHead({
               </form>
 
               <div class="mt-10 pt-6 border-t border-gray-200">
-                <p class="text-sm text-gray-500 mb-3">Find me elsewhere</p>
+                <p class="text-sm text-gray-600 mb-3">Find me elsewhere</p>
                 <div class="flex gap-3">
                   <a
                     href="https://www.linkedin.com/in/sharif-sircar/"
