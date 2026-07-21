@@ -30,8 +30,11 @@ useHead({
   meta: [
     { name: 'description', content: 'Get in touch with Sharif Sircar.' },
     { property: 'og:url', content: 'https://www.sharif-sircar.com/contact' },
+    { property: 'og:site_name', content: 'Sharif Sircar\'s Website' },
     { property: 'og:title', content: 'Contact — Sharif Sircar' },
     { property: 'og:description', content: 'Send a message.' },
+    { name: 'twitter:title', content: 'Contact — Sharif Sircar' },
+    { name: 'twitter:description', content: 'Get in touch with Sharif Sircar.' },
   ],
   link: [
     {
