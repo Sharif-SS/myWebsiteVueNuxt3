@@ -1,10 +1,4 @@
 User-agent: *
-Allow: /photography
-Allow: /portfolio
-Allow: /contact
-Allow: /doithackathon
-Allow: /$
-
-Disallow: /*/
+Allow: /
 
 Sitemap: https://www.sharif-sircar.com/sitemap.xml

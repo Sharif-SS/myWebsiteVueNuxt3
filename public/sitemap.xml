@@ -8,16 +8,16 @@
   <url>
     <loc>https://www.sharif-sircar.com/photography</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-    <url>
-    <loc>https://www.sharif-sircar.com/portfolio</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.sharif-sircar.com/contact</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.sharif-sircar.com/thank-you</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

@@ -8,10 +8,10 @@ useHead({
     { property: 'og:site_name', content: 'Sharif Sircar\'s Website' },
     { name: 'description', content: description },
     { property: 'og:description', content: description },
-    { property: 'og:image', content: 'https://www.sharif-sircar.com/ogImage.jpg' },
+    { property: 'og:image', content: 'https://www.sharif-sircar.com/og-image.svg' },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:description', content: description },
-    { name: 'twitter:image', content: 'https://www.sharif-sircar.com/ogImage.jpg' },
+    { name: 'twitter:image', content: 'https://www.sharif-sircar.com/og-image.svg' },
   ],
   link: [
     {
