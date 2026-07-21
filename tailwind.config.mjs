@@ -32,6 +32,20 @@ export default {
       fontFamily: {
         serif: ['Inter', 'system-ui', 'sans-serif'],
       },
+      animation: {
+        'float': 'float 4s ease-in-out infinite',
+        'bounce-card': 'bounce-card 3s ease-in-out infinite',
+      },
+      keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-8px)' },
+        },
+        'bounce-card': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(6px)' },
+        },
+      },
     },
   },
   plugins: [],

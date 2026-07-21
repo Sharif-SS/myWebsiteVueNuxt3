@@ -54,3 +54,55 @@
 
 - **Summary**: Fixed hero height from `100vh` to `calc(100dvh - 50px)` so it fits within viewport accounting for the 50px fixed header. Made category buttons more visible: `bg-black/60` with `border-white/40` replaces the too-subtle `bg-white/15 backdrop-blur-md` glassmorphism style.
 - **Files touched**: `components/landing/HeroSlideshow.vue`
+
+## 2026-07-21 ~01:20 UTC — Phase 5: Photography gallery
+
+- **Summary**: Built category-first gallery page with auto-discovered images:
+  - `composables/useGallery.ts` — `import.meta.glob` discovers all images under `/public/photos/<category>/`, groups by directory name, provides shuffle utility
+  - `components/gallery/CategoryCarousel.vue` — Horizontal pill buttons for category switching (used as `<GalleryCategoryCarousel />` due to Nuxt directory prefixing)
+  - `components/gallery/GalleryGrid.vue` — Responsive 1/2/3-column grid with hover zoom
+  - `components/gallery/GalleryLightbox.vue` — Full-screen overlay with prev/next, keyboard nav (arrow keys + Escape), image counter
+  - `pages/photography.vue` — Rewritten from Vuetify legacy to category-first layout with pills, grid, and lightbox
+  - `components/imageGallary.vue`, `components/Portraits.vue`, `components/Events.vue`, `components/Animals.vue`, `components/Outdoors.vue`, `components/Misc.vue`, `components/Vehicles.vue` — legacy Vuetify category components left in place (not removed)
+- **Fix**: CategoryCarousel component was not rendering due to Nuxt 3 directory prefix (`components/gallery/` → `<GalleryCategoryCarousel />`)
+- **Files touched**: `composables/useGallery.ts` (new), `components/gallery/CategoryCarousel.vue` (new), `components/gallery/GalleryGrid.vue` (new), `components/gallery/GalleryLightbox.vue` (new), `pages/photography.vue` (rewritten)
+
+## 2026-07-21 ~05:00 UTC — Secret button easter egg (inline modal, footer)
+
+- **Summary**: Created `components/ui/SecretButton.vue` — self-contained component with SCSS wiggle animation on hover. On click, opens a full-screen overlay with embedded YouTube (Rick Astley) video, dismissible via Escape, click-outside, or close button. Relocated from old header position to footer. Old header button removed.
+- **Files touched**: `components/ui/SecretButton.vue` (new), `components/layout/SiteFooter.vue`, `components/layout/SiteHeader.vue`
+
+## 2026-07-21 ~04:30 UTC — Footer restructure + YouTube removal + social on contact
+
+- **Summary**: Replaced fixed 40px footer bar with a static copyright footer at page bottom. Removed YouTube link from footer entirely. Added LinkedIn and Instagram glass buttons to contact page below form. Updated layout to use `flex flex-col min-h-screen` + `flex-1` so footer sticks to bottom on short pages. Removed `pb-[40px]` from main (no longer needed). Hero height unaffected (still `calc(100dvh - 50px)` — only accounted for header).
+- **Files touched**: `components/layout/SiteFooter.vue`, `layouts/default.vue`, `pages/contact.vue`
+
+## 2026-07-21 ~04:00 UTC — Glass button design system + animation refactor
+
+- **Summary**: Moved float/bounce keyframes from scoped CSS to `tailwind.config.mjs` as `animate-float` / `animate-bounce-card` utilities. Standardized all buttons (hero pills, category carousel, contact submit) to consistent glass-with-accent-tint style: `bg-accent/* backdrop-blur-md border border-accent/* rounded-lg`. Hero pill text increased from `text-sm` to `text-base` (~20% larger).
+- **Files touched**: `tailwind.config.mjs`, `components/landing/HeroSlideshow.vue`, `components/gallery/CategoryCarousel.vue`, `pages/contact.vue`
+
+## 2026-07-21 ~03:30 UTC — About nuked, moved to homepage, contact animations restored
+
+- **Summary**: Deleted `about.vue`, moved "About" section to homepage between hero and fun section. Removed About link from SiteHeader/SiteNav. Restored contact photo (`/contact.jpg`), background (`/banner.webp`), float/bounce animations, and hover effects on inputs.
+- **Files touched**: `pages/about.vue` (deleted), `pages/index.vue`, `pages/contact.vue`, `components/layout/SiteHeader.vue`, `components/layout/SiteNav.vue`
+
+## 2026-07-21 ~03:00 UTC — Phase 6: About, Contact, Thank You
+
+- **Summary**: Built `about.vue` (brand story, placeholder text), rebuilt `contact.vue` (VeeValidate + Zod validation, Netlify native POST preserved), rebuilt `thank-you.vue` (modern success page). Added `@vee-validate/nuxt` module to `nuxt.config.ts`. Added "About" link to `SiteHeader.vue` and `SiteNav.vue`.
+- **Files touched**: `pages/about.vue` (new), `pages/contact.vue` (rewrite), `pages/thank-you.vue` (rewrite), `nuxt.config.ts`, `components/layout/SiteHeader.vue`, `components/layout/SiteNav.vue`
+
+## 2026-07-21 ~02:30 UTC — Photography page restructure + masonry grid
+
+- **Summary**: Removed the "Things I Shoot For Fun 🔫" section. Restructured category pills into two groups with a `|` separator: Events, Portraits | Landscape, Pets, Vehicles. Switched `GalleryGrid` from fixed aspect-ratio grid (cropping) to CSS columns masonry layout so images display at natural proportions.
+- **Files touched**: `pages/photography.vue`, `components/gallery/CategoryCarousel.vue`, `components/gallery/GalleryGrid.vue`
+
+## 2026-07-21 ~02:00 UTC — Outdoors → Landscape rename
+
+- **Summary**: Renamed `public/photos/Outdoors/` → `public/photos/Landscape/` and updated all references in `useLandingSlideshow.ts` and `photography.vue` for SEO-friendly category naming.
+- **Files touched**: `public/photos/Outdoors/` (renamed to Landscape), `composables/useLandingSlideshow.ts`, `pages/photography.vue`
+
+## 2026-07-21 ~01:30 UTC — Photo cleanup + fun section
+
+- **Summary**: Deleted `public/photos/Misc/` folder. Renamed `public/photos/Animals/` → `public/photos/Pets/`. Removed Misc and renamed Animals→Pets in `useLandingSlideshow.ts`. Added "Things I Shoot For Fun 🔫" section at bottom of photography page with Pets, Outdoors, Vehicles images grouped together. Lightbox now supports separate image sets (category vs fun).
+- **Files touched**: `public/photos/Misc/` (deleted), `public/photos/Animals/` (renamed to Pets), `composables/useLandingSlideshow.ts`, `pages/photography.vue`

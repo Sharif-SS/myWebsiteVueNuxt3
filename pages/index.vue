@@ -35,7 +35,29 @@ function advanceSlideshow() {
       <LandingHeroSlideshow :pair="heroPair" @next="advanceSlideshow" />
     </section>
 
-    <section class="max-w-6xl mx-auto px-4 py-20">
+    <section class="max-w-3xl mx-auto px-4 py-20">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">About</h2>
+      <div class="space-y-5 text-gray-700 leading-relaxed">
+        <p>
+          Photography has always been about freezing a moment before it disappears — the way light falls across a
+          face, the quiet tension in a room full of strangers, the accidental geometry of an everyday scene.
+        </p>
+        <p>
+          I'm Sharif Sircar, a photographer based in the Pacific Northwest. My work spans portraits, events, landscape,
+          and the in-between moments that don't fit neatly into a category. I'm drawn to natural light, candid
+          expression, and the kind of images that feel more like memories than photographs.
+        </p>
+        <p>
+          This site is a living archive — a place to share what I see without over-explaining it. If something
+          catches your eye, I'd love to hear about it.
+        </p>
+      </div>
+      <div class="mt-10 pt-8 border-t border-gray-100">
+        <p class="text-gray-400 text-sm">Based in Seattle, WA. Available for portrait, event, and commercial work.</p>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 py-20 border-t border-gray-100">
       <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Other Things I Do (For Fun)</h2>
       <p class="text-gray-500 mb-10 max-w-xl">
         I don't do these professionally — just for the love of it.

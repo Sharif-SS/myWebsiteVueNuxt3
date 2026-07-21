@@ -1,58 +1,82 @@
 <script setup lang="ts">
-import ImageGallary from '@/components/imageGallary.vue'
+import { ref, computed } from 'vue'
 
-const { path } = useRoute()
-const pageTitle = 'Photography Portfolio' // Replace with your logic
-const description = 'A collection of photos I took over the years. 📸' // Replace with your logic
-// const ogImage = '/hackathon/oghack.webp'
+const { categories: allCats, getImages, shuffle } = useGallery()
+
+const groups = [['Events', 'Portraits'], ['Landscape', 'Pets', 'Vehicles']]
+const categoryGroups = groups.filter(g => g.every(c => allCats.includes(c)))
+const flatCategories = categoryGroups.flat()
+
+const activeCategory = ref(flatCategories[0] ?? '')
+
+const allImages = computed(() => {
+  if (!activeCategory.value) return []
+  return shuffle(getImages(activeCategory.value))
+})
+
+const lightboxOpen = ref(false)
+const lightboxIndex = ref(0)
+const lightboxImages = ref<{ src: string; category: string }[]>([])
+
+function openLightbox(index: number) {
+  lightboxImages.value = allImages.value
+  lightboxIndex.value = index
+  lightboxOpen.value = true
+}
+
+function closeLightbox() {
+  lightboxOpen.value = false
+}
 
 useHead({
-  title: pageTitle,
-
+  title: 'Photography',
   meta: [
-
-    { hid: 'og:url', property: 'og:url', content: `https://www.sharif-sircar.com${path}` },
-    { hid: 'og:site_name', property: 'og:site_name', content: 'Sharif Sircar\'s Website' },
-    { hid: 'description', name: 'description', content: description },
-    { hid: 'og:title', property: 'og:title', content: pageTitle },
-    { hid: 'og:description', property: 'og:description', content: description },
-    // { hid: 'og:image', property: 'og:image', content: `https://www.sharif-sircar.com${ogImage}` },
-
-    // Twitter card
-    { hid: 'twitter:title', name: 'twitter:title', content: pageTitle },
-    { hid: 'twitter:description', name: 'twitter:description', content: description },
-    // { hid: "twitter:image", name: "twitter:image", content: `https://www.sharif-sircar.com${ogImage}` },
+    { hid: 'og:url', property: 'og:url', content: 'https://www.sharif-sircar.com/photography' },
+    { hid: 'og:site_name', property: 'og:site_name', content: 'Sharif Sircar\'s Photography' },
+    { hid: 'description', name: 'description', content: 'A collection of photos taken over the years by Sharif Sircar.' },
+    { hid: 'og:description', property: 'og:description', content: 'Portraits, events, nature, and more.' },
+    { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
   ],
   link: [
     {
       key: 'canonical',
       rel: 'canonical',
-      href: `https://www.sharif-sircar.com${path}`,
+      href: 'https://www.sharif-sircar.com/photography',
     },
   ],
 })
 </script>
 
 <template>
-  <VApp>
-    <VMain>
-      <ImageGallary class="desktop-left-padding" />
-    </VMain>
-  </VApp>
+  <div class="bg-white min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 py-12">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">Photography</h1>
+      <p class="text-gray-500 mb-8 max-w-lg">
+        A collection of moments captured over the years.
+      </p>
+
+      <GalleryCategoryCarousel
+        :groups="categoryGroups"
+        :active="activeCategory"
+        @select="activeCategory = $event"
+      />
+
+      <div class="mt-10">
+        <h2 class="text-xl font-semibold text-gray-800 mb-6">{{ activeCategory }}</h2>
+        <GalleryGrid
+          v-if="allImages.length"
+          :images="allImages"
+          @open="openLightbox"
+        />
+        <p v-else class="text-gray-400">No images in this category yet.</p>
+      </div>
+    </div>
+
+    <GalleryLightbox
+      :images="lightboxImages"
+      :initial-index="lightboxIndex"
+      :open="lightboxOpen"
+      @close="closeLightbox"
+    />
+  </div>
 </template>
-
-<style scoped>
-@import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400);
-
-* {
-
-    font-family: Ubuntu;
-}
-
-/* CSS for screens with a width less than 768px */
-@media (min-width: 959px) {
-  .desktop-left-padding {
-    padding-left: 4%;
-  }
-}
-</style>

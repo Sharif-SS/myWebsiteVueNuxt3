@@ -1,257 +1,168 @@
 <script setup lang="ts">
-const { path } = useRoute()
-const pageTitle = 'Contact Me' // Replace with your logic
-const description = 'Fill in the information.' // Replace with your logic
-// const ogImage = '/hackathon/oghack.webp'
+import { z } from 'zod'
+import { useForm, useField } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/zod'
+
+const validationSchema = toTypedSchema(
+  z.object({
+    name: z.string().min(1, 'Name is required'),
+    email: z.string().min(1, 'Email is required').email('Invalid email address'),
+    message: z.string().min(1, 'Message is required').min(10, 'Message must be at least 10 characters'),
+  }),
+)
+
+const { handleSubmit, errors } = useForm({
+  validationSchema,
+})
+
+const { value: name } = useField<string>('name')
+const { value: email } = useField<string>('email')
+const { value: message } = useField<string>('message')
+
+const formRef = ref<HTMLFormElement>()
+
+const onSubmit = handleSubmit(() => {
+  formRef.value?.submit()
+})
 
 useHead({
-  title: pageTitle,
-
+  title: 'Contact',
   meta: [
-
-    { hid: 'og:url', property: 'og:url', content: `https://www.sharif-sircar.com${path}` },
-    { hid: 'og:site_name', property: 'og:site_name', content: 'Sharif Sircar\'s Website' },
-    { hid: 'description', name: 'description', content: description },
-    { hid: 'og:title', property: 'og:title', content: pageTitle },
-    { hid: 'og:description', property: 'og:description', content: description },
-    // { hid: 'og:image', property: 'og:image', content: `https://www.sharif-sircar.com${ogImage}` },
-
-    // Twitter card
-    { hid: 'twitter:title', name: 'twitter:title', content: pageTitle },
-    { hid: 'twitter:description', name: 'twitter:description', content: description },
-    // { hid: "twitter:image", name: "twitter:image", content: `https://www.sharif-sircar.com${ogImage}` },
+    { hid: 'description', name: 'description', content: 'Get in touch with Sharif Sircar.' },
+    { hid: 'og:url', property: 'og:url', content: 'https://www.sharif-sircar.com/contact' },
+    { hid: 'og:title', property: 'og:title', content: 'Contact — Sharif Sircar' },
+    { hid: 'og:description', property: 'og:description', content: 'Send a message.' },
   ],
   link: [
     {
       key: 'canonical',
       rel: 'canonical',
-      href: `https://www.sharif-sircar.com${path}`,
+      href: 'https://www.sharif-sircar.com/contact',
     },
   ],
 })
 </script>
 
 <template>
-  <v-app>
-    <v-parallax src="/banner.webp" alt="Parallax image of banner.">
-      <v-container class="form mt-5">
-        <v-row no-gutters>
-          <v-col cols="12" md="5" class="mobileOnly" justify="center" align-self="center">
-            <v-img
-              cover alt="An image of Sharif in an old telephone booth." transition="fab-transition"
-              class="imgStyles mobilePhotos" src="/contact.jpg" lazy-src="/contactLazyLoad.jpg"
+  <div class="min-h-screen bg-[url('/banner.webp')] bg-fixed bg-cover bg-center">
+    <div class="min-h-screen backdrop-blur-[2px] bg-white/30 py-16 px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row gap-8 items-start">
+
+          <!-- Photo -->
+          <div class="hidden md:block md:w-2/5 flex-shrink-0 animate-float">
+            <img
+              src="/contact.jpg"
+              alt="Sharif in an old telephone booth"
+              class="w-full rounded-xl shadow-lg"
             >
-              <template #placeholder>
-                <div class="d-flex align-center justify-center fill-height">
-                  <v-progress-circular color="grey-lighten-4" indeterminate />
-                </div>
-              </template>
-            </v-img>
-          </v-col>
+          </div>
 
-          <v-col>
-            <!-- dummy so netlify knows what's coming -->
-            <!-- <div class="container">
-                      <h1 class="title">
-                        Contact
-                      </h1>
-                      <div class="content">
+          <!-- Form card -->
+          <div class="w-full md:w-3/5 animate-bounce-card">
+            <div class="bg-white/80 backdrop-blur-md rounded-xl shadow-lg border-t-4 border-accent p-8">
+              <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">Contact</h1>
+              <p class="text-gray-500 mb-8 max-w-lg">
+                Have a project in mind or just want to say hello? Drop me a message.
+              </p>
 
-                    <form name="contact" action="/thank-you" netlify-honeypot="bot-field" method="post" netlify>
-                          <input type="hidden" name="form-name" value="contact" />
-                          <p class="hidden">
-                            <label>Don’t fill this out: <input name="bot-field"></label>
-                          </p>
-                          <label class="form-label" for="name">
-                            Name:
-                          </label>
-                          <input class="form-field" name="name" id="name" />
-                          <label class="form-label" for="email">
-                            Email:
-                          </label>
-                          <input class="form-field" name="email" id="email" />
-                          <label class="form-label" for="message">
-                            Message:
-                          </label>
-                          <textarea class="form-field" name="message" id="message"></textarea>
-                          <input class="form-button" type="submit" value="Send message" />
-                        </form>
-                      </div>
-                    </div> -->
-
-            <div class="content">
-              <form name="contact" action="/thank-you" netlify-honeypot="bot-field" method="post" netlify>
-                <h2 class="pageTitle title">Contact Me</h2>
-
+              <form
+                ref="formRef"
+                name="contact"
+                action="/thank-you"
+                method="post"
+                netlify
+                netlify-honeypot="bot-field"
+                class="space-y-6"
+                @submit="onSubmit"
+              >
                 <input type="hidden" name="form-name" value="contact">
-                <p class="hidden">
-                  <label>Don't add anything here <input name="bot-field"></label>
+
+                <p class="hidden" aria-hidden="true">
+                  <label>
+                    Don't fill this out
+                    <input name="bot-field" tabindex="-1" autocomplete="off">
+                  </label>
                 </p>
 
-                <input id="name" type="text" placeholder="Name" class=" name formEntry" name="name" label="Name">
+                <div>
+                  <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                  <input
+                    id="name" v-model="name" name="name" type="text"
+                    class="form-input block w-full rounded-lg border border-gray-300 bg-gray-100 px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-500"
+                    placeholder="Your name"
+                  >
+                  <p v-if="errors.name" class="mt-1 text-sm text-red-500">{{ errors.name }}</p>
+                </div>
 
-                <input
-                  id="email" type="text" class="form-field  email formEntry" name="email" label="Email"
-                  placeholder="Email"
+                <div>
+                  <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                  <input
+                    id="email" v-model="email" name="email" type="email"
+                    class="form-input block w-full rounded-lg border border-gray-300 bg-gray-100 px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-500"
+                    placeholder="your@email.com"
+                  >
+                  <p v-if="errors.email" class="mt-1 text-sm text-red-500">{{ errors.email }}</p>
+                </div>
+
+                <div>
+                  <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                  <textarea
+                    id="message" v-model="message" name="message" rows="6"
+                    class="form-input block w-full rounded-lg border border-gray-300 bg-gray-100 px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-500 resize-y"
+                    placeholder="What's on your mind?"
+                  />
+                  <p v-if="errors.message" class="mt-1 text-sm text-red-500">{{ errors.message }}</p>
+                </div>
+
+                <button
+                  type="submit"
+                  class="inline-flex items-center px-6 py-2.5 rounded-lg bg-accent/30 backdrop-blur-md border border-accent/50 text-gray-900 text-sm font-medium hover:bg-accent/50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-
-                <textarea
-                  id="message" class="form-field message formEntry" name="message" label="Message"
-                  placeholder="Message"
-                />
-
-                <v-btn
-                  color="#D8FBFD" class="form-button formEntry glow-effect .submit" rounded="3" elevation="2"
-                  type="submit" aria-label="This button sends the form."
-                >
-                  Send
-                  message
-                </v-btn>
+                  Send Message
+                </button>
               </form>
+
+              <div class="mt-10 pt-6 border-t border-gray-200">
+                <p class="text-sm text-gray-500 mb-3">Find me elsewhere</p>
+                <div class="flex gap-3">
+                  <a
+                    href="https://www.linkedin.com/in/sharif-sircar/"
+                    target="_blank"
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/30 backdrop-blur-md border border-accent/50 text-gray-700 text-sm font-medium hover:bg-accent/50 transition-colors"
+                    aria-label="LinkedIn"
+                  >
+                    <Icon name="mdi:linkedin" class="w-4 h-4" />
+                    LinkedIn
+                  </a>
+                  <a
+                    href="https://www.instagram.com/sharifsircarphoto/"
+                    target="_blank"
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/30 backdrop-blur-md border border-accent/50 text-gray-700 text-sm font-medium hover:bg-accent/50 transition-colors"
+                    aria-label="Instagram"
+                  >
+                    <Icon name="mdi:instagram" class="w-4 h-4" />
+                    Instagram
+                  </a>
+                </div>
+              </div>
             </div>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-parallax>
-  </v-app>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
-@import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400);
-
-* {
-
-  font-family: Ubuntu;
-}
-
-/*
-@media (max-width: 480px) {
-  .mobileOnly {
-    width: 20px;
-  }
-}
-*/
-
-.imgStyles {
-  box-shadow: 3px 3px 5px rgb(0, 0, 0);
-  /* Add a drop shadow */
-  border-radius: 2%;
-  margin-left: 8%;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  max-height: 75vh;
-}
-
-/* Styles for mobile devices */
-@media (max-width: 959px) {
-  .mobilePhotos {
-    display: none;
-  }
-}
-
-@media (min-width: 959px) {
-  .mobilePhotos {}
-}
-
-.form-button {
-  margin-top: 16px;
-}
-
-.hidden {
-  display: none;
-}
-
-/* form animation starts */
-/* All custom effects are here */
-
-.form {
-  background: #fff1f176;
-  box-shadow: 0 1px 40px 0 rgba(0, 0, 0, 0.187);
+.form-input:hover {
+  border-bottom: 4px solid #D8FBFD;
   border-radius: 10px;
-  max-width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  left: 0;
-  right: 0;
-  position: absolute;
-  border-top: 5px solid #D8FBFD;
-  /*   z-index: 1; */
-  animation: bounce 2.5s infinite;
 }
 
-::-webkit-input-placeholder {
-  font-size: 1.3rem;
-}
-
-.title {
-  display: block;
-  margin: 10px auto 5px;
-  width: 80%;
-}
-
-.pageTitle {
-  font-size: 2em;
-  font-weight: bold;
-}
-
-.name {
-  background-color: #ebebeb;
-  height: 2rem;
-}
-
-.name:hover {
-  border-bottom: 5px solid #D8FBFD;
-  height: 3rem;
+.form-input:focus {
+  border-bottom: 4px solid #D8FBFD;
   border-radius: 10px;
-  transition: ease 0.8s;
-}
-
-.email {
-  background-color: #ebebeb;
-  height: 2rem;
-}
-
-.email:hover {
-  border-bottom: 5px solid #D8FBFD;
-  height: 3rem;
-  border-radius: 10px;
-  transition: ease 0.8s;
-}
-
-.message {
-  background-color: #ebebeb;
-  overflow: hidden;
-  height: 10rem;
-
-}
-
-.message:hover {
-  border-bottom: 5px solid #D8FBFD;
-  height: 12em;
-  transition: ease 0.8s;
-  border-radius: 10px;
-
-}
-
-.formEntry {
-  display: block;
-  margin: 30px auto;
-  min-width: 80%;
-  padding: 10px;
-  border-radius: 2px;
-  border: none;
-  transition: all 0.5s ease 0s;
-}
-
-@keyframes bounce {
-  0% {
-    tranform: translate(0, 4px);
-  }
-
-  50% {
-    transform: translate(0, 8px);
-  }
 }
 </style>

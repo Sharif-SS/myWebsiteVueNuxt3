@@ -103,7 +103,7 @@ onUnmounted(() => {
         <NuxtLink
           v-if="item"
           to="/photography"
-          class="absolute z-20 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-black/60 text-white text-sm font-semibold tracking-wider uppercase shadow-lg border border-white/40 hover:bg-black/75 transition-colors"
+          class="absolute z-20 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-accent/20 backdrop-blur-md text-white text-base font-semibold tracking-wider uppercase shadow-lg border border-accent/40 hover:bg-accent/35 transition-colors"
           :class="vp === 'portrait' ? 'bottom-8' : 'bottom-12'"
           @click.stop
         >

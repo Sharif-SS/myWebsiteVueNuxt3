@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/icon',
     '@nuxtjs/tailwindcss',
+    '@vee-validate/nuxt',
 
     async (options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', config =>

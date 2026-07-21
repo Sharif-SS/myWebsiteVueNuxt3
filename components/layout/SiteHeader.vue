@@ -45,19 +45,8 @@ function isActive(path: string): boolean {
       </NuxtLink>
     </nav>
 
-    <!-- Secret button -->
-    <a
-      href="https://youtu.be/dQw4w9WgXcQ"
-      target="_blank"
-      class="hidden sm:inline-flex h-[30px] px-3 rounded items-center bg-accent text-sm font-medium hover:opacity-80 transition-opacity leading-none ml-2 glow-effect relative"
-      @mouseenter="handleGlowHover"
-    >
-      <svg class="glow-container">
-        <rect pathLength="100" stroke-linecap="round" class="glow-blur" />
-        <rect pathLength="100" stroke-linecap="round" class="glow-line" />
-      </svg>
-      Secret
-    </a>
+    <!-- Header secret button -->
+    <UiSecretButton variant="header" class="hidden md:flex" />
 
     <!-- Mobile hamburger -->
     <button
