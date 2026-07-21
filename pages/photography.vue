@@ -16,7 +16,7 @@ const allImages = computed(() => {
 
 const lightboxOpen = ref(false)
 const lightboxIndex = ref(0)
-const lightboxImages = ref<{ src: string; category: string }[]>([])
+const lightboxImages = ref<{ src: string, category: string }[]>([])
 
 function openLightbox(index: number) {
   lightboxImages.value = allImages.value
@@ -31,11 +31,11 @@ function closeLightbox() {
 useHead({
   title: 'Photography',
   meta: [
-    { hid: 'og:url', property: 'og:url', content: 'https://www.sharif-sircar.com/photography' },
-    { hid: 'og:site_name', property: 'og:site_name', content: 'Sharif Sircar\'s Photography' },
-    { hid: 'description', name: 'description', content: 'A collection of photos taken over the years by Sharif Sircar.' },
-    { hid: 'og:description', property: 'og:description', content: 'Portraits, events, nature, and more.' },
-    { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+    { property: 'og:url', content: 'https://www.sharif-sircar.com/photography' },
+    { property: 'og:site_name', content: 'Sharif Sircar\'s Photography' },
+    { name: 'description', content: 'A collection of photos taken over the years by Sharif Sircar.' },
+    { property: 'og:description', content: 'Portraits, events, nature, and more.' },
+    { name: 'twitter:card', content: 'summary_large_image' },
   ],
   link: [
     {

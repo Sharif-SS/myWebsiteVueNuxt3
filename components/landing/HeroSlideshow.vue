@@ -82,7 +82,7 @@ onUnmounted(() => {
       <div
         v-for="item in layout === 'single' ? [pair[0]] : pair"
         :key="item?.category ?? 'fallback'"
-        class="relative flex-1 overflow-hidden"
+        class="relative flex-1 overflow-hidden group"
         :class="layout === 'single' ? 'w-full h-full' : ''"
       >
         <div class="absolute inset-0 overflow-hidden">
@@ -100,15 +100,26 @@ onUnmounted(() => {
           class="relative z-10 w-full h-full object-contain"
         >
 
+        <div
+          class="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300 pointer-events-none"
+          style="z-index: 15"
+        />
+
         <NuxtLink
           v-if="item"
-          to="/photography"
-          class="absolute z-20 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-accent/20 backdrop-blur-md text-white text-base font-semibold tracking-wider uppercase shadow-lg border border-accent/40 hover:bg-accent/35 transition-colors"
-          :class="vp === 'portrait' ? 'bottom-8' : 'bottom-12'"
+          :to="'/photography'"
+          class="absolute bottom-0 left-0 right-0 z-20 block pt-16 pb-5 md:pb-7 px-6 md:px-8 bg-gradient-to-t from-black/80 via-black/50 to-transparent"
           @click.stop
         >
-          {{ item.category }}
-          <Icon name="mdi:arrow-right" class="w-4 h-4" />
+          <span
+            class="inline-flex items-center gap-2 md:gap-3 text-white text-2xl md:text-4xl font-bold uppercase tracking-wide"
+          >
+            {{ item.category }}
+            <Icon
+              name="mdi:arrow-right"
+              class="w-5 h-5 md:w-6 md:h-6 opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+            />
+          </span>
         </NuxtLink>
       </div>
     </div>

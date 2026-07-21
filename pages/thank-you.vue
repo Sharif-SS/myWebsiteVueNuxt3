@@ -2,7 +2,7 @@
 useHead({
   title: 'Thank You',
   meta: [
-    { hid: 'description', name: 'description', content: 'Message sent — thank you!' },
+    { name: 'description', content: 'Message sent — thank you!' },
   ],
 })
 </script>

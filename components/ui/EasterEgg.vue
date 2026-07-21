@@ -3,9 +3,15 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 const open = ref(false)
 
-function show() { open.value = true }
-function close() { open.value = false }
-function onKeydown(e: KeyboardEvent) { if (e.key === 'Escape') close() }
+function show() {
+  open.value = true
+}
+function close() {
+  open.value = false
+}
+function onKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape') close()
+}
 
 onMounted(() => document.addEventListener('keydown', onKeydown))
 onUnmounted(() => document.removeEventListener('keydown', onKeydown))

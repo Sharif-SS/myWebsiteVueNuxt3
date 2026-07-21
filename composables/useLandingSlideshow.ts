@@ -51,8 +51,12 @@ export function useLandingSlideshow() {
   refresh()
 
   let timer: ReturnType<typeof setInterval> | undefined
-  onMounted(() => { timer = setInterval(refresh, 30000) })
-  onUnmounted(() => { if (timer) clearInterval(timer) })
+  onMounted(() => {
+    timer = setInterval(refresh, 30000)
+  })
+  onUnmounted(() => {
+    if (timer) clearInterval(timer)
+  })
 
   return { heroPair, funSlides, refresh }
 }

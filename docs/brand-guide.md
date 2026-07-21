@@ -1,6 +1,6 @@
 # Brand Guide — Sharif Sircar Photography
 
-> This is a living document. Update it as design decisions are finalized during the migration.
+> This is a living document. Update it as design decisions evolve.
 
 ## Tone
 
@@ -10,37 +10,73 @@
 
 ## Typography
 
-- **Placeholder font**: Inter (currently set in legacy `assets/main.scss`).
-- **Target**: Neutral serif (to be chosen later).
-- Keep consistent across all headings, body text, and UI elements.
+- **Primary**: Inter (set in `tailwind.config.mjs` as `fontFamily.serif` — placeholder until a neutral serif is chosen).
+- Applied consistently across all headings, body text, and UI elements via Tailwind.
 
 ## Colors
 
-Warm palette derived from legacy `utils/tw-colors.ts` and `utils/themes.ts`. To be finalized during rebuild.
+Warm palette defined in `tailwind.config.mjs`.
 
-| Token | Legacy Value | Notes |
+| Token | Value | Usage |
 |---|---|---|
-| Primary accent | `#D8FBFD` (light teal) | Used for buttons, borders, hover states |
+| `accent` | `#D8FBFD` (light teal) | Buttons, borders, hover states, form focus rings |
+| `surface` | `#F8EDEB` (warm blush) | Legacy reference — no longer actively used |
+| `warm` | 50–900 scale | Reserved for future use |
+| `teal` | light / DEFAULT / dark | Reserved for future use |
 | Background | `#FFFFFF` | Page background |
-| Surface | `#F8EDEB` (warm blush) | Cards, sheets, app bar |
-| Text | `#000000` | Primary text |
-| Error | Red (from Tailwind `red.500`) | Validation, dividers |
+| Text | `#000000` (gray-900) | Primary text, headings |
 
-## Puffin Logo
+## Logo
 
-- **Usage**: Subtle identity marker. Used as site logo and favicon.
-- **Do NOT** make it a primary visual motif or repeat it excessively.
-- **Files**: `/puffin.png`, `/puffin.svg`, `/puffinS.png`, `/puffinv2.png` (in `public/`).
-- The SVG variant is preferred for the rebuild (scalable, smaller).
+- **Primary**: `/puffin.svg` (scalable SVG in `public/`).
+- **Favicon**: `/favicon.ico` (linked in `nuxt.config.ts` `app.head.link`).
+- Usage: subtle identity marker in `SiteHeader.vue`. Do NOT make it a primary visual motif.
+
+## Layout & Navigation
+
+- **Header**: Glassmorphism bar (`bg-white/80 backdrop-blur-md`), fixed top. Contains puffin logo + two-line lockup ("Sharif Sircar" / "Photography & Hosting"), nav links, hamburger on mobile, glow secret button.
+- **Nav drawer**: Mobile-only `SiteNav.vue` — teleported slide-down overlay.
+- **Footer**: Static bar with copyright, LinkedIn, Instagram, easter egg button.
+- **Main content**: `flex flex-col min-h-screen` with `pt-[50px]` to clear fixed header.
+
+## Page Structure
+
+| Route | Component | Purpose |
+|---|---|---|
+| `/` | `pages/index.vue` | Hero slideshow + about section + fun cards grid |
+| `/photography` | `pages/photography.vue` | Category carousel + gallery grid + lightbox |
+| `/contact` | `pages/contact.vue` | Netlify form (native HTML POST, honeypot) + social links |
+| `/thank-you` | `pages/thank-you.vue` | Form success confirmation |
 
 ## Custom Cursor
 
-- **Asset**: `/pointer.png`.
-- Applied via `.global-cursor` class on `#app`.
-- **Kept in rebuild.** Re-implement with GPU-accelerated CSS if a clear improvement exists; confirm visual match before finalizing.
+- **Asset**: `/pointer.png` exists in `public/` but no longer applied globally.
+- **Implementation**: `UiCursorFollower.vue` — lerped dot + ring, hidden by default (`opacity: 0`), activates on `a, button, [data-cursor-hover]` via `isHovering` ref. Disabled on touch devices (`(pointer: coarse)` media query).
 
-## Glow Animation
+## Animations
 
-- Defined in legacy `assets/main.scss`.
-- Used on mobile nav toggle button.
-- **Kept in rebuild.** Ported to new SCSS file alongside Tailwind.
+- **Glow animation**: Ported from legacy `assets/main.scss`. Applied to the header secret button via `.glow-effect` class.
+- **Easter egg**: CSS-only egg cycle (breathe → crack → chip → glow) in `EasterEgg.vue`. Touch-only gold ripple pulse on mobile.
+- **Lightbox**: `GalleryLightbox.vue` — teleported overlay, keyboard nav (Escape, ArrowLeft/Right), image counter.
+- **Landing slideshow**: Auto-advances every 30s. Orientation-aware layout (split or single). Gradient caption overlays on hover.
+- **About photo**: Subtle `box-shadow` (desktop `0 4px 20px`, mobile `0 3px 14px`).
+
+## Gallery Behavior
+
+- **Category-first UI**: categories visible without opening a menu.
+- **Image discovery**: `import.meta.glob` on `/public/photos/*/*.{jpg,jpeg,png,webp,gif}` — drag-and-drop, no manual registration.
+- **Responsive grid**: CSS Grid with aspect-ratio handling, smooth breakpoints.
+- **Lightbox**: Click opens large view with prev/next navigation.
+
+## Tools & Conventions
+
+- **CSS**: Tailwind CSS v3 (primary) + SCSS (cursor follower, glow effects, easter egg, about photo card).
+- **Icons**: `@nuxt/icon` module (Iconify sets), `mdi:` prefix.
+- **Forms**: VeeValidate + Zod for validation, native HTML POST for Netlify.
+- **Analytics**: `nuxt-gtag` with ID `G-6VSTRJ3QLM`.
+- **Lint**: ESLint via `@nuxt/eslint-config/flat` with stylistic and tooling rules.
+- **Typecheck**: `vue-tsc --noEmit`.
+
+## Out of Scope
+
+- Client portal, payment processing, booking system, IoT dashboards, authenticated sections.

@@ -3,7 +3,7 @@ import { useRoute } from 'vue-router'
 
 const route = useRoute()
 
-const props = defineProps<{
+defineProps<{
   modelValue: boolean
 }>()
 const emit = defineEmits<{

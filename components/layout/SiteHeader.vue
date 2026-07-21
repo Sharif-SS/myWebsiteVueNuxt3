@@ -29,7 +29,10 @@ function isActive(path: string): boolean {
       class="flex items-center gap-2 mr-auto flex-shrink-0"
     >
       <img src="/puffin.png" alt="Home" class="w-8 h-8 rounded-full">
-      <span class="text-sm font-semibold text-gray-800 hidden sm:inline">Sharif Sircar</span>
+      <div class="flex flex-col leading-tight">
+        <span class="text-sm font-semibold text-gray-800">Sharif Sircar</span>
+        <span class="text-[10px] text-gray-500 tracking-wide">Photography &amp; Hosting</span>
+      </div>
     </NuxtLink>
 
     <!-- Desktop nav links -->

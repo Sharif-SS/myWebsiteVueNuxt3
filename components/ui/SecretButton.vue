@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 
-const props = withDefaults(defineProps<{
+withDefaults(defineProps<{
   variant?: 'header' | 'footer'
 }>(), {
-  variant: 'footer'
+  variant: 'footer',
 })
 
 const open = ref(false)

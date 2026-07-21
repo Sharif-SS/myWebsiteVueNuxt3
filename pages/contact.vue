@@ -28,10 +28,10 @@ const onSubmit = handleSubmit(() => {
 useHead({
   title: 'Contact',
   meta: [
-    { hid: 'description', name: 'description', content: 'Get in touch with Sharif Sircar.' },
-    { hid: 'og:url', property: 'og:url', content: 'https://www.sharif-sircar.com/contact' },
-    { hid: 'og:title', property: 'og:title', content: 'Contact — Sharif Sircar' },
-    { hid: 'og:description', property: 'og:description', content: 'Send a message.' },
+    { name: 'description', content: 'Get in touch with Sharif Sircar.' },
+    { property: 'og:url', content: 'https://www.sharif-sircar.com/contact' },
+    { property: 'og:title', content: 'Contact — Sharif Sircar' },
+    { property: 'og:description', content: 'Send a message.' },
   ],
   link: [
     {
@@ -48,7 +48,6 @@ useHead({
     <div class="min-h-screen backdrop-blur-[2px] bg-white/30 py-16 px-4">
       <div class="max-w-6xl mx-auto">
         <div class="flex flex-col md:flex-row gap-8 items-start">
-
           <!-- Photo -->
           <div class="hidden md:block md:w-2/5 flex-shrink-0 animate-float">
             <img
@@ -148,7 +147,6 @@ useHead({
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>

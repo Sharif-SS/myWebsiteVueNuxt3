@@ -106,3 +106,28 @@
 
 - **Summary**: Deleted `public/photos/Misc/` folder. Renamed `public/photos/Animals/` → `public/photos/Pets/`. Removed Misc and renamed Animals→Pets in `useLandingSlideshow.ts`. Added "Things I Shoot For Fun 🔫" section at bottom of photography page with Pets, Outdoors, Vehicles images grouped together. Lightbox now supports separate image sets (category vs fun).
 - **Files touched**: `public/photos/Misc/` (deleted), `public/photos/Animals/` (renamed to Pets), `composables/useLandingSlideshow.ts`, `pages/photography.vue`
+
+## 2026-07-21 ~01:30–05:00 UTC — Phase 7: Analytics, Vuetify teardown, visual polish
+
+- **Summary**: Completed Phase 7 — analytics and legacy clean-up:
+  - Installed `nuxt-gtag` v4.1.0 with `G-6VSTRJ3QLM`, removed hardcoded GA snippet
+  - Removed Vuetify entirely: `plugins/vuetify.ts`, `utils/themes.ts`, `utils/defaults.ts`, `utils/customIcons.ts`, `utils/fluentIcons.ts`, legacy gallery components (`imageGallary.vue`, `Portraits.vue`, `Animals.vue`, `Events.vue`, `Outdoors.vue`, `Vehicles.vue`, `Misc.vue`) all deleted; `vuetify` and `vite-plugin-vuetify` removed from `package.json`
+  - Hero CTA redesigned: pill buttons → full-width gradient caption overlay with bold text + arrow icon
+  - Section-two fun cards: blurred background + object-contain + gradient strip, match hero treatment
+  - Cursor follower: disabled by default, activates on interactive elements only; legacy `.global-cursor` (`cursor: url('/pointer.png')`) removed from `app.vue` and `main.scss`
+  - Header lockup updated: two-line "Sharif Sircar" / "Photography & Hosting", always visible
+  - Created `AboutPhoto.vue` — self-contained SCSS card with gradient overlay caption
+- **Files touched**: `nuxt.config.ts`, `package.json`, `components/landing/HeroSlideshow.vue`, `components/ui/CursorFollower.vue`, `components/ui/EasterEgg.vue`, `components/layout/SiteHeader.vue`, `components/AboutPhoto.vue` (new), `app.vue`, `assets/main.scss`, `pages/index.vue`, `plugins/vuetify.ts` (deleted), `utils/themes.ts` (deleted), `utils/defaults.ts` (deleted), `utils/customIcons.ts` (deleted), `utils/fluentIcons.ts` (deleted), several `components/*.vue` (deleted)
+
+## 2026-07-21 03:05 UTC — About photo card refinements, lint/typecheck setup
+
+- **Summary**:
+  - Updated `AboutPhoto.vue` with desktop drop-shadow, mobile 4/5 aspect-ratio, centered at 320px, refined gradient caption
+  - Removed dead page `doithackathon.vue` (already gone) and `public/oldWebsite/` (already gone)
+  - Installed `eslint` + `@types/node` as devDependencies
+  - Removed deprecated `hid` prop from all `useHead` meta definitions across all pages and `nuxt.config.ts`
+  - Removed dead `composables/rules.ts` (legacy Vuetify form rules, unused)
+  - Fixed SCSS `api` type issue in `nuxt.config.ts`
+  - Fixed all 33 lint errors (brace style, indent, member delimiters, trailing commas, attribute order, etc.)
+  - `npm run lint`, `npm run typecheck`, and `npm run generate` all pass clean
+- **Files touched**: `components/AboutPhoto.vue`, `nuxt.config.ts`, `eslint.config.mjs` (already existed), `package.json`, `pages/contact.vue`, `pages/index.vue`, `pages/photography.vue`, `pages/thank-you.vue`, `components/ui/SecretButton.vue`, `components/layout/SiteNav.vue`, `components/gallery/GalleryLightbox.vue`, `components/landing/HeroSlideshow.vue`, `components/ui/EasterEgg.vue`, `composables/useLandingSlideshow.ts`, `composables/rules.ts` (deleted), `tailwind.config.mjs`, `docs/brand-guide.md` (expanded)

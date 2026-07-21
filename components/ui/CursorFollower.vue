@@ -3,7 +3,6 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 const dot = ref({ x: -100, y: -100 })
 const ring = ref({ x: -100, y: -100 })
-const isVisible = ref(false)
 const isHovering = ref(false)
 const hammerMode = ref(false)
 const isTouch = ref(false)
@@ -27,19 +26,6 @@ function tick() {
 function onMove(e: MouseEvent) {
   tx = e.clientX
   ty = e.clientY
-  if (!isVisible.value) isVisible.value = true
-}
-
-function onLeave() {
-  isVisible.value = false
-  dot.value.x = -100
-  dot.value.y = -100
-  ring.value.x = -100
-  ring.value.y = -100
-}
-
-function onEnter() {
-  isVisible.value = true
 }
 
 function checkHover(e: MouseEvent) {
@@ -55,23 +41,19 @@ onMounted(() => {
   if (isTouch.value) return
 
   document.addEventListener('mousemove', onMove)
-  document.addEventListener('mouseenter', onEnter)
-  document.addEventListener('mouseleave', onLeave)
   document.addEventListener('mouseover', checkHover)
   raf = requestAnimationFrame(tick)
 })
 
 onUnmounted(() => {
   document.removeEventListener('mousemove', onMove)
-  document.removeEventListener('mouseenter', onEnter)
-  document.removeEventListener('mouseleave', onLeave)
   document.removeEventListener('mouseover', checkHover)
   if (raf) cancelAnimationFrame(raf)
 })
 </script>
 
 <template>
-  <div v-show="!isTouch && isVisible" class="cursor-follower" aria-hidden="true">
+  <div v-show="!isTouch" class="cursor-follower" :class="{ active: isHovering }" aria-hidden="true">
     <div class="cursor-ring" :class="{ hovering: isHovering, hammer: hammerMode }" :style="{ left: ring.x + 'px', top: ring.y + 'px' }" />
     <div v-if="!hammerMode" class="cursor-dot" :style="{ left: dot.x + 'px', top: dot.y + 'px' }" />
     <div v-else class="cursor-hammer" :style="{ left: dot.x + 'px', top: dot.y + 'px' }" />
@@ -84,6 +66,12 @@ onUnmounted(() => {
   inset: 0;
   z-index: 9999;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+
+  &.active {
+    opacity: 1;
+  }
 }
 
 .cursor-dot {
@@ -93,7 +81,6 @@ onUnmounted(() => {
   background: #666;
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  transition: opacity 0.2s ease;
 }
 
 .cursor-ring {

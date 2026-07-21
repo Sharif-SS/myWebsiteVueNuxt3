@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="global-cursor">
+  <div id="app">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

@@ -4,12 +4,8 @@ import { readFile, writeFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 
 const title = 'Photography Projects by Sharif Sircar 🙋'
-const shortTitle = 'Sharif\'s Personal Website'
-const description
-  = 'Exploring growth, problem-solving, and creativity through technology and continuous learning. Join me on the journey of building skills and meaningful projects.'
 
 export default defineNuxtConfig({
-
   modules: [
     '@nuxt/image',
     '@nuxt/icon',
@@ -17,11 +13,8 @@ export default defineNuxtConfig({
     '@vee-validate/nuxt',
     'nuxt-gtag',
   ],
-  ssr: true,
 
-  gtag: {
-    id: 'G-6VSTRJ3QLM',
-  },
+  ssr: true,
 
   app: {
     head: {
@@ -29,31 +22,25 @@ export default defineNuxtConfig({
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
       meta: [
         { property: 'og:site_name', content: title },
-        { hid: 'global-og:type', property: 'og:type', content: 'website' },
-        { hid: 'global-og:title', property: 'og:title', content: title },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:title', content: title },
         { name: 'twitter:card', content: 'summary_large_image' },
-        {
-          hid: 'global-twitter:title',
-          name: 'twitter:title',
-          content: title,
-        },
+        { name: 'twitter:title', content: title },
       ],
     },
   },
 
   css: ['@/assets/main.scss'],
 
+  compatibilityDate: '2026-07-20',
+
   vite: {
     css: {
       preprocessorOptions: {
-        scss: {
-          api: 'modern-compiler',
-        },
+        scss: {},
       },
     },
   },
-
-  compatibilityDate: '2026-07-20',
   typescript: { shim: false },
 
   hooks: {
@@ -77,6 +64,10 @@ export default defineNuxtConfig({
         })
       })
     },
+  },
+
+  gtag: {
+    id: 'G-6VSTRJ3QLM',
   },
 
   image: {
