@@ -155,3 +155,8 @@
 
 - **Summary**: Updated all SEO meta tags to reflect the photography portfolio (not the old tech/dev site). Homepage description rewritten to describe photography services. Consistent page title format (`"Page — Sharif Sircar"`) across all pages. Added `og:image` + `twitter:image` to photography and contact subpages. Removed emoji from global `og:title`. Updated `og-image.svg` to use Noto Sans font and removed "&amp; Hosting". Added `noindex` to thank-you page. Cleared Nuxt/Vite cache to fix `#app-manifest` error.
 - **Files touched**: `pages/index.vue`, `pages/photography.vue`, `pages/contact.vue`, `pages/thank-you.vue`, `nuxt.config.ts`, `public/og-image.svg`
+
+## 2026-07-22 — Scroll-reveal animations (v-reveal directive)
+
+- **Summary**: Added fade-in-up scroll-reveal animations using a custom `v-reveal` directive and IntersectionObserver. Created `plugins/reveal.ts` (no `.client` suffix — registered on both server/client for SSR compatibility; `mounted` hook only fires on client). Added `.reveal` / `.revealed` CSS in `assets/main.scss` with a 0.7s cubic-bezier transition. Applied to homepage About section, "Outside of Events" section heading/paragraph, fun cards (staggered by index via `transitionDelay`), and photography page heading/subtitle/grid. `npm run generate` passes clean.
+- **Files touched**: `plugins/reveal.ts` (new), `assets/main.scss`, `pages/index.vue`, `pages/photography.vue`

@@ -54,8 +54,8 @@ useHead({
 <template>
   <div class="bg-white min-h-screen">
     <div class="max-w-7xl mx-auto px-4 py-12">
-      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">Photography</h1>
-      <p class="text-gray-600 mb-8 max-w-lg">
+      <h1 v-reveal class="reveal text-3xl sm:text-4xl font-bold text-gray-900 mb-2">Photography</h1>
+      <p v-reveal class="reveal text-gray-600 mb-8 max-w-lg" :style="{ transitionDelay: '0.15s' }">
         A collection of moments captured over the years.
       </p>
 
@@ -71,6 +71,9 @@ useHead({
           v-if="allImages.length"
           :images="allImages"
           @open="openLightbox"
+          v-reveal
+          class="reveal"
+          :style="{ transitionDelay: '0.3s' }"
         />
         <p v-else class="text-gray-600">No images in this category yet.</p>
       </div>

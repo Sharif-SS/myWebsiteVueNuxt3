@@ -35,7 +35,7 @@ function advanceSlideshow() {
       <LandingHeroSlideshow :pair="heroPair" @next="advanceSlideshow" />
     </section>
 
-    <section class="max-w-5xl mx-auto px-4 py-20">
+    <section v-reveal class="max-w-5xl mx-auto px-4 py-20 [content-visibility:auto] reveal">
       <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-8">About</h2>
       <div class="flex flex-col sm:flex-row gap-8 sm:gap-10 items-start">
         <div class="flex-shrink-0">
@@ -61,18 +61,20 @@ function advanceSlideshow() {
       </div>
     </section>
 
-    <section class="max-w-6xl mx-auto px-4 py-20 border-t border-gray-100">
-      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Outside of Events and Portraits</h2>
-      <p class="text-gray-600 mb-10 max-w-xl">
+    <section v-reveal class="max-w-6xl mx-auto px-4 py-20 border-t border-gray-100 [content-visibility:auto] reveal">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 reveal" v-reveal>Outside of Events and Portraits</h2>
+      <p class="text-gray-600 mb-10 max-w-xl reveal" v-reveal>
         I like to explore other genres of photography, and I often find myself drawn to the challenge of capturing something new. Here are a few examples of my work in other areas of photography.
       </p>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <NuxtLink
-          v-for="slide in funSlides"
+          v-for="(slide, i) in funSlides"
           :key="slide.category"
           to="/photography"
-          class="group block overflow-hidden rounded-xl bg-gray-100 shadow-sm"
+          v-reveal
+          class="reveal group block overflow-hidden rounded-xl bg-gray-100 shadow-sm"
+          :style="{ transitionDelay: `${i * 0.15}s` }"
         >
           <div class="relative aspect-[4/3]">
             <div class="absolute inset-0 overflow-hidden">
@@ -80,12 +82,14 @@ function advanceSlideshow() {
                 :src="slide.src"
                 class="w-full h-full object-cover scale-125 blur-lg brightness-50"
                 aria-hidden="true"
+                loading="lazy"
               >
             </div>
             <img
               :src="slide.src"
               :alt="`${slide.category} photography`"
               class="relative z-10 w-full h-full object-contain"
+              loading="lazy"
             >
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" style="z-index: 15" />
             <div class="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-black/80 via-black/40 to-transparent pt-10 pb-3 px-4">

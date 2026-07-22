@@ -4,11 +4,12 @@
 <template>
   <div class="about-photo">
     <div class="about-photo__frame">
-      <img
+      <NuxtImg
         src="/aboutPhoto.webp"
         alt="Sharif Sircar"
         class="about-photo__image"
-      >
+        loading="lazy"
+      />
       <div class="about-photo__caption">
         <span class="about-photo__name">Sharif Sircar</span>
         <span class="about-photo__role">Photographer &amp; Host</span>
