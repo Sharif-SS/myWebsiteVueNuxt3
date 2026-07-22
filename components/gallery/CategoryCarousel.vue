@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-  groups: string[][]
+  categories: string[]
   active: string
 }>()
 
@@ -10,13 +10,12 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="flex flex-wrap items-center gap-3">
-    <template v-for="(group, gi) in groups" :key="gi">
-      <span v-if="gi > 0" class="text-gray-300 select-none mx-1">|</span>
+  <div class="-mx-4 px-4 overflow-x-auto scrollbar-hide">
+    <div class="flex items-center gap-2 w-max sm:w-auto sm:flex-wrap">
       <button
-        v-for="cat in group"
+        v-for="cat in categories"
         :key="cat"
-        class="px-5 py-2 rounded-lg text-sm font-medium backdrop-blur-md border transition-colors"
+        class="shrink-0 px-5 py-2 rounded-lg text-sm font-medium backdrop-blur-md border transition-colors"
         :class="cat === active
           ? 'bg-accent/40 border-accent/60 text-gray-900 shadow-sm'
           : 'bg-accent/15 border-accent/20 text-gray-700 hover:bg-accent/30'"
@@ -24,6 +23,16 @@ const emit = defineEmits<{
       >
         {{ cat }}
       </button>
-    </template>
+    </div>
   </div>
 </template>
+
+<style scoped>
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+</style>

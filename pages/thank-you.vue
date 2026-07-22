@@ -1,8 +1,9 @@
 <script setup lang="ts">
 useHead({
-  title: 'Thank You',
+  title: 'Thank You — Sharif Sircar',
   meta: [
-    { name: 'description', content: 'Message sent — thank you!' },
+    { name: 'description', content: 'Message sent — thank you for reaching out!' },
+    { name: 'robots', content: 'noindex' },
   ],
 })
 </script>

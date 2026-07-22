@@ -30,7 +30,7 @@ export default {
         },
       },
       fontFamily: {
-        serif: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Noto Sans', 'system-ui', 'sans-serif'],
       },
       animation: {
         'float': 'float 4s ease-in-out infinite',

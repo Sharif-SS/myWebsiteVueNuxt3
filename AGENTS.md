@@ -166,7 +166,7 @@ public/
 ## Brand & UX Summary
 
 - **Tone**: Professional, warm, confident — focused on visual storytelling.
-- **Typography**: Neutral serif placeholder (Inter currently set in legacy SCSS — swap when ready).
+- **Typography**: Noto Sans (site-wide default). Applied via Tailwind `fontFamily.sans` in `tailwind.config.mjs` with Google Fonts link in `nuxt.config.ts` head.
 - **Color**: Warm palette — to be defined in `docs/brand-guide.md`. Pull from legacy `utils/tw-colors.ts` as a starting reference.
 - **Puffin logo**: subtle identity marker, not a primary motif.
 - **Custom cursor**: `/pointer.png` — kept in rebuild.

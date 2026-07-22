@@ -3,7 +3,7 @@ import { resolve } from 'node:path'
 import { readFile, writeFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 
-const title = 'Photography Projects by Sharif Sircar 🙋'
+const title = 'Sharif Sircar — Photography Portfolio'
 
 export default defineNuxtConfig({
   modules: [
@@ -21,8 +21,13 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en',
       },
-      title: 'Sharif Sircar\'s Website',
-      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+      title: 'Sharif Sircar — Photography Portfolio',
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap' },
+      ],
       meta: [
         { property: 'og:site_name', content: title },
         { property: 'og:type', content: 'website' },
