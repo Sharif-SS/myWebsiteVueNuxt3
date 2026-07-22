@@ -55,6 +55,7 @@ function span(src: string): string {
         :src="img.src"
         :alt="`${img.category} photography`"
         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        loading="lazy"
       >
     </div>
   </div>

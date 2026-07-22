@@ -56,11 +56,12 @@ useHead({
         <div class="flex flex-col md:flex-row gap-8 items-start">
           <!-- Photo -->
           <div class="hidden md:block md:w-2/5 flex-shrink-0 animate-float">
-            <img
+            <NuxtImg
               src="/contact.jpg"
               alt="Sharif in an old telephone booth"
               class="w-full rounded-xl shadow-lg"
-            >
+              loading="lazy"
+            />
           </div>
 
           <!-- Form card -->
