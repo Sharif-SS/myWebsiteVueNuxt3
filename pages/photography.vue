@@ -58,7 +58,7 @@ useHead({
       </p>
 
       <GalleryCategoryCarousel
-        :groups="categoryGroups"
+        :categories="flatCategories"
         :active="activeCategory"
         @select="activeCategory = $event"
       />

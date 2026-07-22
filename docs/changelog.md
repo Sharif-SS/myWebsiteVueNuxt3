@@ -145,3 +145,8 @@
 
 - **Summary**: Applied Noto Sans as the site-wide default font. Added Google Fonts preconnect + stylesheet links in `nuxt.config.ts` head. Updated `tailwind.config.mjs` — replaced the legacy `fontFamily.serif` (Inter) with `fontFamily.sans` using Noto Sans. Updated `AGENTS.md` typography docs accordingly.
 - **Files touched**: `tailwind.config.mjs`, `nuxt.config.ts`, `AGENTS.md`
+
+## 2026-07-21 06:30 UTC — Mobile category pills: removed `|` separator, horizontal scroll
+
+- **Summary**: Replaced the wrapping pill layout with `|` separator on `/photography` with a horizontally scrollable pill strip (hidden scrollbar). Pills now overflow-scroll on mobile (swipe gesture) and wrap naturally on desktop. Removed `groups` prop in favor of flat `categories` array.
+- **Files touched**: `components/gallery/CategoryCarousel.vue`, `pages/photography.vue`
