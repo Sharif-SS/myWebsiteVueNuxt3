@@ -22,7 +22,12 @@ export default defineNuxtConfig({
         lang: 'en',
       },
       title: 'Sharif Sircar\'s Website',
-      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap' },
+      ],
       meta: [
         { property: 'og:site_name', content: title },
         { property: 'og:type', content: 'website' },

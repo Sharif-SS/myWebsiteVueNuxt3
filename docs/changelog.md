@@ -140,3 +140,8 @@
   - Fixed borderline `text-gray-500` (4.6:1 ratio) subtitles → `text-gray-600` on homepage, photography and contact pages
   - Removed "&amp; Event Hosting" from site header subtitle per owner request (to be revisited later)
 - **Files touched**: `nuxt.config.ts`, `pages/index.vue`, `pages/photography.vue`, `pages/contact.vue`, `components/layout/SiteFooter.vue`, `components/layout/SiteHeader.vue`
+
+## 2026-07-21 06:15 UTC — Noto Sans site-wide font
+
+- **Summary**: Applied Noto Sans as the site-wide default font. Added Google Fonts preconnect + stylesheet links in `nuxt.config.ts` head. Updated `tailwind.config.mjs` — replaced the legacy `fontFamily.serif` (Inter) with `fontFamily.sans` using Noto Sans. Updated `AGENTS.md` typography docs accordingly.
+- **Files touched**: `tailwind.config.mjs`, `nuxt.config.ts`, `AGENTS.md`
