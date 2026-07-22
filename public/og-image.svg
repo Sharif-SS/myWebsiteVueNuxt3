@@ -6,9 +6,9 @@
     </linearGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#bg)" />
-  <text x="60" y="260" font-family="Inter, system-ui, sans-serif" font-size="56" font-weight="700" fill="#ffffff">Sharif Sircar</text>
-  <text x="60" y="320" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="400" fill="#9ca3af">Photography &amp; Hosting</text>
+  <text x="60" y="260" font-family="Noto Sans, system-ui, sans-serif" font-size="56" font-weight="700" fill="#ffffff">Sharif Sircar</text>
+  <text x="60" y="320" font-family="Noto Sans, system-ui, sans-serif" font-size="28" font-weight="400" fill="#9ca3af">Photography</text>
   <line x1="60" y1="360" x2="320" y2="360" stroke="#D8FBFD" stroke-width="3" stroke-linecap="round" />
-  <text x="60" y="420" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="400" fill="#6b7280">Portraits · Events · Landscape · Pets · Vehicles</text>
-  <text x="60" y="560" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#4b5563">sharif-sircar.com</text>
+  <text x="60" y="420" font-family="Noto Sans, system-ui, sans-serif" font-size="18" font-weight="400" fill="#6b7280">Portraits · Events · Landscape · Pets · Vehicles</text>
+  <text x="60" y="560" font-family="Noto Sans, system-ui, sans-serif" font-size="14" font-weight="400" fill="#4b5563">sharif-sircar.com</text>
 </svg>

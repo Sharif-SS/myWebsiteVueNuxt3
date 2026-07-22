@@ -26,15 +26,18 @@ const onSubmit = handleSubmit(() => {
 })
 
 useHead({
-  title: 'Contact',
+  title: 'Contact — Sharif Sircar',
   meta: [
-    { name: 'description', content: 'Get in touch with Sharif Sircar.' },
+    { name: 'description', content: 'Get in touch with Sharif Sircar for portrait, event, or commercial photography in Newfoundland.' },
     { property: 'og:url', content: 'https://www.sharif-sircar.com/contact' },
-    { property: 'og:site_name', content: 'Sharif Sircar\'s Website' },
+    { property: 'og:site_name', content: 'Sharif Sircar — Photography' },
     { property: 'og:title', content: 'Contact — Sharif Sircar' },
-    { property: 'og:description', content: 'Send a message.' },
+    { property: 'og:description', content: 'Get in touch for portrait, event, or commercial photography.' },
+    { property: 'og:image', content: 'https://www.sharif-sircar.com/og-image.svg' },
+    { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: 'Contact — Sharif Sircar' },
     { name: 'twitter:description', content: 'Get in touch with Sharif Sircar.' },
+    { name: 'twitter:image', content: 'https://www.sharif-sircar.com/og-image.svg' },
   ],
   link: [
     {

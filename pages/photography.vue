@@ -29,15 +29,17 @@ function closeLightbox() {
 }
 
 useHead({
-  title: 'Photography Portfolio',
+  title: 'Photography — Sharif Sircar',
   meta: [
     { property: 'og:url', content: 'https://www.sharif-sircar.com/photography' },
-    { property: 'og:site_name', content: 'Sharif Sircar\'s Photography' },
-    { name: 'description', content: 'A collection of photos taken over the years by Sharif Sircar.' },
-    { property: 'og:title', content: 'Photography Portfolio' },
-    { property: 'og:description', content: 'Portraits, events, nature, and more.' },
+    { property: 'og:site_name', content: 'Sharif Sircar — Photography' },
+    { name: 'description', content: 'Portraits, events, landscape, pets, and vehicles — a collection of photos by Sharif Sircar.' },
+    { property: 'og:title', content: 'Photography — Sharif Sircar' },
+    { property: 'og:description', content: 'Portraits, events, landscape, pets, and vehicles.' },
+    { property: 'og:image', content: 'https://www.sharif-sircar.com/og-image.svg' },
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: 'Photography Portfolio' },
+    { name: 'twitter:title', content: 'Photography — Sharif Sircar' },
+    { name: 'twitter:image', content: 'https://www.sharif-sircar.com/og-image.svg' },
   ],
   link: [
     {

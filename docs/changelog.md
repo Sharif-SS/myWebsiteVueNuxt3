@@ -150,3 +150,8 @@
 
 - **Summary**: Replaced the wrapping pill layout with `|` separator on `/photography` with a horizontally scrollable pill strip (hidden scrollbar). Pills now overflow-scroll on mobile (swipe gesture) and wrap naturally on desktop. Removed `groups` prop in favor of flat `categories` array.
 - **Files touched**: `components/gallery/CategoryCarousel.vue`, `pages/photography.vue`
+
+## 2026-07-21 06:45 UTC — SEO metadata overhaul
+
+- **Summary**: Updated all SEO meta tags to reflect the photography portfolio (not the old tech/dev site). Homepage description rewritten to describe photography services. Consistent page title format (`"Page — Sharif Sircar"`) across all pages. Added `og:image` + `twitter:image` to photography and contact subpages. Removed emoji from global `og:title`. Updated `og-image.svg` to use Noto Sans font and removed "&amp; Hosting". Added `noindex` to thank-you page. Cleared Nuxt/Vite cache to fix `#app-manifest` error.
+- **Files touched**: `pages/index.vue`, `pages/photography.vue`, `pages/contact.vue`, `pages/thank-you.vue`, `nuxt.config.ts`, `public/og-image.svg`

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-const description = 'Exploring growth, problem-solving, and creativity through technology and continuous learning. Join me on the journey of building skills and meaningful projects.'
+const description = 'Portfolio of Sharif Sircar — Newfoundland-based photographer specializing in portraits, events, landscape, and candid storytelling.'
 
 useHead({
-  title: 'Sharif\'s Homepage',
+  title: 'Home — Sharif Sircar',
   meta: [
     { property: 'og:url', content: 'https://www.sharif-sircar.com' },
     { property: 'og:site_name', content: 'Sharif Sircar\'s Website' },
