@@ -24,9 +24,18 @@ function isActive(path: string): boolean {
 </script>
 
 <template>
-  <header
-    class="fixed top-0 left-0 right-0 z-50 h-[50px] bg-white/70 backdrop-blur-md border-b border-white/20 shadow-sm flex items-center px-4 gap-2"
-  >
+  <div class="fixed top-0 left-0 right-0 z-50">
+    <!-- Announcement banner -->
+    <div
+      class="w-full bg-gray-900 text-white text-center py-1.5 px-4 text-xs tracking-wide"
+    >
+      Site Update (July 24, 2026): Under major construction. Thank you! — Sharif
+    </div>
+
+    <!-- Main header -->
+    <header
+      class="h-[50px] bg-white/70 backdrop-blur-md border-b border-white/20 shadow-sm flex items-center px-4 gap-2"
+    >
     <!-- Logo -->
     <NuxtLink
       to="/"
@@ -71,5 +80,6 @@ function isActive(path: string): boolean {
       </svg>
       <Icon name="mdi:menu" class="w-5 h-5" />
     </button>
-  </header>
+    </header>
+  </div>
 </template>

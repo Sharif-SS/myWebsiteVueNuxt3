@@ -6,7 +6,7 @@ const drawer = ref(false)
   <div class="flex flex-col min-h-screen">
     <LayoutSiteHeader :nav-open="drawer" @toggle-nav="drawer = !drawer" />
     <LayoutSiteNav v-model="drawer" />
-    <main class="pt-[50px] flex-1">
+    <main class="pt-[80px] flex-1">
       <slot />
     </main>
     <LayoutSiteFooter />
