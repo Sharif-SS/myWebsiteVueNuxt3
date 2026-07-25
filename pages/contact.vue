@@ -57,7 +57,7 @@ useHead({
           <!-- Photo -->
           <div class="hidden md:block md:w-2/5 flex-shrink-0 animate-float">
             <NuxtImg
-              src="/contact.jpg"
+              src="/contact.webp"
               alt="Sharif in an old telephone booth"
               class="w-full rounded-xl shadow-lg"
               loading="lazy"
