@@ -5,7 +5,7 @@ interface GalleryImage {
 
 export function useGallery() {
   const images: Record<string, string> = import.meta.glob(
-    '/public/photos/*/*.{jpg,jpeg,png,webp,gif}',
+    '/public/photos/*/*.{jpg,jpeg,png,webp,gif,webm}',
     { eager: true, import: 'default' },
   ) as Record<string, string>
 

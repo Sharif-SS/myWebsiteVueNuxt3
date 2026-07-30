@@ -165,3 +165,28 @@
 
 - **Summary**: Added `'Mixed Category'` to the `FUN` array in `useLandingSlideshow.ts` so the homepage shows a 4th image block pulling from `public/photos/Mixed Category/`. Added `['Mixed Category']` as a third group in `photography.vue` so it appears as a selectable category in the carousel. No other changes needed — the existing `import.meta.glob` patterns already discover images in this folder automatically.
 - **Files touched**: `composables/useLandingSlideshow.ts`, `pages/photography.vue`
+
+## 2026-07-29 — Added Services nav + Final Fantasy themed under-construction pages
+
+- **Summary**: Added "Services" as a 4th navigation category with dropdown sub-items "Event MC for Hire" and "Web Development". Desktop header now has a hover/click dropdown menu; mobile nav has an expandable section. Both service pages use a shared `UiFinalFantasyConstruction` component with animated starfield, floating orbs, scanline overlay, pulsing crystal, golden glow typography, FF-style battle message box, and a moogle "Kupo!" easter egg. Routes: `/services/event-mc` and `/services/web-development`.
+- **Files touched**: `components/ui/FinalFantasyConstruction.vue` (new), `pages/services/event-mc.vue` (new), `pages/services/web-development.vue` (new), `components/layout/SiteHeader.vue`, `components/layout/SiteNav.vue`
+
+## 2026-07-29 — Chocobo wander + footer contrast fix
+
+- **Summary**: Added a CSS-only chocobo that wanders horizontally across the bottom of the FF construction pages with full walk cycle (legs, wing flap, tail wag, crest wobble, eye blink, body bob). The chocobo walks left-to-right, reverses direction at edges, and loops continuously. Fixed footer social link buttons contrast by bumping `bg-accent/30` → `/60` and `text-gray-700` → `text-gray-800`.
+- **Files touched**: `components/ui/FinalFantasyConstruction.vue`, `components/layout/SiteFooter.vue`
+
+## 2026-07-29 — Realistic chocobo feathers + cursor/tap follow
+
+- **Summary**: Replaced the simple chocobo with a highly detailed CSS version featuring layered feather textures via `repeating-linear-gradient` on body, wing, tail, and neck. Wing has 3 feather layers with individual strand detail. Tail has a 3-feather plume. Added belly patch, eye pupil/shine, head fluff, 3-crest feather set (main/side/back), beak line, and feet. All animations preserved (bob, flap, tail-wag, crest-wobble, blink). Changed from keyframe walk to JS-driven cursor following using `mousemove`/`touchmove` with smooth lerp interpolation — chocobo smoothly follows mouse or finger position horizontally, and flips direction to face the cursor.
+- **Files touched**: `components/ui/FinalFantasyConstruction.vue`
+
+## 2026-07-29 — Chocobo pointer tracking fix + WebM support
+
+- **Summary**: Rewrote chocobo cursor following to use `pointermove` (unified mouse+touch API) with direct DOM style updates via template ref — bypasses Vue reactivity entirely for smooth, reliable tracking. No more RAF lerp or CSS transition. Chocobo now follows cursor/tap exactly. Added `webm` to glob patterns in `useGallery.ts` and `useLandingSlideshow.ts`. Updated `GalleryGrid.vue`, `GalleryLightbox.vue`, `HeroSlideshow.vue`, and `pages/index.vue` to detect `.webm` files and render `<video>` elements (with autoplay/loop/muted/controls) instead of `<img>`. Videos in grid play on hover, in lightbox show controls.
+- **Files touched**: `components/ui/FinalFantasyConstruction.vue`, `composables/useGallery.ts`, `composables/useLandingSlideshow.ts`, `components/gallery/GalleryGrid.vue`, `components/gallery/GalleryLightbox.vue`, `components/landing/HeroSlideshow.vue`, `pages/index.vue`
+
+## 2026-07-29 — Wandering chocobo + puffin (replaced cursor tracking)
+
+- **Summary**: Removed pointer tracking code entirely. Chocobo and a new puffin now wander autonomously using RAF-driven random target selection with pause behavior. Completely redesigned chocobo CSS for authentic Final Fantasy look: larger 80×65 body, 3 red crest plumes, bigger beak, wider legs, improved proportions. Added puffin with black body, white belly, colorful orange/yellow/blue triangular beak, orange feet. Both birds wander independently with random targets, pauses, and direction changes.
+- **Files touched**: `components/ui/FinalFantasyConstruction.vue`

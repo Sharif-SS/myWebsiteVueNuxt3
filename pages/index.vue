@@ -24,6 +24,10 @@ useHead({
 
 const { heroPair, funSlides, refresh } = useLandingSlideshow()
 
+function isVideo(src: string): boolean {
+  return src?.endsWith('.webm')
+}
+
 function advanceSlideshow() {
   refresh()
 }
@@ -79,18 +83,30 @@ function advanceSlideshow() {
           <div class="relative aspect-[4/3]">
             <div class="absolute inset-0 overflow-hidden">
               <img
+                v-if="!isVideo(slide.src)"
                 :src="slide.src"
                 class="w-full h-full object-cover scale-125 blur-lg brightness-50"
                 aria-hidden="true"
                 loading="lazy"
               >
+              <div v-else class="w-full h-full bg-gray-900" aria-hidden="true" />
             </div>
             <img
+              v-if="!isVideo(slide.src)"
               :src="slide.src"
               :alt="`${slide.category} photography`"
               class="relative z-10 w-full h-full object-contain"
               loading="lazy"
             >
+            <video
+              v-else
+              :src="slide.src"
+              class="relative z-10 w-full h-full object-contain"
+              muted
+              loop
+              playsinline
+              autoplay
+            ></video>
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" style="z-index: 15" />
             <div class="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-black/80 via-black/40 to-transparent pt-10 pb-3 px-4">
               <span class="inline-flex items-center gap-1.5 text-white text-sm font-bold uppercase tracking-wide whitespace-nowrap">

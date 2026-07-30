@@ -19,6 +19,10 @@ const emit = defineEmits<{
 const currentIndex = ref(props.initialIndex)
 const current = computed(() => props.images[currentIndex.value])
 
+function isVideo(src: string): boolean {
+  return src?.endsWith('.webm')
+}
+
 function prev() {
   if (currentIndex.value > 0) currentIndex.value--
 }
@@ -73,10 +77,19 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
       </button>
 
       <img
+        v-if="!isVideo(current.src)"
         :src="current.src"
         :alt="`${current.category} photography`"
         class="max-h-[90vh] max-w-[90vw] object-contain"
       >
+      <video
+        v-else
+        :src="current.src"
+        class="max-h-[90vh] max-w-[90vw] object-contain"
+        controls
+        autoplay
+        playsinline
+      ></video>
 
       <button
         v-if="currentIndex < images.length - 1"

@@ -18,9 +18,38 @@ const navLinks = [
   { label: 'Contact', to: '/contact' },
 ]
 
+const servicesLinks = [
+  { label: 'Event MC for Hire', to: '/services/event-mc' },
+  { label: 'Web Development', to: '/services/web-development' },
+]
+
+const servicesOpen = ref(false)
+const servicesRef = ref<HTMLElement | null>(null)
+
 function isActive(path: string): boolean {
   return route.path === path
 }
+
+function isServicesActive(): boolean {
+  return servicesLinks.some(l => route.path === l.to)
+}
+
+function onServicesEnter() {
+  servicesOpen.value = true
+}
+
+function onServicesLeave() {
+  servicesOpen.value = false
+}
+
+function onDocumentClick(e: MouseEvent) {
+  if (servicesRef.value && !servicesRef.value.contains(e.target as Node)) {
+    servicesOpen.value = false
+  }
+}
+
+onMounted(() => document.addEventListener('click', onDocumentClick))
+onUnmounted(() => document.removeEventListener('click', onDocumentClick))
 </script>
 
 <template>
@@ -60,6 +89,49 @@ function isActive(path: string): boolean {
       >
         {{ link.label }}
       </NuxtLink>
+
+      <!-- Services dropdown -->
+      <div
+        ref="servicesRef"
+        class="relative"
+        @mouseenter="onServicesEnter"
+        @mouseleave="onServicesLeave"
+      >
+        <button
+          class="flex items-center gap-1 px-3 py-1.5 text-sm font-medium rounded-md transition-colors"
+          :class="isServicesActive() ? 'text-gray-900 bg-gray-100/80' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'"
+          @click="servicesOpen = !servicesOpen"
+          aria-haspopup="true"
+          :aria-expanded="servicesOpen"
+        >
+          Services
+          <Icon
+            name="mdi:chevron-down"
+            class="w-4 h-4 transition-transform duration-200"
+            :class="servicesOpen ? 'rotate-180' : ''"
+          />
+        </button>
+
+        <Transition name="dropdown">
+          <div
+            v-if="servicesOpen"
+            class="absolute right-0 mt-1 w-56 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-50"
+            role="menu"
+          >
+            <NuxtLink
+              v-for="link in servicesLinks"
+              :key="link.to"
+              :to="link.to"
+              role="menuitem"
+              class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+              :class="isActive(link.to) ? 'bg-gray-50 text-gray-900 font-medium' : ''"
+              @click="servicesOpen = false"
+            >
+              {{ link.label }}
+            </NuxtLink>
+          </div>
+        </Transition>
+      </div>
     </nav>
 
     <!-- Header secret button -->
@@ -83,3 +155,15 @@ function isActive(path: string): boolean {
     </header>
   </div>
 </template>
+
+<style scoped>
+.dropdown-enter-active,
+.dropdown-leave-active {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.dropdown-enter-from,
+.dropdown-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+</style>
