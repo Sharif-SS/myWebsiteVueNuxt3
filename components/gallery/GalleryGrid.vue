@@ -14,8 +14,13 @@ const emit = defineEmits<{
 
 const orientations = ref<Record<string, 'portrait' | 'landscape'>>({})
 
+function isVideo(src: string): boolean {
+  return src.endsWith('.webm')
+}
+
 function preload(src: string): Promise<'portrait' | 'landscape'> {
   return new Promise((resolve) => {
+    if (isVideo(src)) return resolve('landscape')
     if (typeof Image === 'undefined') return resolve('landscape')
     const img = new Image()
     img.onload = () => resolve(img.naturalHeight > img.naturalWidth ? 'portrait' : 'landscape')
@@ -52,11 +57,22 @@ function span(src: string): string {
       @click="emit('open', i)"
     >
       <img
+        v-if="!isVideo(img.src)"
         :src="img.src"
         :alt="`${img.category} photography`"
         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         loading="lazy"
       >
+      <video
+        v-else
+        :src="img.src"
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        muted
+        loop
+        playsinline
+        @mouseenter="($event.target as HTMLVideoElement)?.play()"
+        @mouseleave="($event.target as HTMLVideoElement)?.pause()"
+      ></video>
     </div>
   </div>
 </template>

@@ -14,7 +14,7 @@ const year = new Date().getFullYear()
         <a
           href="https://www.linkedin.com/in/sharif-sircar/"
           target="_blank"
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/30 backdrop-blur-md border border-accent/50 text-gray-700 text-sm font-medium hover:bg-accent/50 transition-colors"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/60 backdrop-blur-md border border-accent/70 text-gray-800 text-sm font-medium hover:bg-accent/80 transition-colors"
           aria-label="LinkedIn"
         >
           <Icon name="mdi:linkedin" class="w-4 h-4" />
@@ -23,7 +23,7 @@ const year = new Date().getFullYear()
         <a
           href="https://www.instagram.com/sharifsircarphoto/"
           target="_blank"
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/30 backdrop-blur-md border border-accent/50 text-gray-700 text-sm font-medium hover:bg-accent/50 transition-colors"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/60 backdrop-blur-md border border-accent/70 text-gray-800 text-sm font-medium hover:bg-accent/80 transition-colors"
           aria-label="Instagram"
         >
           <Icon name="mdi:instagram" class="w-4 h-4" />

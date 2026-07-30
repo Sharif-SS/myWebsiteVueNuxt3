@@ -16,6 +16,13 @@ const navItems = [
   { label: 'Contact', to: '/contact', icon: 'mdi:email' },
 ]
 
+const servicesLinks = [
+  { label: 'Event MC for Hire', to: '/services/event-mc', icon: 'mdi:microphone' },
+  { label: 'Web Development', to: '/services/web-development', icon: 'mdi:code-tags' },
+]
+
+const servicesOpen = ref(false)
+
 function close() {
   emit('update:modelValue', false)
 }
@@ -54,6 +61,38 @@ onUnmounted(() => document.removeEventListener('keydown', onKeydown))
             <Icon :name="item.icon" class="w-5 h-5" />
             <span class="font-medium text-sm">{{ item.label }}</span>
           </NuxtLink>
+
+          <!-- Services expandable -->
+          <div class="flex flex-col">
+            <button
+              class="flex items-center gap-3 py-2.5 px-3 rounded-lg transition-colors text-gray-700 hover:bg-gray-50 hover:text-gray-900 w-full"
+              @click="servicesOpen = !servicesOpen"
+            >
+              <Icon name="mdi:briefcase" class="w-5 h-5" />
+              <span class="font-medium text-sm flex-1 text-left">Services</span>
+              <Icon
+                name="mdi:chevron-down"
+                class="w-4 h-4 transition-transform duration-200"
+                :class="servicesOpen ? 'rotate-180' : ''"
+              />
+            </button>
+            <Transition name="expand">
+              <div v-if="servicesOpen" class="flex flex-col ml-2 border-l-2 border-gray-100 pl-2">
+                <NuxtLink
+                  v-for="link in servicesLinks"
+                  :key="link.to"
+                  :to="link.to"
+                  :aria-current="isActive(link.to) ? 'page' : undefined"
+                  class="flex items-center gap-3 py-2.5 px-3 rounded-lg transition-colors text-sm"
+                  :class="isActive(link.to) ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'"
+                  @click="close"
+                >
+                  <Icon :name="link.icon" class="w-4 h-4" />
+                  <span>{{ link.label }}</span>
+                </NuxtLink>
+              </div>
+            </Transition>
+          </div>
         </div>
       </nav>
     </Transition>
@@ -69,5 +108,21 @@ onUnmounted(() => document.removeEventListener('keydown', onKeydown))
 .slide-down-leave-to {
   transform: translateY(-8px);
   opacity: 0;
+}
+
+.expand-enter-active,
+.expand-leave-active {
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+.expand-enter-from,
+.expand-leave-to {
+  opacity: 0;
+  max-height: 0;
+}
+.expand-enter-to,
+.expand-leave-from {
+  opacity: 1;
+  max-height: 200px;
 }
 </style>

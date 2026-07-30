@@ -20,12 +20,17 @@ const vp = ref<Orientation>('landscape')
 const orientations = ref<Record<string, Orientation>>({})
 const ready = ref(false)
 
+function isVideo(src: string): boolean {
+  return src?.endsWith('.webm')
+}
+
 function updateViewport() {
   vp.value = window.innerHeight > window.innerWidth ? 'portrait' : 'landscape'
 }
 
 function preload(src: string): Promise<Orientation> {
   return new Promise((resolve) => {
+    if (isVideo(src)) return resolve('landscape')
     if (typeof Image === 'undefined') return resolve('landscape')
     const img = new Image()
     img.onload = () => resolve(img.naturalHeight > img.naturalWidth ? 'portrait' : 'landscape')
@@ -87,18 +92,29 @@ onUnmounted(() => {
       >
         <div class="absolute inset-0 overflow-hidden">
           <img
+            v-if="!isVideo(item?.src ?? '')"
             :src="item?.src"
             class="w-full h-full object-cover scale-125 blur-lg brightness-50"
             aria-hidden="true"
           >
+          <div v-else class="w-full h-full bg-gray-900" aria-hidden="true" />
         </div>
 
         <img
-          v-if="item?.src"
+          v-if="item?.src && !isVideo(item.src)"
           :src="item.src"
           :alt="`${item.category} photography`"
           class="relative z-10 w-full h-full object-contain"
         >
+        <video
+          v-else-if="item?.src"
+          :src="item.src"
+          class="relative z-10 w-full h-full object-contain"
+          muted
+          loop
+          playsinline
+          autoplay
+        ></video>
 
         <div
           class="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300 pointer-events-none"
