@@ -58,7 +58,7 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick))
     <div
       class="w-full bg-gray-900 text-white text-center py-1.5 px-4 text-xs tracking-wide"
     >
-      Site Update (July 24, 2026): Under major construction. Thank you! — Sharif
+      Site Update (July 29th, 2026): Under construction. Thank you. — Sharif
     </div>
 
     <!-- Main header -->
