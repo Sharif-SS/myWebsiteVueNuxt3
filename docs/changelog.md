@@ -160,3 +160,8 @@
 
 - **Summary**: Added fade-in-up scroll-reveal animations using a custom `v-reveal` directive and IntersectionObserver. Created `plugins/reveal.ts` (no `.client` suffix — registered on both server/client for SSR compatibility; `mounted` hook only fires on client). Added `.reveal` / `.revealed` CSS in `assets/main.scss` with a 0.7s cubic-bezier transition. Applied to homepage About section, "Outside of Events" section heading/paragraph, fun cards (staggered by index via `transitionDelay`), and photography page heading/subtitle/grid. `npm run generate` passes clean.
 - **Files touched**: `plugins/reveal.ts` (new), `assets/main.scss`, `pages/index.vue`, `pages/photography.vue`
+
+## 2026-07-29 — Added "Mixed Category" as 4th gallery category
+
+- **Summary**: Added `'Mixed Category'` to the `FUN` array in `useLandingSlideshow.ts` so the homepage shows a 4th image block pulling from `public/photos/Mixed Category/`. Added `['Mixed Category']` as a third group in `photography.vue` so it appears as a selectable category in the carousel. No other changes needed — the existing `import.meta.glob` patterns already discover images in this folder automatically.
+- **Files touched**: `composables/useLandingSlideshow.ts`, `pages/photography.vue`

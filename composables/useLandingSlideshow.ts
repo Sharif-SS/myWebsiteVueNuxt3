@@ -6,7 +6,7 @@ interface Slide {
 }
 
 const FEATURED = ['Portraits', 'Events']
-const FUN = ['Pets', 'Landscape', 'Vehicles']
+const FUN = ['Pets', 'Landscape', 'Vehicles', 'Mixed Category']
 
 export function useLandingSlideshow() {
   const images: Record<string, string> = import.meta.glob(
