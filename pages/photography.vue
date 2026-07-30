@@ -3,7 +3,7 @@ import { ref, computed } from 'vue'
 
 const { categories: allCats, getImages, shuffle } = useGallery()
 
-const groups = [['Events', 'Portraits'], ['Landscape', 'Pets', 'Vehicles']]
+const groups = [['Events', 'Portraits'], ['Landscape', 'Pets', 'Vehicles'], ['Mixed Category']]
 const categoryGroups = groups.filter(g => g.every(c => allCats.includes(c)))
 const flatCategories = categoryGroups.flat()
 
