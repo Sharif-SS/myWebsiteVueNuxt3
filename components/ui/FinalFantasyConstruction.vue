@@ -144,8 +144,8 @@ onUnmounted(() => {
       <div class="message-box">
         <div class="message-box-border">
           <div class="message-box-inner">
-            <p class="message-text">Site Update (July 29th, 2026): Under construction.</p>
-            <p class="message-text">Thank you. — Sharif</p>
+            <p class="message-text">Under major construction.</p>
+            <p class="message-text">Thank you! — Sharif</p>
           </div>
         </div>
       </div>
