@@ -18,7 +18,7 @@ const navItems = [
 
 const servicesLinks = [
   { label: 'Event MC for Hire', to: '/services/event-mc', icon: 'mdi:microphone' },
-  { label: 'Web Development with Analytics', to: '/services/web-development', icon: 'mdi:code-tags' },
+  { label: 'Web & Analytics', to: '/services/web-development', icon: 'mdi:code-tags' },
 ]
 
 const servicesOpen = ref(false)
