@@ -17,7 +17,7 @@ const navItems = [
 ]
 
 const servicesLinks = [
-  { label: 'Event MC for Hire', to: '/services/event-mc', icon: 'mdi:microphone' },
+  { label: 'Host & MC', to: '/services/event-mc', icon: 'mdi:microphone' },
   { label: 'Web & Analytics', to: '/services/web-development', icon: 'mdi:code-tags' },
 ]
 
