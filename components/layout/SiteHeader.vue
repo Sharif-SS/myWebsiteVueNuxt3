@@ -20,7 +20,7 @@ const navLinks = [
 
 const servicesLinks = [
   { label: 'Event MC for Hire', to: '/services/event-mc' },
-  { label: 'Web Development', to: '/services/web-development' },
+  { label: 'Web Development with Analytics', to: '/services/web-development' },
 ]
 
 const servicesOpen = ref(false)
