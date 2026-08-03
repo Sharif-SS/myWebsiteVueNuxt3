@@ -19,7 +19,7 @@ const navLinks = [
 ]
 
 const servicesLinks = [
-  { label: 'Event MC for Hire', to: '/services/event-mc' },
+  { label: 'Host & MC', to: '/services/event-mc' },
   { label: 'Web & Analytics', to: '/services/web-development' },
 ]
 

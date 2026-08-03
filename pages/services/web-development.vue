@@ -8,5 +8,5 @@ useHead({
 </script>
 
 <template>
-  <UiFinalFantasyConstruction title="Web Development" />
+  <UiFinalFantasyConstruction title="Data-Informed Web Development for Growing Businesses" />
 </template>
