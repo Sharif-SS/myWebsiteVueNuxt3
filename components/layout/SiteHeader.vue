@@ -54,11 +54,13 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick))
 
 <template>
   <div class="fixed top-0 left-0 right-0 z-50">
-    <!-- Announcement banner -->
-    <div
-      class="w-full bg-gray-900 text-white text-center py-1.5 px-4 text-xs tracking-wide"
-    >
-      Site Update (July 29th, 2026): Under construction. Thank you. — Sharif
+    <!-- Announcement banner (floating overlay) -->
+    <div class="absolute left-0 right-0 top-[58px] flex justify-center px-4">
+      <p
+        class="max-w-full truncate rounded-full bg-gray-900/90 backdrop-blur-md text-white text-center text-xs tracking-wide py-2 px-4 shadow-lg shadow-black/10"
+      >
+        Site Update (July 29th, 2026): Under construction. Thank you. — Sharif
+      </p>
     </div>
 
     <!-- Main header -->
