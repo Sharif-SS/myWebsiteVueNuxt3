@@ -181,6 +181,17 @@
 - **Summary**: Replaced the simple chocobo with a highly detailed CSS version featuring layered feather textures via `repeating-linear-gradient` on body, wing, tail, and neck. Wing has 3 feather layers with individual strand detail. Tail has a 3-feather plume. Added belly patch, eye pupil/shine, head fluff, 3-crest feather set (main/side/back), beak line, and feet. All animations preserved (bob, flap, tail-wag, crest-wobble, blink). Changed from keyframe walk to JS-driven cursor following using `mousemove`/`touchmove` with smooth lerp interpolation — chocobo smoothly follows mouse or finger position horizontally, and flips direction to face the cursor.
 - **Files touched**: `components/ui/FinalFantasyConstruction.vue`
 
+## 2026-08-09 — Hero slideshow: shuffle-through-all, crossfade, tap feedback
+
+- **Summary**:
+  - Fixed hero slideshow repeating images / not cycling all photos. `useLandingSlideshow.ts` now uses per-category Fisher–Yates cycles: every Portraits (21) and Events (44) image plays before any repeats, and the same image never plays twice in a row (last ≠ first guard on reshuffle).
+  - Applied the same no-repeat cycle treatment to the "fun" category cards (Pets, Landscape, Vehicles, Mixed Category).
+  - Decoupled timing: hero auto-advances every 10s (was 30s), fun cards keep a 30s cadence; click/tap only advances the hero pair.
+  - Crossfade between transitions: `HeroSlideshow.vue` now wraps each pair render in a `<Transition>` keyed on `category:src`, 700ms opacity crossfade, works for both auto-advance and click/tap. Incoming images are pre-warmed in the browser cache before the swap.
+  - Tap/click feedback: pressed state (scale-down + brightness dim) via pointer events, plus a "Next ▸" pill that appears on hover and pulses while pressed.
+- **Files touched**: `composables/useLandingSlideshow.ts`, `components/landing/HeroSlideshow.vue`, `pages/index.vue`
+- **Verification**: `npm run generate` builds and prerenders successfully.
+
 ## 2026-07-29 — Chocobo pointer tracking fix + WebM support
 
 - **Summary**: Rewrote chocobo cursor following to use `pointermove` (unified mouse+touch API) with direct DOM style updates via template ref — bypasses Vue reactivity entirely for smooth, reliable tracking. No more RAF lerp or CSS transition. Chocobo now follows cursor/tap exactly. Added `webm` to glob patterns in `useGallery.ts` and `useLandingSlideshow.ts`. Updated `GalleryGrid.vue`, `GalleryLightbox.vue`, `HeroSlideshow.vue`, and `pages/index.vue` to detect `.webm` files and render `<video>` elements (with autoplay/loop/muted/controls) instead of `<img>`. Videos in grid play on hover, in lightbox show controls.
