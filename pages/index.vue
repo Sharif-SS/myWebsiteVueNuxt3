@@ -22,21 +22,17 @@ useHead({
   ],
 })
 
-const { heroPair, funSlides, refresh } = useLandingSlideshow()
+const { heroPair, funSlides, advanceHero } = useLandingSlideshow()
 
 function isVideo(src: string): boolean {
   return src?.endsWith('.webm')
-}
-
-function advanceSlideshow() {
-  refresh()
 }
 </script>
 
 <template>
   <div class="bg-white">
     <section class="relative">
-      <LandingHeroSlideshow :pair="heroPair" @next="advanceSlideshow" />
+      <LandingHeroSlideshow :pair="heroPair" @next="advanceHero" />
     </section>
 
     <section v-reveal class="max-w-5xl mx-auto px-4 py-20 [content-visibility:auto] reveal">
