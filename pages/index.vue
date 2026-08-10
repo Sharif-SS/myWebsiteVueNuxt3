@@ -35,35 +35,36 @@ function isVideo(src: string): boolean {
       <LandingHeroSlideshow :pair="heroPair" @next="advanceHero" />
     </section>
 
-    <section v-reveal class="max-w-5xl mx-auto px-4 py-20 [content-visibility:auto] reveal">
+    <section v-reveal class="max-w-5xl mx-auto px-4 py-12 md:py-14 [content-visibility:auto] reveal">
       <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-8">About</h2>
-      <div class="flex flex-col sm:flex-row gap-8 sm:gap-10 items-start">
-        <div class="flex-shrink-0">
-          <AboutPhoto />
-        </div>
-        <div class="flex-1 min-w-0 space-y-5 text-gray-700 leading-relaxed">
-          <p>
-            Photography has been part of my life since my teens, and I never stopped shooting ever since I started playing around with my dad's old film camera.
-          </p>
-          <p>
-            I'm Sharif Sircar, a photographer based in the easternmost part of North America, Newfoundland and Labrador. My work spans portraits, events, landscape,
-            and the in-between moments that don't fit neatly into a category. I'm drawn to natural light, candid
-            expression, and the kind of images that feel more like memories than photographs.
-          </p>
-          <p>
-            This site is a living archive, a place to share what I see without over-explaining it. If something
-            catches your eye, I'd love to hear about it.
-          </p>
-          <div class="pt-6 border-t border-gray-100">
-            <p class="text-gray-600 text-sm">Based in St. John's, NL. Available for event, portrait, and commercial work.</p>
+      <div class="about-container">
+        <div class="about-row">
+          <div class="about-media">
+            <AboutPhoto />
+          </div>
+          <div class="about-copy space-y-5 text-gray-700 leading-relaxed">
+            <p>
+              Since I first picked up my dad's old film camera as a teenager, I haven't put a camera down.
+            </p>
+            <p>
+              I'm Sharif Sircar, a photographer based in the easternmost part of North America, Newfoundland and Labrador. My work spans portraits, events, landscape,
+              and the in-between moments that don't fit neatly into a category. I'm drawn to natural light, candid
+              expression, and the kind of images that feel more like memories than photographs.
+            </p>
+            <p>
+              This site is a living archive. Something catches your eye here? I'd love to hear about it.
+            </p>
+            <div class="pt-6 border-t border-gray-100">
+              <p class="text-gray-600 text-sm">Based in St. John's, NL. Available for event, portrait, and commercial work.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section v-reveal class="max-w-6xl mx-auto px-4 py-20 border-t border-gray-100 [content-visibility:auto] reveal">
-      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 reveal" v-reveal>Outside of Events and Portraits</h2>
-      <p class="text-gray-600 mb-10 max-w-xl reveal" v-reveal>
+    <section v-reveal class="max-w-6xl mx-auto px-4 py-12 md:py-14 border-t border-gray-100 [content-visibility:auto] reveal">
+      <h2 v-reveal class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 reveal">Outside of Events and Portraits</h2>
+      <p v-reveal class="text-gray-600 mb-10 max-w-xl reveal">
         I like to explore other genres of photography, and I often find myself drawn to the challenge of capturing something new. Here are a few examples of my work in other areas of photography.
       </p>
 
@@ -71,8 +72,8 @@ function isVideo(src: string): boolean {
         <NuxtLink
           v-for="(slide, i) in funSlides"
           :key="slide.category"
-          to="/photography"
           v-reveal
+          to="/photography"
           class="reveal group block overflow-hidden rounded-xl bg-gray-100 shadow-sm"
           :style="{ transitionDelay: `${i * 0.15}s` }"
         >
@@ -102,7 +103,7 @@ function isVideo(src: string): boolean {
               loop
               playsinline
               autoplay
-            ></video>
+            />
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" style="z-index: 15" />
             <div class="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-black/80 via-black/40 to-transparent pt-10 pb-3 px-4">
               <span class="inline-flex items-center gap-1.5 text-white text-sm font-bold uppercase tracking-wide whitespace-nowrap">
@@ -119,3 +120,41 @@ function isVideo(src: string): boolean {
     </section>
   </div>
 </template>
+
+<style scoped>
+.about-container {
+  container-type: inline-size;
+}
+
+.about-media {
+  float: left;
+  width: min(40%, 140px);
+  margin: 0.35rem 1.25rem 0.75rem 0;
+}
+
+@container (min-width: 32rem) and (max-width: 47.99rem) {
+  .about-media {
+    width: min(48%, 230px);
+  }
+}
+
+@container (min-width: 48rem) {
+  .about-row {
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+  }
+
+  .about-media {
+    float: none;
+    flex: 0 0 340px;
+    width: auto;
+    margin: 0;
+  }
+
+  .about-copy {
+    flex: 1;
+    min-width: 0;
+  }
+}
+</style>

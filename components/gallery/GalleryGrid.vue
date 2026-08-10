@@ -31,9 +31,9 @@ function preload(src: string): Promise<'portrait' | 'landscape'> {
 
 watch(
   () => props.images,
-  async (imgs) => {
+  async (imgs: GalleryImage[]) => {
     const result: Record<string, 'portrait' | 'landscape'> = {}
-    await Promise.all(imgs.map(async (img) => {
+    await Promise.all(imgs.map(async (img: GalleryImage) => {
       result[img.src] = await preload(img.src)
     }))
     orientations.value = result
@@ -72,7 +72,7 @@ function span(src: string): string {
         playsinline
         @mouseenter="($event.target as HTMLVideoElement)?.play()"
         @mouseleave="($event.target as HTMLVideoElement)?.pause()"
-      ></video>
+      />
     </div>
   </div>
 </template>
