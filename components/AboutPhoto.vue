@@ -20,64 +20,61 @@
 
 <style lang="scss" scoped>
 .about-photo {
-  max-width: 340px;
+  width: 100%;
+}
 
-  @media (max-width: 640px) {
-    max-width: 320px;
-    margin: 0 auto;
+.about-photo__frame {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #e5e7eb;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+@container (max-width: 47.99rem) {
+  .about-photo__frame {
+    aspect-ratio: 4 / 5;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.07);
   }
+}
 
-  &__frame {
-    position: relative;
-    aspect-ratio: 3 / 4;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #e5e7eb;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+.about-photo__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-    @media (max-width: 640px) {
-      aspect-ratio: 4 / 5;
-      box-shadow: 0 3px 14px rgba(0, 0, 0, 0.07);
-    }
-  }
+.about-photo__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.35) 60%,
+    transparent 100%
+  );
+  color: #fff;
+  pointer-events: none;
+}
 
-  &__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+.about-photo__name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
 
-  &__caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 1rem 1.25rem;
-    background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.75) 0%,
-      rgba(0, 0, 0, 0.35) 60%,
-      transparent 100%
-    );
-    color: #fff;
-    pointer-events: none;
-  }
-
-  &__name {
-    font-weight: 700;
-    font-size: 1.1rem;
-    line-height: 1.2;
-  }
-
-  &__role {
-    font-size: 0.85rem;
-    font-weight: 500;
-    opacity: 0.9;
-  }
+.about-photo__role {
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0.9;
 }
 </style>

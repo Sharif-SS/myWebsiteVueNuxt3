@@ -192,6 +192,50 @@
 - **Files touched**: `composables/useLandingSlideshow.ts`, `components/landing/HeroSlideshow.vue`, `pages/index.vue`
 - **Verification**: `npm run generate` builds and prerenders successfully.
 
+## 2026-08-09 — Homepage About section: mobile text wrap-around (zoom-aware container queries)
+
+- **Summary**:
+  - Replaced the viewport-based `sm:flex-row` 2-column switch (which jumped to image-left/text-right at any zoom whose effective CSS-px viewport crossed 640px, e.g. 75% zoom) with **CSS container queries** on the about block. Layout now follows the width actually available to the section, so any user zoom/scale is respected automatically.
+  - Narrow (`< 768px` available): `AboutPhoto` floats left inside the text flow and the paragraphs wrap around it; image width is `min(56%, 260px)`.
+  - Wide (`≥ 768px` available): unchanged desktop look — ~340px image column left, text column right.
+  - `AboutPhoto.vue` now fills its wrapper (`width: 100%`) and uses container queries (4/5 aspect on narrow, 3/4 on wide) instead of hardcoded `max-width: 340px` / viewport `@media (max-width: 640px)`.
+- **Files touched**: `pages/index.vue`, `components/AboutPhoto.vue`
+- **Verification**: `npm run generate` builds and prerenders successfully; lint + typecheck clean for both files.
+
+## 2026-08-09 — About section fixes + consistent homepage section spacing
+
+- **Summary**:
+  - **Fixed desktop at 100% scale**: the previous `@container` rule applied `display:flex` to the element that was *itself* the size container (self-referential container query — ignored by browsers). Restructured to `.about-container` (container only) wrapping `.about-row` (which receives the query styles), so `display:flex`/gap now actually apply on wide containers.
+  - **Smaller mobile image / legible wrap**: narrow containers now use `width: min(40%, 140px)` (was `min(56%, 260px)` → 183px leaving ~121px orphan columns). Added a tablet tier (`min(48%, 230px)` for 512–768px containers). Measured via headless CDP: 375px viewport → 131px image with ~177px wrap column; 1440px → proper 340px image + 612px right column.
+  - **Section spacing**: standardized homepage sections from `py-20` (80px ×2 → 161px gaps) to consistent `py-12 md:py-14` (48/56px); About→Outside gap now 112px with the divider. Verified computed paddings via headless Edge.
+- **Files touched**: `pages/index.vue`, `components/AboutPhoto.vue`
+- **Verification**: `npm run generate`, lint, and typecheck pass (only pre-existing `SiteHeader.vue` lint + `GalleryGrid.vue` typecheck noise remains).
+
+## 2026-08-10 01:08 UTC — Scroll-reveal hardening: pages can never load blank
+
+- **Summary**:
+  - **Root cause**: every `.reveal` element shipped with `opacity: 0` baked into the SSR'd HTML (`assets/main.scss`), so the photography page (and any section using `v-reveal`) was fully invisible until client hydration completed and IntersectionObserver fired. On a heavy page (photography: 45 images + carousel + lightbox) hydration lag or a missed observer callback could leave the page visually blank ("it comes back blank").
+  - **Fix**: content is now **visible by default**. `.reveal` no longer hides anything; the client plugin (`plugins/reveal.ts`) adds `.reveal-ready` *after* hydration succeeds, then animates to `.revealed` via IntersectionObserver. If JS is slow, missing, or IO breaks, the page simply stays visible — no blank, ever.
+  - Added a `window` `load` safety net: if the observer never fires, elements reveal on load.
+  - Verified generated SSR: elements carry only `class="reveal"`, CSS bundle contains the new `.reveal.reveal-ready` / `.reveal.reveal-ready.revealed` rules, and the photography page prerenders its full 45-image grid.
+- **Files touched**: `assets/main.scss`, `plugins/reveal.ts`
+- **Verification**: `npm run generate` passes (16 routes); `eslint plugins/reveal.ts` clean; `vue-tsc` clean for touched files (only pre-existing `GalleryGrid.vue` TS7006 noise remains).
+- **Note**: Extensive headless-Edge CDP debugging this session (dumppage/probe scripts in `%TEMP%\opencode`) confirmed the static output and dev server render `/photography` fully (h1 + 45 imgs + grid); the blank was purely client-side reveal timing, not content generation.
+
+## 2026-08-10 01:40 UTC — REAL root cause of "blank until scroll/category click": reveal observer threshold
+
+- **Summary**: Chrome CDP measurements showed the photography grid (`.reveal` element, ~7,200px tall for 45 images) **never revealed even when scrolled into view**. The `v-reveal` IntersectionObserver used `{ threshold: 0.1 }`, which requires 10% of the *element* to be visible. For a grid that tall that ratio can sit just under 0.1 (measured 0.067 / 0.097 / 0.04) at any realistic scroll position — within a 485px-tall viewport a 6,600px grid rarely exposes ≥10% — so the callback never fired and the grid stayed `opacity: 0` ("loads the moment I scroll to a good spot / click a category and the grid shrinks/re-mounts").
+- **Fix**: `plugins/reveal.ts` — changed the observer to `{ threshold: 0 }`, i.e. reveal as soon as **any pixel** of the element enters the viewport. Verified in headless Chrome on both dev (`:3000`) and the static build (`:10002`): h1/p reveal instantly; the 45-image grid reveals on load; scrolling the homepage progressively reveals all 8 `.reveal` elements.
+- **Files touched**: `plugins/reveal.ts`
+- **Verification**: `npm run generate` passes; `eslint plugins/reveal.ts` clean; `vue-tsc` passes with zero errors.
+- **Also fixed during debugging**: the temporary local static servers (`%TEMP%\opencode\serve*.mjs`) were sending `application/octet-stream` for extensionless routes (`/photography`, `/contact`) because MIME was derived from the URL path instead of the resolved file — a real MIME bug worth avoiding in any Netlify/static tooling, and why headless browsers refused to commit those navigations.
+
+## 2026-08-10 01:15 UTC — Clear pre-existing GalleryGrid typecheck noise
+
+- **Summary**: Explicitly typed the `watch` callback params in `GalleryGrid.vue` (`imgs: GalleryImage[]`, `img: GalleryImage`), eliminating the two pre-existing `TS7006` "implicitly any" errors that have been carried in `npm run typecheck` since the gallery rebuild.
+- **Files touched**: `components/gallery/GalleryGrid.vue`
+- **Verification**: `npm run typecheck` now passes with zero errors; `eslint` clean; `npm run generate` passes.
+
 ## 2026-07-29 — Chocobo pointer tracking fix + WebM support
 
 - **Summary**: Rewrote chocobo cursor following to use `pointermove` (unified mouse+touch API) with direct DOM style updates via template ref — bypasses Vue reactivity entirely for smooth, reliable tracking. No more RAF lerp or CSS transition. Chocobo now follows cursor/tap exactly. Added `webm` to glob patterns in `useGallery.ts` and `useLandingSlideshow.ts`. Updated `GalleryGrid.vue`, `GalleryLightbox.vue`, `HeroSlideshow.vue`, and `pages/index.vue` to detect `.webm` files and render `<video>` elements (with autoplay/loop/muted/controls) instead of `<img>`. Videos in grid play on hover, in lightbox show controls.
