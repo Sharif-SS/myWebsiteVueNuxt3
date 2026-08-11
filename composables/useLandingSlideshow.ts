@@ -6,7 +6,7 @@ interface Slide {
 }
 
 const FEATURED = ['Portraits', 'Events']
-const FUN = ['Pets', 'Landscape', 'Vehicles', 'Mixed Category']
+const FUN = ['Pets', 'Landscape', 'Vehicles', 'Miscellaneous']
 
 const HERO_INTERVAL_MS = 10000
 const FUN_INTERVAL_MS = 30000
