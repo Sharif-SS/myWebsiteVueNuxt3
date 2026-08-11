@@ -88,8 +88,10 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
         class="max-h-[90vh] max-w-[90vw] object-contain"
         controls
         autoplay
+        loop
+        muted
         playsinline
-      ></video>
+      />
 
       <button
         v-if="currentIndex < images.length - 1"

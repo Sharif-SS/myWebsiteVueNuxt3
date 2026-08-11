@@ -230,6 +230,28 @@
 - **Verification**: `npm run generate` passes; `eslint plugins/reveal.ts` clean; `vue-tsc` passes with zero errors.
 - **Also fixed during debugging**: the temporary local static servers (`%TEMP%\opencode\serve*.mjs`) were sending `application/octet-stream` for extensionless routes (`/photography`, `/contact`) because MIME was derived from the URL path instead of the resolved file — a real MIME bug worth avoiding in any Netlify/static tooling, and why headless browsers refused to commit those navigations.
 
+## 2026-08-10 02:05 UTC — Gallery: justified "Tetris" packed layout (no crop, no empty spots)
+
+- **Summary**: Replaced the old variable-span CSS grid (`col-span-1`/`col-span-2`, which left empty cells when a landscape couldn't fit a 1-cell gap and pushed it to the next row) with a **justified / packed layout**:
+  - `composables/useJustifiedLayout.ts` (new): loads natural dimensions of every image+video (cached per `src`), then packs them into rows that each fill the container width end-to-end. Aspect ratios are preserved exactly (nothing cropped/stretched). Wide panoramas get their own full-width row; the final short row is centered and capped at a normal tile height.
+  - `components/gallery/GalleryGrid.vue` (rewritten): container width measured via `ResizeObserver` (rAF-throttled) and recomputed on resize/`images` change; renders packed rows as flex rows with exact pixel widths/heights. Emits the **original array index** per tile, so the lightbox still opens the right photo regardless of visual reordering. While dimensions/width are still unknown (SSR + first client frame), renders a clean uniform `aspect-[3/2]` placeholder grid so the static page still shows every image.
+  - Deleted the old `span()`/`orientations`/`preload()` orientation machinery.
+- **Files touched**: `composables/useJustifiedLayout.ts` (new), `components/gallery/GalleryGrid.vue`
+- **Verification**: `npm run generate`, lint, and `vue-tsc` all pass. Headless Chrome (CDP) confirmed at 717px desktop: all 15/15 rows fill the container exactly (sub-pixel error ≤ 0.05px) with rendered ratio == natural ratio on every tile (no crop); mobile 390px and tablet 768px repack to the viewport with centered final rows; zero console errors. Note the Gallery previously needed image orientation → that whole `preload()`/`orientations` path is now gone, simplifying the component.
+
+## 2026-08-11 01:41 UTC — Rename "Mixed Category" → "Miscellaneous" + tiered category weighting
+
+- **Summary**: Renamed the fourth gallery category from `'Mixed Category'` to `Miscellaneous` for consistency: `public/photos/Mixed Category/` → `public/photos/Miscellaneous/` (git-detected rename, drag-and-drop catalog picks it up automatically), updated the `FUN` array in `useLandingSlideshow.ts` and the third group in `pages/photography.vue`.
+- **Redesign**: Rebuilt `CategoryCarousel.vue` as a weighted two-tier chip menu with no visible labels, based on design theory — **Gestalt similarity** (primary chips share the mint accent family, secondary are neutral white → they read as one family), **proximity** (extra whitespace, no divider line, separates the secondary tier), **serial-position/primacy** (Events, Portraits first), **Fitts's law** (primary targets larger), and **figure-ground contrast** (size, weight, fill saturation, shadow). Active states stay unambiguous in both tiers: primary = solid accent fill, secondary = accent-tinted outline. `photography.vue` now derives `categoryOptions` marking group 0 (Events, Portraits) as `primary: true`.
+- **Files touched**: `public/photos/Mixed Category/` (renamed → `Miscellaneous`), `composables/useLandingSlideshow.ts`, `pages/photography.vue`, `components/gallery/CategoryCarousel.vue`
+- **Verification**: `npm run generate` passes (16 routes prerendered) — static output contains zero `"Mixed Category"` references and renders `Miscellaneous` in the SSR'd photography nav; `npm run typecheck` clean; eslint clean on all touched files (pre-existing SiteHeader indent errors untouched).
+
+## 2026-08-10 02:15 UTC — Gallery: scale justified tiles +30% on tablet/desktop
+
+- **Summary**: Increased the justified-layout target row height from `260px` to `338px` (`260 × 1.3`) for viewports ≥ 640px; mobile stays at `180px`. Because rows always stretch to fill the container width, every tile is ~30% larger with identical packing — no code-path changes, scales linearly.
+- **Files touched**: `components/gallery/GalleryGrid.vue`
+- **Verification**: `npm run generate`, lint, and `vue-tsc` pass. Headless Chrome at 1440/1024/768px: rows pack exactly (only the intentionally centered last row is short), row heights ~340–400px, rendered ratios still equal natural ratios, no console errors.
+
 ## 2026-08-10 01:15 UTC — Clear pre-existing GalleryGrid typecheck noise
 
 - **Summary**: Explicitly typed the `watch` callback params in `GalleryGrid.vue` (`imgs: GalleryImage[]`, `img: GalleryImage`), eliminating the two pre-existing `TS7006` "implicitly any" errors that have been carried in `npm run typecheck` since the gallery rebuild.
@@ -245,3 +267,16 @@
 
 - **Summary**: Removed pointer tracking code entirely. Chocobo and a new puffin now wander autonomously using RAF-driven random target selection with pause behavior. Completely redesigned chocobo CSS for authentic Final Fantasy look: larger 80×65 body, 3 red crest plumes, bigger beak, wider legs, improved proportions. Added puffin with black body, white belly, colorful orange/yellow/blue triangular beak, orange feet. Both birds wander independently with random targets, pauses, and direction changes.
 - **Files touched**: `components/ui/FinalFantasyConstruction.vue`
+
+## 2026-08-11 02:12 UTC — Fix lightbox videos not auto-playing
+
+- **Summary**: Gallery lightbox videos stopped auto-playing because the `<video>` element in `GalleryLightbox.vue` had `autoplay` but no `muted` — browsers block unmuted autoplay. Added `muted loop` alongside the existing `controls autoplay playsinline`. (The `></video>` → `/>` change was a harmless `eslint --fix` self-closing reformat; Vue compiles `<video />` identically to `<video></video>` and was not the cause.) Grid hover-play videos already had `muted loop` and were unaffected.
+- **Files touched**: `components/gallery/GalleryLightbox.vue`
+- **Verification**: `npm run lint`, `npm run typecheck`, and `npm run generate` all pass.
+
+## 2026-08-11 02:05 UTC — Lint cleanup + dynamic site-update banner date
+
+- **Summary**: Ran `npm run lint:fix` to clear all pre-existing ESLint failures (SiteHeader `vue/html-indent`, GalleryLightbox self-closing `<video>`, FinalFantasyConstruction attribute linebreaks, photography `attributes-order`). `npm run lint` and `npm run typecheck` now pass with zero errors.
+- **Banner**: Replaced the hardcoded `Site Update (July 29th, 2026)` text in `components/layout/SiteHeader.vue` with a dynamic date from `composables/useSiteUpdate.ts`, which reads `docs/changelog.md` raw at build time and extracts the date of the most recent `##` entry (chronologically latest across all entries, not merely the last line). Banner renders as `Site Update (August 11th, 2026): Under construction. Thank you. — Sharif`. Every future changelog append + `npm run generate` updates the banner automatically.
+- **Files touched**: `components/layout/SiteHeader.vue`, `composables/useSiteUpdate.ts` (new), plus lint-fix reformats in `components/gallery/GalleryGrid.vue`, `components/gallery/GalleryLightbox.vue`, `components/ui/FinalFantasyConstruction.vue`, `pages/photography.vue`.
+- **Verification**: `npm run lint` and `npm run typecheck` clean; `npm run generate` passes (16 routes); prerendered HTML contains the dynamic `August 11th, 2026` banner date. Note: `public/photos/Vehicles/DSC00349.webp` appears moved to `public/photos/Portraits/DSC00349.webp` (untracked) in the worktree — not caused by this task, left untouched.

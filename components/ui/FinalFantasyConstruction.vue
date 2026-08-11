@@ -105,25 +105,29 @@ onUnmounted(() => {
   <div class="ff-container">
     <!-- Stars -->
     <div class="stars-layer" aria-hidden="true">
-      <div v-for="i in 80" :key="i" class="star" :style="{
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        animationDelay: `${Math.random() * 6}s`,
-        animationDuration: `${2 + Math.random() * 4}s`,
-        width: `${1 + Math.random() * 2}px`,
-        height: `${1 + Math.random() * 2}px`,
-      }" />
+      <div
+        v-for="i in 80" :key="i" class="star" :style="{
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+          animationDelay: `${Math.random() * 6}s`,
+          animationDuration: `${2 + Math.random() * 4}s`,
+          width: `${1 + Math.random() * 2}px`,
+          height: `${1 + Math.random() * 2}px`,
+        }"
+      />
     </div>
 
     <!-- Floating orbs -->
     <div class="orbs-layer" aria-hidden="true">
-      <div v-for="i in 6" :key="'o' + i" class="orb" :style="{
-        left: `${10 + (i - 1) * 16}%`,
-        animationDelay: `${i * 0.7}s`,
-        animationDuration: `${5 + i}s`,
-        width: `${6 + i * 2}px`,
-        height: `${6 + i * 2}px`,
-      }" />
+      <div
+        v-for="i in 6" :key="'o' + i" class="orb" :style="{
+          left: `${10 + (i - 1) * 16}%`,
+          animationDelay: `${i * 0.7}s`,
+          animationDuration: `${5 + i}s`,
+          width: `${6 + i * 2}px`,
+          height: `${6 + i * 2}px`,
+        }"
+      />
     </div>
 
     <!-- Scanline overlay -->

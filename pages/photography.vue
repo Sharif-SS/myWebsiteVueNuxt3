@@ -3,9 +3,14 @@ import { ref, computed } from 'vue'
 
 const { categories: allCats, getImages, shuffle } = useGallery()
 
-const groups = [['Events', 'Portraits'], ['Landscape', 'Pets', 'Vehicles'], ['Mixed Category']]
+const groups = [['Events', 'Portraits'], ['Landscape', 'Pets', 'Vehicles'], ['Miscellaneous']]
 const categoryGroups = groups.filter(g => g.every(c => allCats.includes(c)))
 const flatCategories = categoryGroups.flat()
+
+const categoryOptions = computed(() =>
+  categoryGroups
+    .flatMap((group, gi) => group.map(c => ({ label: c, primary: gi === 0 }))),
+)
 
 const activeCategory = ref(flatCategories[0] ?? '')
 
@@ -60,7 +65,7 @@ useHead({
       </p>
 
       <GalleryCategoryCarousel
-        :categories="flatCategories"
+        :categories="categoryOptions"
         :active="activeCategory"
         @select="activeCategory = $event"
       />
@@ -69,11 +74,11 @@ useHead({
         <h2 class="text-xl font-semibold text-gray-800 mb-6">{{ activeCategory }}</h2>
         <GalleryGrid
           v-if="allImages.length"
-          :images="allImages"
-          @open="openLightbox"
           v-reveal
+          :images="allImages"
           class="reveal"
           :style="{ transitionDelay: '0.3s' }"
+          @open="openLightbox"
         />
         <p v-else class="text-gray-600">No images in this category yet.</p>
       </div>
