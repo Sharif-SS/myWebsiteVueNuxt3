@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 interface Slide {
   category: string
@@ -8,17 +8,14 @@ interface Slide {
 
 const props = defineProps<{
   pair: Slide[]
+  mode: 'solo' | 'pair'
 }>()
 
 const emit = defineEmits<{
   next: []
 }>()
 
-type Orientation = 'portrait' | 'landscape'
-
-const vp = ref<Orientation>('landscape')
-const orientations = ref<Record<string, Orientation>>({})
-const ready = ref(false)
+const vp = ref<'portrait' | 'landscape'>('landscape')
 const pressed = ref(false)
 
 function isVideo(src: string): boolean {
@@ -29,52 +26,9 @@ function updateViewport() {
   vp.value = window.innerHeight > window.innerWidth ? 'portrait' : 'landscape'
 }
 
-function preload(src: string): Promise<Orientation> {
-  return new Promise((resolve) => {
-    if (isVideo(src)) return resolve('landscape')
-    if (typeof Image === 'undefined') return resolve('landscape')
-    const img = new Image()
-    img.onload = () => resolve(img.naturalHeight > img.naturalWidth ? 'portrait' : 'landscape')
-    img.onerror = () => resolve('landscape')
-    img.src = src
-  })
-}
-
-function warmCache(src: string) {
-  if (!src || isVideo(src) || typeof Image === 'undefined') return
-  const img = new Image()
-  img.src = src
-}
-
-async function load() {
-  ready.value = false
-  const result: Record<string, Orientation> = {}
-  await Promise.all(props.pair.map(async (s) => {
-    result[s.src] = await preload(s.src)
-  }))
-  orientations.value = result
-  ready.value = true
-}
-
-watch(() => props.pair, async (next) => {
-  next.forEach(s => warmCache(s.src))
-  await load()
-}, { immediate: true })
-
 const pairKey = computed(() =>
   props.pair.map(p => `${p.category}:${p.src}`).join('|'),
 )
-
-const layout = computed<'split' | 'single'>(() => {
-  if (!ready.value || props.pair.length < 2) return 'single'
-
-  const a = orientations.value[props.pair[0]?.src]
-  const b = orientations.value[props.pair[1]?.src]
-
-  if (vp.value === 'portrait' && a === 'landscape' && b === 'landscape') return 'split'
-  if (vp.value === 'landscape' && a === 'portrait' && b === 'portrait') return 'split'
-  return 'single'
-})
 
 function pressFeedback() {
   pressed.value = true
@@ -110,13 +64,13 @@ onUnmounted(() => {
       <div :key="pairKey" class="absolute inset-0">
         <div
           class="flex w-full h-full"
-          :class="layout === 'single' ? '' : (vp === 'portrait' ? 'flex-col' : 'flex-row')"
+          :class="mode === 'solo' ? '' : (vp === 'portrait' ? 'flex-col' : 'flex-row')"
         >
           <div
-            v-for="item in layout === 'single' ? [pair[0]] : pair"
+            v-for="item in mode === 'solo' ? [pair[0]] : pair"
             :key="item?.category ?? 'fallback'"
             class="relative flex-1 overflow-hidden"
-            :class="layout === 'single' ? 'w-full h-full' : ''"
+            :class="mode === 'solo' ? 'w-full h-full' : ''"
           >
             <div class="absolute inset-0 overflow-hidden">
               <img

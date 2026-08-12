@@ -22,7 +22,7 @@ useHead({
   ],
 })
 
-const { heroPair, funSlides, advanceHero } = useLandingSlideshow()
+const { heroPair, heroMode, funSlides, advanceHero } = useLandingSlideshow()
 
 function isVideo(src: string): boolean {
   return src?.endsWith('.webm')
@@ -32,7 +32,7 @@ function isVideo(src: string): boolean {
 <template>
   <div class="bg-white">
     <section class="relative">
-      <LandingHeroSlideshow :pair="heroPair" @next="advanceHero" />
+      <LandingHeroSlideshow :pair="heroPair" :mode="heroMode" @next="advanceHero" />
     </section>
 
     <section v-reveal class="max-w-5xl mx-auto px-4 py-12 md:py-14 [content-visibility:auto] reveal">
@@ -47,12 +47,13 @@ function isVideo(src: string): boolean {
               Since I first picked up my dad's old film camera as a teenager, I haven't put a camera down.
             </p>
             <p>
-              I'm Sharif Sircar, a photographer based in the easternmost part of North America, Newfoundland and Labrador. My work spans portraits, events, landscape,
-              and the in-between moments that don't fit neatly into a category. I'm drawn to natural light, candid
-              expression, and the kind of images that feel more like memories than photographs.
+              I'm Sharif Sircar, a photographer working out of the easternmost edge of North America,
+              Newfoundland. Portraits, events, landscapes, and everything in between.
+              I shoot the moments that don't fit into a category. Natural light, candid expression, images that feel like
+              memories, not photographs
             </p>
             <p>
-              This site is a living archive. Something catches your eye here? I'd love to hear about it.
+              This site is a living archive. Photo catches your eye here? I'd love to hear about it.
             </p>
             <div class="pt-6 border-t border-gray-100">
               <p class="text-gray-600 text-sm">Based in St. John's, NL. Available for event, portrait, and commercial work.</p>
