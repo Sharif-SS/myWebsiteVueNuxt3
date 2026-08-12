@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, onMounted, onUnmounted } from 'vue'
-import { buildPackedRows, loadDimensions, type GalleryImage, type LayoutRow } from '~/composables/useJustifiedLayout'
+import type { GalleryImage } from '~/utils/galleryCatalog'
+import { buildPackedRows, loadVideoDimensions, type PlacedImage, type LayoutRow } from '~/composables/useJustifiedLayout'
 
 const props = defineProps<{
   images: GalleryImage[]
@@ -61,12 +62,19 @@ watch(
     // bigger, more immersive grid. Rows still stretch to fill the full
     // container width either way, so this scales linearly.
     const targetHeight = width < 640 ? 180 : Math.round(260 * 1.3)
-    const placed = await Promise.all(imgs.map(async (img, index) => ({
-      ...img,
-      index,
-      isVideo: isVideo(img.src),
-      ...(await loadDimensions(img.src, isVideo(img.src))),
-    })))
+    const placed: PlacedImage[] = await Promise.all(imgs.map(async (img, index) => {
+      if (img.isVideo || isVideo(img.src)) {
+        const dims = await loadVideoDimensions(img.src)
+        return { ...img, index, naturalWidth: dims.naturalWidth, naturalHeight: dims.naturalHeight }
+      }
+      // Dimensions come from the build-time manifest — no download to measure.
+      return {
+        ...img,
+        index,
+        naturalWidth: img.width || 4,
+        naturalHeight: img.height || 3,
+      }
+    }))
     rows.value = buildPackedRows(placed, width, gap, targetHeight)
     ready.value = true
   },
@@ -85,10 +93,11 @@ watch(
       >
         <img
           v-if="!isVideo(img.src)"
-          :src="img.src"
+          :src="img.thumb ?? img.src"
           :alt="`${img.category} photography`"
           class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
+          decoding="async"
         >
         <video
           v-else
@@ -97,6 +106,7 @@ watch(
           muted
           loop
           playsinline
+          preload="metadata"
           @mouseenter="play"
           @mouseleave="pause"
         />
@@ -115,14 +125,19 @@ watch(
           v-for="item in row.items"
           :key="item.image.src"
           class="relative flex-none overflow-hidden rounded-lg bg-gray-100 cursor-pointer group"
-          :style="{ width: `${item.width}px` }"
+          :style="{ width: `${item.width}px`, backgroundImage: item.image.placeholder ? `url(${item.image.placeholder})` : undefined, backgroundSize: 'cover', backgroundPosition: 'center' }"
           @click="emit('open', item.image.index)"
         >
           <img
             v-if="!item.image.isVideo"
-            :src="item.image.src"
+            :src="item.image.thumb ?? item.image.src"
+            :srcset="item.image.thumb && item.image.full ? `${item.image.thumb} 1200w, ${item.image.full} 2000w` : undefined"
+            :sizes="item.image.thumb && item.image.full ? `${Math.ceil(item.width)}px` : undefined"
             :alt="`${item.image.category} photography`"
-            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            class="relative w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="low"
           >
           <video
             v-else
@@ -131,6 +146,7 @@ watch(
             muted
             loop
             playsinline
+            preload="metadata"
             @mouseenter="play"
             @mouseleave="pause"
           />

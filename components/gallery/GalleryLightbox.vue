@@ -4,6 +4,8 @@ import { ref, watch, computed, onMounted, onUnmounted } from 'vue'
 interface GalleryImage {
   src: string
   category: string
+  full?: string
+  placeholder?: string
 }
 
 const props = defineProps<{
@@ -76,14 +78,23 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
         <Icon name="mdi:chevron-left" class="w-8 h-8" />
       </button>
 
-      <img
-        v-if="!isVideo(current.src)"
-        :src="current.src"
-        :alt="`${current.category} photography`"
-        class="max-h-[90vh] max-w-[90vw] object-contain"
-      >
+      <div v-if="current && !isVideo(current.src)" class="relative max-h-[90vh] max-w-[90vw]">
+        <div
+          class="absolute inset-0"
+          aria-hidden="true"
+          :style="current.placeholder ? { backgroundImage: `url(${current.placeholder})`, backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', filter: 'blur(24px) brightness(0.4)' } : undefined"
+        />
+        <img
+          :src="current.full ?? current.src"
+          :alt="`${current.category} photography`"
+          class="relative max-h-[90vh] max-w-[90vw] object-contain"
+          loading="eager"
+          fetchpriority="auto"
+          decoding="async"
+        >
+      </div>
       <video
-        v-else
+        v-else-if="current"
         :src="current.src"
         class="max-h-[90vh] max-w-[90vw] object-contain"
         controls

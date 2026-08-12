@@ -3,6 +3,8 @@ const MONTHS = [
   'July', 'August', 'September', 'October', 'November', 'December',
 ]
 
+const TZ = 'America/St_Johns'
+
 function ordinal(day: number): string {
   const rem10 = day % 10
   const rem100 = day % 100
@@ -12,8 +14,15 @@ function ordinal(day: number): string {
   return `${day}th`
 }
 
-function formatDate(y: string, m: string, d: string): string {
-  return `${MONTHS[Number(m) - 1]} ${ordinal(Number(d))}, ${y}`
+function formatDate(date: Date): string {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: TZ,
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  }).formatToParts(date)
+  const get = (type: string) => parts.find(p => p.type === type)?.value ?? ''
+  return `${MONTHS[Number(get('month')) - 1]} ${ordinal(Number(get('day')))}, ${get('year')}`
 }
 
 function extractLatestDate(content: string): string | null {
@@ -24,7 +33,10 @@ function extractLatestDate(content: string): string | null {
     const kb = `${b[1]}-${b[2]}-${b[3]} ${b[4] ?? '00:00'}`
     return kb > ka ? b : a
   })
-  return formatDate(latest[1], latest[2], latest[3])
+  const date = latest[4]
+    ? new Date(`${latest[1]}-${latest[2]}-${latest[3]}T${latest[4]}:00Z`)
+    : new Date(`${latest[1]}-${latest[2]}-${latest[3]}T12:00:00Z`)
+  return formatDate(date)
 }
 
 const changelogRaw = (() => {

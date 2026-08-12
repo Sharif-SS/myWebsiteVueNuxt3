@@ -21,7 +21,7 @@ const allImages = computed(() => {
 
 const lightboxOpen = ref(false)
 const lightboxIndex = ref(0)
-const lightboxImages = ref<{ src: string, category: string }[]>([])
+const lightboxImages = ref<ReturnType<typeof getImages>>([])
 
 function openLightbox(index: number) {
   lightboxImages.value = allImages.value

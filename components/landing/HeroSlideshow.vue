@@ -4,6 +4,7 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 interface Slide {
   category: string
   src: string
+  placeholder?: string
 }
 
 const props = defineProps<{
@@ -73,12 +74,12 @@ onUnmounted(() => {
             :class="mode === 'solo' ? 'w-full h-full' : ''"
           >
             <div class="absolute inset-0 overflow-hidden">
-              <img
+              <div
                 v-if="!isVideo(item?.src ?? '')"
-                :src="item?.src"
-                class="w-full h-full object-cover scale-125 blur-lg brightness-50"
+                class="w-full h-full bg-gray-900"
+                :style="item?.placeholder ? { backgroundImage: `url(${item.placeholder})`, backgroundSize: 'cover', backgroundPosition: 'center', filter: 'blur(8px) brightness(0.5)' } : undefined"
                 aria-hidden="true"
-              >
+              />
               <div v-else class="w-full h-full bg-gray-900" aria-hidden="true" />
             </div>
 
@@ -87,6 +88,8 @@ onUnmounted(() => {
               :src="item.src"
               :alt="`${item.category} photography`"
               class="relative z-10 w-full h-full object-contain"
+              fetchpriority="high"
+              decoding="async"
             >
             <video
               v-else-if="item?.src"
