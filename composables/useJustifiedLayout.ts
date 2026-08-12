@@ -1,14 +1,4 @@
-export interface GalleryImage {
-  src: string
-  category: string
-}
-
-export interface PlacedImage extends GalleryImage {
-  isVideo: boolean
-  naturalWidth: number
-  naturalHeight: number
-  index: number
-}
+import type { GalleryImage } from '~/utils/galleryCatalog'
 
 export interface PlacedItem {
   image: PlacedImage
@@ -21,36 +11,39 @@ export interface LayoutRow {
   height: number
 }
 
+export interface PlacedImage extends GalleryImage {
+  naturalWidth: number
+  naturalHeight: number
+  index: number
+}
+
 const dimsCache = new Map<string, { naturalWidth: number, naturalHeight: number }>()
 
-export async function loadDimensions(src: string, isVideo: boolean): Promise<{ naturalWidth: number, naturalHeight: number }> {
-  const key = `${isVideo ? 'v:' : 'i:'}${src}`
+/**
+ * Reads intrinsic dimensions for a video at runtime (metadata-only fetch).
+ * Images no longer need this — their dimensions come from the gallery
+ * manifest produced during the build, so nothing is downloaded to measure.
+ */
+export async function loadVideoDimensions(src: string): Promise<{ naturalWidth: number, naturalHeight: number }> {
+  const key = `v:${src}`
   const hit = dimsCache.get(key)
   if (hit) return hit
-  const dims = await fetchDimensions(src, isVideo)
+  const dims = await fetchVideoDimensions(src)
   dimsCache.set(key, dims)
   return dims
 }
 
-function fetchDimensions(src: string, isVideo: boolean): Promise<{ naturalWidth: number, naturalHeight: number }> {
-  if (typeof window === 'undefined' || (isVideo && typeof document === 'undefined')) {
-    return Promise.resolve({ naturalWidth: 4, naturalHeight: 3 })
-  }
-  if (isVideo) {
-    return new Promise((resolve) => {
-      const v = document.createElement('video')
-      v.preload = 'metadata'
-      v.muted = true
-      v.onloadedmetadata = () => resolve({ naturalWidth: v.videoWidth || 16, naturalHeight: v.videoHeight || 9 })
-      v.onerror = () => resolve({ naturalWidth: 16, naturalHeight: 9 })
-      v.src = src
-    })
+function fetchVideoDimensions(src: string): Promise<{ naturalWidth: number, naturalHeight: number }> {
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return Promise.resolve({ naturalWidth: 16, naturalHeight: 9 })
   }
   return new Promise((resolve) => {
-    const img = new Image()
-    img.onload = () => resolve({ naturalWidth: img.naturalWidth, naturalHeight: img.naturalHeight })
-    img.onerror = () => resolve({ naturalWidth: 4, naturalHeight: 3 })
-    img.src = src
+    const v = document.createElement('video')
+    v.preload = 'metadata'
+    v.muted = true
+    v.onloadedmetadata = () => resolve({ naturalWidth: v.videoWidth || 16, naturalHeight: v.videoHeight || 9 })
+    v.onerror = () => resolve({ naturalWidth: 16, naturalHeight: 9 })
+    v.src = src
   })
 }
 

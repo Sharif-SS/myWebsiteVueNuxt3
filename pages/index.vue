@@ -80,13 +80,12 @@ function isVideo(src: string): boolean {
         >
           <div class="relative aspect-[4/3]">
             <div class="absolute inset-0 overflow-hidden">
-              <img
+              <div
                 v-if="!isVideo(slide.src)"
-                :src="slide.src"
-                class="w-full h-full object-cover scale-125 blur-lg brightness-50"
+                class="w-full h-full bg-gray-900"
+                :style="slide.placeholder ? { backgroundImage: `url(${slide.placeholder})`, backgroundSize: 'cover', backgroundPosition: 'center', filter: 'blur(8px) brightness(0.5)' } : undefined"
                 aria-hidden="true"
-                loading="lazy"
-              >
+              />
               <div v-else class="w-full h-full bg-gray-900" aria-hidden="true" />
             </div>
             <img
@@ -95,6 +94,7 @@ function isVideo(src: string): boolean {
               :alt="`${slide.category} photography`"
               class="relative z-10 w-full h-full object-contain"
               loading="lazy"
+              decoding="async"
             >
             <video
               v-else

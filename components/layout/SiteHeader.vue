@@ -142,9 +142,6 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick))
         </div>
       </nav>
 
-      <!-- Header secret button -->
-      <UiSecretButton variant="header" class="hidden md:flex" />
-
       <!-- Mobile hamburger -->
       <button
         class="md:hidden h-[30px] px-2 rounded bg-accent glow-effect flex items-center relative"

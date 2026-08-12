@@ -1,8 +1,10 @@
 import { ref, onMounted, onUnmounted } from 'vue'
+import { galleryCatalog, type GalleryAsset } from '~/utils/galleryCatalog'
 
 interface Slide {
   category: string
   src: string
+  placeholder?: string
 }
 
 const FEATURED = ['Portraits', 'Events']
@@ -43,61 +45,57 @@ function preload(src: string) {
 }
 
 export function useLandingSlideshow() {
-  const images: Record<string, string> = import.meta.glob(
-    '/public/photos/*/*.{jpg,jpeg,png,webp,gif,webm}',
-    { eager: true, import: 'default' },
-  ) as Record<string, string>
+  const byCategory = galleryCatalog()
 
-  function groupByCategory(): Record<string, string[]> {
-    const byCategory: Record<string, string[]> = {}
-    for (const [filepath, src] of Object.entries(images)) {
-      const parts = filepath.replace(/\\/g, '/').split('/')
-      const category = parts[3]
-      if (!category || category.toLowerCase() === 'thumbnails') continue
-      if (!byCategory[category]) byCategory[category] = []
-      byCategory[category].push(src)
-    }
-    return byCategory
+  function imagesFor(category: string): GalleryAsset[] {
+    return byCategory[category] ?? []
   }
 
   const cycles = new Map<string, Cycle>()
   const lastEmitted = new Map<string, string>()
 
-  function nextSrc(category: string): string | undefined {
-    const srcs = groupByCategory()[category] ?? []
-    if (!srcs.length) return undefined
+  function nextAsset(category: string): GalleryAsset | undefined {
+    const assets = imagesFor(category).filter(a => !a.isVideo)
+    if (!assets.length) return undefined
 
     let cycle = cycles.get(category)
     if (!cycle || cycle.index >= cycle.order.length) {
-      cycle = newCycle(srcs, lastEmitted.get(category))
+      cycle = newCycle(assets.map(a => a.src), lastEmitted.get(category))
       cycles.set(category, cycle)
     }
 
     const src = cycle.order[cycle.index]
     cycle.index += 1
     lastEmitted.set(category, src)
-    return src
+    return assets.find(a => a.src === src)
   }
 
   function advanceHero() {
     heroMode.value = heroMode.value === 'solo' ? 'pair' : 'solo'
     const pair: Slide[] = []
     for (const cat of FEATURED) {
-      const src = nextSrc(cat)
-      if (!src) continue
-      preload(src)
-      pair.push({ category: cat, src })
+      const asset = nextAsset(cat)
+      if (!asset) continue
+      preload(asset.full ?? asset.src)
+      pair.push({
+        category: cat,
+        src: asset.full ?? asset.src,
+        placeholder: asset.placeholder,
+      })
     }
     heroPair.value = pair
   }
 
   function advanceFun() {
-    const byCategory = groupByCategory()
     funSlides.value = FUN
-      .filter(c => (byCategory[c]?.length ?? 0) > 0)
+      .filter(c => (imagesFor(c)?.length ?? 0) > 0)
       .map((c) => {
-        const src = nextSrc(c) as string
-        return { category: c, src }
+        const asset = nextAsset(c) as GalleryAsset
+        return {
+          category: c,
+          src: asset.full ?? asset.src,
+          placeholder: asset.placeholder,
+        }
       })
   }
 

@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-08-11 23:15 UTC — Image optimization pipeline + industry-standard lazy loading
+
+- **Summary**: Rebuilt how gallery/hero images load. Root causes: the justified grid's `<img>` tags had no `loading="lazy"` (only the temporary placeholder grid did), `useJustifiedLayout` downloaded every full-size original just to read its dimensions, and gallery/hero pointed at full-res `/photos/...` files with no optimization, no srcset, and no placeholder — the hero visibly painted top-to-bottom (WebP has no interlacing).
+- **Build-time pipeline**: New `scripts/optimize-images.mjs` (uses `sharp`, added as an explicit devDependency) scans `public/photos/<category>/` and emits optimized WebP variants + a dimensions manifest into `public/gallery/` (gitignored). Per image: `@placeholder` (~0.2KB blurred, LQIP), `@thumb` (~1200px), `@full` (~2000px). Manifest written to `assets/gallery/manifest.json` (gitignored). Runs via `npm run optimize` and wired as `predev`/`prebuild`/`pregenerate` hooks plus `postinstall`.
+- **Composables**: `useGallery.ts` and `useLandingSlideshow.ts` now read the manifest via shared `utils/galleryCatalog.ts` instead of `import.meta.glob`; images carry `thumb`/`full`/`placeholder`/`width`/`height`. `useJustifiedLayout.ts` no longer downloads images to measure — dimensions come from the manifest; only videos still fetch metadata at runtime (`loadVideoDimensions`).
+- **Gallery grid** (`GalleryGrid.vue`): justified-layout images now have `loading="lazy" decoding="async" fetchpriority="low"`, LQIP blurred placeholder background, `srcset`/`sizes`, and manifest aspect-ratio (no CLS). Grid videos use `preload="metadata"` so multi-MB webm files no longer load eagerly.
+- **Hero** (`HeroSlideshow.vue`, `pages/index.vue`): tiny blurred LQIP placeholder renders instantly; sharp `@full` variant fades in on load with `fetchpriority="high"`; fun-section cards and lightbox use optimized variants too.
+- **Result**: Gallery category default (Events) drops from ~10.4MB of eager full-res downloads to lazily-loaded ~78KB thumbs with instant blur-up placeholders; hero paints a ~0.2KB placeholder then sharpens — restoring the old "small version first" feel.
+- **Files touched**: `package.json`, `.gitignore`, `scripts/optimize-images.mjs` (new), `utils/galleryCatalog.ts` (new), `composables/useGallery.ts`, `composables/useLandingSlideshow.ts`, `composables/useJustifiedLayout.ts`, `components/gallery/GalleryGrid.vue`, `components/gallery/GalleryLightbox.vue`, `components/landing/HeroSlideshow.vue`, `pages/index.vue`, `pages/photography.vue`, `docs/changelog.md`
+- **Verification**: `npm run optimize`, `npm run lint`, `npm run typecheck`, and `npm run generate` all pass (16 routes); prerendered HTML confirms gallery lazy-thumbs, hero `@full` + `fetchpriority="high"` + placeholders, zero full-res `/photos/` in hero. `npm run test` reports no test files (pre-existing).
+- **Note**: Two `.webm` files under `public/photos/Miscellaneous/` (`Clip.webm`, `Story Lapse.webm`) were already deleted in the worktree (tracked as `D` in git) before this task; left untouched.
+
 ## 2026-07-20 22:50 UTC — Migration kickoff
 
 - **Summary**: Created `personal-site-v3.0` branch; documented full legacy inventory; drafted 7-phase migration plan (Tailwind CSS v4 + SCSS, no Vuetify, drag-and-drop gallery, Netlify forms preserved).
@@ -276,6 +288,18 @@
   - `pages/index.vue`: passes `:mode="heroMode"`.
 - **Files touched**: `composables/useLandingSlideshow.ts`, `components/landing/HeroSlideshow.vue`, `pages/index.vue`
 - **Verification**: `npm run lint`, `npm run typecheck`, and `npm run generate` pass. Headless Chrome (CDP) over the generated static output sampled three consecutive states: desktop 1440px → `pair(2 panels,row) → solo(1 panel) → pair(2 panels,row)`; mobile 390px → `pair(2 panels,column) → solo → pair(2 panels,column)`. Categories shown: `[Portraits, Events]` in pair, `[Portraits]` in solo.
+
+## 2026-08-11 22:58 UTC — Banner date converted to Newfoundland time
+
+- **Summary**: The dynamic site-update banner date now renders in **Newfoundland time** (`America/St_Johns`) instead of raw UTC, since Sharif is in the Newfoundland timezone (UTC−2:30 during 2026 summer / NDT). `useSiteUpdate.ts` now parses each changelog heading's UTC timestamp into a real `Date`, converts via `Intl.DateTimeFormat` with `timeZone: 'America/St_Johns'`, then formats the month/ordinal day/year from the converted parts. Date-only headings (no `HH:mm`) are treated as noon UTC so they never shift to the previous day. The banner therefore matches Sharif's local date (e.g. the `2026-08-12 00:37 UTC` entry renders as *August 11th* in Newfoundland).
+- **Files touched**: `composables/useSiteUpdate.ts`
+- **Verification**: `npm run lint`, `npm run typecheck`, and `npm run generate` pass; prerendered HTML shows `Site Update (August 11th, 2026)`.
+
+## 2026-08-11 22:53 UTC — Remove header easter egg (secret button)
+
+- **Summary**: Removed the `UiSecretButton variant="header"` from `SiteHeader.vue` — the egg (`mdi:egg-easter`) secret button that opened a Rick Astley overlay is gone from the header. The footer's separate easter egg button is untouched.
+- **Files touched**: `components/layout/SiteHeader.vue`
+- **Verification**: `npm run generate` passes (16 routes).
 
 ## 2026-08-11 02:12 UTC — Fix lightbox videos not auto-playing
 
