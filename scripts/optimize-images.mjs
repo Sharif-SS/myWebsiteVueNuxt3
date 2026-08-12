@@ -13,7 +13,7 @@ const VIDEO = new Set(['.webm', '.mp4', '.mov'])
 
 const FULL_MAX = 2000
 const THUMB_MAX = 1200
-const PLACEHOLDER_WIDTH = 64
+const PLACEHOLDER_WIDTH = 192
 const QUALITY_FULL = 80
 const QUALITY_THUMB = 75
 const QUALITY_PLACEHOLDER = 40
@@ -85,7 +85,6 @@ async function buildEntry(category, filename) {
     entry.placeholder = `/gallery/${category}/${galleryName(stem, '@placeholder')}`
     await sharp(srcPath, { page: 0 })
       .resize({ width: PLACEHOLDER_WIDTH, withoutEnlargement: true })
-      .blur(8)
       .webp({ quality: QUALITY_PLACEHOLDER })
       .toFile(join(outDir, galleryName(stem, '@placeholder')))
     entry.full = entry.src
@@ -99,7 +98,6 @@ async function buildEntry(category, filename) {
     await Promise.all([
       sharp(srcPath)
         .resize({ width: PLACEHOLDER_WIDTH, withoutEnlargement: true })
-        .blur(8)
         .webp({ quality: QUALITY_PLACEHOLDER })
         .toFile(join(outDir, galleryName(stem, '@placeholder'))),
       sharp(srcPath)

@@ -83,7 +83,7 @@ function isVideo(src: string): boolean {
               <div
                 v-if="!isVideo(slide.src)"
                 class="w-full h-full bg-gray-900"
-                :style="slide.placeholder ? { backgroundImage: `url(${slide.placeholder})`, backgroundSize: 'cover', backgroundPosition: 'center', filter: 'blur(8px) brightness(0.5)' } : undefined"
+                :style="slide.placeholder ? { backgroundImage: `url(${slide.placeholder})`, backgroundSize: 'cover', backgroundPosition: 'center', filter: 'blur(30px) brightness(0.5)', transform: 'scale(1.25)' } : undefined"
                 aria-hidden="true"
               />
               <div v-else class="w-full h-full bg-gray-900" aria-hidden="true" />
