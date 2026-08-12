@@ -82,7 +82,7 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
         <div
           class="absolute inset-0"
           aria-hidden="true"
-          :style="current.placeholder ? { backgroundImage: `url(${current.placeholder})`, backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', filter: 'blur(24px) brightness(0.4)' } : undefined"
+          :style="current.placeholder ? { backgroundImage: `url(${current.placeholder})`, backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', filter: 'blur(30px) brightness(0.5)' } : undefined"
         />
         <img
           :src="current.full ?? current.src"

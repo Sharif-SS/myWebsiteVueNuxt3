@@ -77,7 +77,7 @@ onUnmounted(() => {
               <div
                 v-if="!isVideo(item?.src ?? '')"
                 class="w-full h-full bg-gray-900"
-                :style="item?.placeholder ? { backgroundImage: `url(${item.placeholder})`, backgroundSize: 'cover', backgroundPosition: 'center', filter: 'blur(8px) brightness(0.5)' } : undefined"
+                :style="item?.placeholder ? { backgroundImage: `url(${item.placeholder})`, backgroundSize: 'cover', backgroundPosition: 'center', filter: 'blur(30px) brightness(0.5)', transform: 'scale(1.25)' } : undefined"
                 aria-hidden="true"
               />
               <div v-else class="w-full h-full bg-gray-900" aria-hidden="true" />

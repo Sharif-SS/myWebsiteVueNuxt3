@@ -1,5 +1,28 @@
 # Changelog
 
+## 2026-08-12 01:50 UTC — Increase LQIP backdrop blur to 30px
+
+- **Summary**: User requested stronger blur on the LQIP backdrops. Bumped all backdrop CSS `filter: blur` from `16px` to `30px` (still `brightness(0.5)`; hero/fun-card keep `scale(1.25)`). Pure CSS — no placeholder regeneration.
+- **Files touched**: `components/landing/HeroSlideshow.vue`, `pages/index.vue`, `components/gallery/GalleryLightbox.vue`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run generate` all pass (16 routes).
+
+## 2026-08-12 01:45 UTC — Slightly increase LQIP backdrop blur
+
+- **Summary**: Asked for a touch more blur on the LQIP backdrops (between the pre-pipeline heavy smudge and the current 12px soft-focus). Bumped all backdrop CSS `filter: blur` from `12px` to `16px` (still `brightness(0.5)`; hero/fun-card keep `scale(1.25)`). No placeholder regeneration needed — this is pure CSS.
+- **Files touched**: `components/landing/HeroSlideshow.vue`, `pages/index.vue`, `components/gallery/GalleryLightbox.vue`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run generate` all pass (16 routes).
+
+## 2026-08-11 23:45 UTC — Soften LQIP backdrop blur to match old site
+
+- **Summary**: The LQIP backdrop blurred far harder than the previous site. The old look (pre-optimization, commit `8dcce16`) was Tailwind `blur-lg` (16px CSS blur) + `brightness-50` + `scale-125` applied to a sharp full-res image; the new backdrop compounded a 64px placeholder (upscaled ~20×) + sharp's baked-in `.blur(8)` + another CSS `blur(8px)` → a heavy smudge. Fixed by increasing the generated placeholder to 192px and removing the generation-time sharp blur, then matching the old CSS recipe on all backdrops.
+- **Changes**:
+  - `scripts/optimize-images.mjs`: `PLACEHOLDER_WIDTH` 64→192; removed `.blur(8)` from both placeholder generations (animated-GIF + normal). Placeholders now ~3.9KB each (~438KB total for 117 images).
+  - `components/landing/HeroSlideshow.vue`: backdrop filter `blur(8px)` → `blur(12px) brightness(0.5)` + `transform: scale(1.25)` (replicates old `scale-125`).
+  - `pages/index.vue`: same fun-card backdrop change.
+  - `components/gallery/GalleryLightbox.vue`: placeholder backdrop `blur(24px) brightness(0.4)` → `blur(12px) brightness(0.5)`.
+- **Files touched**: `scripts/optimize-images.mjs`, `components/landing/HeroSlideshow.vue`, `pages/index.vue`, `components/gallery/GalleryLightbox.vue`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run generate` all pass (16 routes). Prerendered HTML shows `blur(12px)` backdrops with `scale(1.25)`, and 117 placeholder files (~3.9KB each) deployed.
+
 ## 2026-08-11 23:15 UTC — Image optimization pipeline + industry-standard lazy loading
 
 - **Summary**: Rebuilt how gallery/hero images load. Root causes: the justified grid's `<img>` tags had no `loading="lazy"` (only the temporary placeholder grid did), `useJustifiedLayout` downloaded every full-size original just to read its dimensions, and gallery/hero pointed at full-res `/photos/...` files with no optimization, no srcset, and no placeholder — the hero visibly painted top-to-bottom (WebP has no interlacing).
