@@ -268,6 +268,15 @@
 - **Summary**: Removed pointer tracking code entirely. Chocobo and a new puffin now wander autonomously using RAF-driven random target selection with pause behavior. Completely redesigned chocobo CSS for authentic Final Fantasy look: larger 80×65 body, 3 red crest plumes, bigger beak, wider legs, improved proportions. Added puffin with black body, white belly, colorful orange/yellow/blue triangular beak, orange feet. Both birds wander independently with random targets, pauses, and direction changes.
 - **Files touched**: `components/ui/FinalFantasyConstruction.vue`
 
+## 2026-08-12 00:37 UTC — Hero alternates solo/pair modes on every cycle
+
+- **Summary**: The landing hero now deliberately alternates between its two views on every `advanceHero()` (10s timer and click) on both desktop and mobile, instead of deriving the view from the randomly picked images' orientations — which is why mobile almost always fell back to solo Portraits.
+  - `useLandingSlideshow.ts`: added `heroMode` (`'solo' | 'pair'`), toggled inside `advanceHero()`. Starts on **pair** (init value is `'solo'` so the synchronous first `advanceHero()` flip yields `'pair'`), then alternates pair → solo → pair.
+  - `HeroSlideshow.vue`: new `mode` prop. `solo` renders `pair[0]` (Portraits) full-screen; `pair` always renders both images, arranged viewport-based — `flex-row` (side-by-side) on landscape viewports, `flex-col` (stacked) on portrait. Removed the old orientation-gating `layout` computed and its per-image `preload`/orientation machinery (image cache-warming already lives in the composable).
+  - `pages/index.vue`: passes `:mode="heroMode"`.
+- **Files touched**: `composables/useLandingSlideshow.ts`, `components/landing/HeroSlideshow.vue`, `pages/index.vue`
+- **Verification**: `npm run lint`, `npm run typecheck`, and `npm run generate` pass. Headless Chrome (CDP) over the generated static output sampled three consecutive states: desktop 1440px → `pair(2 panels,row) → solo(1 panel) → pair(2 panels,row)`; mobile 390px → `pair(2 panels,column) → solo → pair(2 panels,column)`. Categories shown: `[Portraits, Events]` in pair, `[Portraits]` in solo.
+
 ## 2026-08-11 02:12 UTC — Fix lightbox videos not auto-playing
 
 - **Summary**: Gallery lightbox videos stopped auto-playing because the `<video>` element in `GalleryLightbox.vue` had `autoplay` but no `muted` — browsers block unmuted autoplay. Added `muted loop` alongside the existing `controls autoplay playsinline`. (The `></video>` → `/>` change was a harmless `eslint --fix` self-closing reformat; Vue compiles `<video />` identically to `<video></video>` and was not the cause.) Grid hover-play videos already had `muted loop` and were unaffected.

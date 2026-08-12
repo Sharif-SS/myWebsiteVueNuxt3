@@ -80,6 +80,7 @@ export function useLandingSlideshow() {
   }
 
   function advanceHero() {
+    heroMode.value = heroMode.value === 'solo' ? 'pair' : 'solo'
     const pair: Slide[] = []
     for (const cat of FEATURED) {
       const src = nextSrc(cat)
@@ -101,6 +102,7 @@ export function useLandingSlideshow() {
   }
 
   const heroPair = ref<Slide[]>([])
+  const heroMode = ref<'solo' | 'pair'>('solo')
   const funSlides = ref<Slide[]>([])
 
   advanceHero()
@@ -117,5 +119,5 @@ export function useLandingSlideshow() {
     if (funTimer) clearInterval(funTimer)
   })
 
-  return { heroPair, funSlides, advanceHero, advanceFun }
+  return { heroPair, heroMode, funSlides, advanceHero, advanceFun }
 }
