@@ -12,11 +12,7 @@ const FUN = ['Pets', 'Landscape', 'Vehicles', 'Miscellaneous']
 
 const HERO_INTERVAL_MS = 10000
 const FUN_INTERVAL_MS = 30000
-
-interface Cycle {
-  order: string[]
-  index: number
-}
+const RECENT_LIMIT = 3
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr]
@@ -25,17 +21,6 @@ function shuffle<T>(arr: T[]): T[] {
     ;[a[i], a[j]] = [a[j], a[i]]
   }
   return a
-}
-
-function newCycle(srcs: string[], last?: string): Cycle {
-  if (srcs.length === 1) return { order: [...srcs], index: 0 }
-  let order = shuffle(srcs)
-  let guard = 0
-  while (order[0] === last && guard < 5) {
-    order = shuffle(srcs)
-    guard += 1
-  }
-  return { order, index: 0 }
 }
 
 function preload(src: string) {
@@ -51,22 +36,34 @@ export function useLandingSlideshow() {
     return byCategory[category] ?? []
   }
 
-  const cycles = new Map<string, Cycle>()
-  const lastEmitted = new Map<string, string>()
+  const queues = new Map<string, string[]>()
+  const recent = new Map<string, string[]>()
 
   function nextAsset(category: string): GalleryAsset | undefined {
-    const assets = imagesFor(category).filter(a => !a.isVideo)
+    const assets = imagesFor(category)
     if (!assets.length) return undefined
 
-    let cycle = cycles.get(category)
-    if (!cycle || cycle.index >= cycle.order.length) {
-      cycle = newCycle(assets.map(a => a.src), lastEmitted.get(category))
-      cycles.set(category, cycle)
+    let queue = queues.get(category)
+    if (!queue || queue.length === 0) {
+      queue = shuffle(assets.map(a => a.src))
+      queues.set(category, queue)
     }
 
-    const src = cycle.order[cycle.index]
-    cycle.index += 1
-    lastEmitted.set(category, src)
+    const lastFew = recent.get(category) ?? []
+    let guard = 0
+    while (guard < queue.length && lastFew.includes(queue[0])) {
+      queue.push(queue.shift() as string)
+      guard += 1
+    }
+
+    const src = queue.shift() as string
+    queues.set(category, queue)
+
+    const r = recent.get(category) ?? []
+    if (r.length >= RECENT_LIMIT) r.shift()
+    r.push(src)
+    recent.set(category, r)
+
     return assets.find(a => a.src === src)
   }
 

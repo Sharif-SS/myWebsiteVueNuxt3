@@ -1,5 +1,22 @@
 # Changelog
 
+## 2026-08-13 12:30 UTC — Hero slideshow: no repeats within last 3 images
+
+- **Summary**: Replaced the per-category cycle model in `useLandingSlideshow.ts` with a shuffled queue + "last 3 played" memory. Previously the only guard was that a freshly reshuffled cycle couldn't *start* on the single last-emitted image — so an image from the end of one cycle could still repeat within a few slides at the start of the next (back-and-forth repeats). Now, if the next queued image matches any of the last 3 emitted for that category, it is pushed to the back of the queue and the next candidate is tried. Each queue is still a full shuffle of the category's images, so the slideshow plays through the entire list before any image can come back, and any repeat is spaced at least 3 other slides apart (except for pools smaller than the 3-image window, which doesn't apply to any current category — smallest is Pets at 8).
+- **Changes**: `composables/useLandingSlideshow.ts` — removed `interface Cycle` + `newCycle`; added `RECENT_LIMIT = 3`; `nextAsset` now holds a `queues` map and a `recent` map per category, defers recent images to the tail, and tracks the last 3 emitted. Public API unchanged (`heroPair`, `heroMode`, `funSlides`, `advanceHero`, `advanceFun`).
+- **Files touched**: `composables/useLandingSlideshow.ts`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run generate` all pass (16 routes). Isolated algorithm test (5000 draws) shows zero repeats within the last 3 for pool sizes ≥ 4 and full-list coverage. Headless-Chrome test drove 45 hero advances (crossing the 31-image Portraits cycle boundary twice): Portraits 45 emissions / 0 violations, Events 24 emissions / 0 violations, webm clips still appear in rotation.
+
+## 2026-08-13 11:50 UTC — Restore webm autoplay on home + photography
+
+- **Summary**: WebM clips (hero, fun slideshow, photography grid, lightbox) had stopped appearing/autoplaying. Two root causes: (1) `useLandingSlideshow.ts` filtered `.isVideo` assets out of the hero/fun slideshow pool, so home never showed videos; (2) photography grid `<video>` tiles were missing the `autoplay` attribute (only played on hover). Additionally the generated manifest was stale — `keyinbatch1.webm`/`keyinbatch2.webm` were added after the last `optimize` run, so they weren't in the catalog.
+- **Changes**:
+  - `composables/useLandingSlideshow.ts`: removed `.filter(a => !a.isVideo)` from `nextAsset` — hero and fun slideshows can now select videos again.
+  - `components/gallery/GalleryGrid.vue`: added `autoplay` to both grid `<video>` elements (skeleton + packed rows); kept hover play/pause, `muted loop playsinline preload="metadata"`.
+  - Regenerated `assets/gallery/manifest.json` via `npm run optimize` (128 entries, 6 categories) — Portraits now includes all 3 webm entries (`MCE Headshot - 2024.webm`, `keyinbatch1.webm`, `keyinbatch2.webm`) as `isVideo: true`.
+- **Files touched**: `composables/useLandingSlideshow.ts`, `components/gallery/GalleryGrid.vue`, `assets/gallery/manifest.json` (gitignored, regenerated), `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run generate` all pass (16 routes). CDP browser check: photography → Portraits grid shows all 3 webm autoplaying (paused:false, looping, time advancing, zero console errors); home hero cycled `keyinbatch2.webm` into a panel playing within ~40s.
+
 ## 2026-08-12 01:50 UTC — Increase LQIP backdrop blur to 30px
 
 - **Summary**: User requested stronger blur on the LQIP backdrops. Bumped all backdrop CSS `filter: blur` from `16px` to `30px` (still `brightness(0.5)`; hero/fun-card keep `scale(1.25)`). Pure CSS — no placeholder regeneration.

@@ -105,6 +105,7 @@ watch(
           class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           muted
           loop
+          autoplay
           playsinline
           preload="metadata"
           @mouseenter="play"
@@ -145,6 +146,7 @@ watch(
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             muted
             loop
+            autoplay
             playsinline
             preload="metadata"
             @mouseenter="play"
