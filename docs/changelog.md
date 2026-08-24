@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-08-24 01:39 UTC — Hero "Next" control navigated instead of advancing on mobile
+
+- **Summary**: On mobile the hero's "Next" pill (bottom-right, vertically centered) was a decorative `pointer-events-none` element. In portrait pair-mode the two panels stack vertically, so the pill overlapped the top panel's category `NuxtLink` (its bottom gradient band), and a tap fell through to that link and navigated to `/photography` instead of advancing. Also, the pill was hover-only (`opacity-0 group-hover:opacity-100`), so it was invisible on touch devices.
+- **Changes**:
+  - `components/landing/HeroSlideshow.vue`: turned the "Next" pill into a real `<button type="button" aria-label="Next photo">` with `pointer-events-auto` + `@click.stop="emit('next')"` so it advances and stops the tap from reaching the underlying category link. Added `pointer-coarse:opacity-100` to the hint wrapper so it's always visible on touch devices (still hover-only on desktop).
+  - `tailwind.config.mjs`: added a tiny plugin registering `pointer-coarse` / `pointer-fine` variants (`@media (pointer: coarse/fine)`), since Tailwind 3.4 doesn't ship them natively.
+- **Files touched**: `components/landing/HeroSlideshow.vue`, `tailwind.config.mjs`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run generate` all pass (16 routes); confirmed `@media(pointer:coarse){.pointer-coarse\:opacity-100{opacity:1}}` compiled into the inlined CSS. Headless-Chrome mobile emulation (390×844, touch/coarse): "Next" button visible, tapping it changes the hero image and keeps `location.pathname === '/'`, while tapping the category label still navigates to `/photography`.
+
 ## 2026-08-13 12:30 UTC — Hero slideshow: no repeats within last 3 images
 
 - **Summary**: Replaced the per-category cycle model in `useLandingSlideshow.ts` with a shuffled queue + "last 3 played" memory. Previously the only guard was that a freshly reshuffled cycle couldn't *start* on the single last-emitted image — so an image from the end of one cycle could still repeat within a few slides at the start of the next (back-and-forth repeats). Now, if the next queued image matches any of the last 3 emitted for that category, it is pushed to the back of the queue and the next candidate is tried. Each queue is still a full shuffle of the category's images, so the slideshow plays through the entire list before any image can come back, and any repeat is spaced at least 3 other slides apart (except for pools smaller than the 3-image window, which doesn't apply to any current category — smallest is Pets at 8).
