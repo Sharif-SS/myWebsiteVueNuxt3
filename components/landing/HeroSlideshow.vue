@@ -129,16 +129,19 @@ onUnmounted(() => {
 
     <div
       class="absolute inset-0 pointer-events-none transition-opacity duration-300"
-      :class="pressed ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'"
+      :class="pressed ? 'opacity-100' : 'opacity-0 pointer-coarse:opacity-100 group-hover:opacity-100'"
       style="z-index: 30"
     >
-      <div
-        class="absolute top-1/2 -translate-y-1/2 right-5 md:right-8 flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-black/45 text-white text-sm font-semibold uppercase tracking-wide backdrop-blur-sm"
+      <button
+        type="button"
+        aria-label="Next photo"
+        class="pointer-events-auto absolute top-1/2 -translate-y-1/2 right-5 md:right-8 flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-black/45 text-white text-sm font-semibold uppercase tracking-wide backdrop-blur-sm cursor-pointer"
         :class="pressed ? 'animate-pulse' : ''"
+        @click.stop="emit('next')"
       >
         Next
         <Icon name="mdi:chevron-right" class="w-4 h-4" />
-      </div>
+      </button>
     </div>
   </section>
 </template>
