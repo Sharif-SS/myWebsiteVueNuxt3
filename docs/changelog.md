@@ -1,5 +1,188 @@
 # Changelog
 
+## 2026-09-08 — Site-wide floating card shadows
+
+- **Summary**: Raised card elevation site-wide for a consistent "floating" look using two new soft shadow tokens, with a hover lift/deepen on interactive cards.
+- **Changes**:
+  - `tailwind.config.mjs`: added `boxShadow.float` and `boxShadow.float-lg` (soft, layered, low-alpha black).
+  - `pages/index.vue`: fun cards use `shadow-float hover:shadow-float-lg` plus a scoped `:hover` `translateY(-6px)` (with `!important` to override the reveal animation's `transform` and a snappy, un-staggered transition).
+  - `components/TestimonialCard.vue`: quote card `shadow-sm` → `shadow-float`.
+  - `components/AboutPhoto.vue`: SCSS `box-shadow` updated to the `float` values (lighter on mobile).
+  - `pages/contact.vue`: contact photo and form card `shadow-lg` → `shadow-float`.
+  - `components/gallery/GalleryGrid.vue`: gallery tiles now have `shadow-float` + `hover:-translate-y-1 hover:shadow-float-lg` with a `transition-all` (both placeholder and packed tiles).
+  - `docs/brand-guide.md`: documented the two shadow tokens.
+- **Files touched**: `tailwind.config.mjs`, `pages/index.vue`, `components/TestimonialCard.vue`, `components/AboutPhoto.vue`, `pages/contact.vue`, `components/gallery/GalleryGrid.vue`, `docs/brand-guide.md`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run test` (4/4), and `npm run generate` (16 routes) pass; prerendered HTML/CSS confirm `shadow-float`, `shadow-float-lg`, and the gallery `-translate-y-1` hover utilities are compiled.
+
+## 2026-09-08 — Testimonial cards: 20px spacing + site-consistent rounding
+
+- **Summary**: Replaced the per-slide horizontal padding with a real 20px track gap, fixed the resulting stride measurement, allowed the quote box to shrink so cards no longer overlap ("squeezed"), and rounded the cards to `rounded-xl` to match the rest of the site.
+- **Changes**:
+  - `components/TestimonialSection.vue`: track is now `flex gap-5` (20px between cards); slides drop `px-2.5`; `measureSlide` now derives the stride from the difference between the first two slides' `getBoundingClientRect().left` so navigation accounts for the gap and still steps one full card.
+  - `components/TestimonialCard.vue`: image/quote boxes use `rounded-xl` (outer corners only — `rounded-t-xl`/`sm:rounded-l-xl` and `rounded-b-xl`/`sm:rounded-r-xl`); removed `sm:shrink-0` from the quote box so it shrinks to fit its slide instead of overflowing into the neighbouring card.
+- **Files touched**: `components/TestimonialSection.vue`, `components/TestimonialCard.vue`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run test` (4/4), and `npm run generate` (16 routes) pass; prerendered HTML confirms `flex gap-5`, `rounded-xl`, and no `px-*` slide padding.
+
+## 2026-09-08 — Testimonial section: remove intro copy, widen card gutters
+
+- **Summary**: Removed the intro paragraph under the "What people are saying" heading and increased the per-card horizontal gutter from 8px to 10px.
+- **Files touched**: `components/TestimonialSection.vue`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run test` (4/4), and `npm run generate` (16 routes) pass. Prerendered HTML confirms the intro copy is gone and `px-2.5` is applied to the slides.
+
+## 2026-09-08 — Testimonial section: straddling badge, peek carousel, content-sized quote box
+
+- **Summary**: Repositioned the section quote badge to straddle the About/testimonial boundary (removing its in-flow height), added a trailing peek to the carousel with an explicit tablet width, and made the quote box width intrinsic to content instead of a fixed 3:2 ratio.
+- **Changes**:
+  - `components/TestimonialSection.vue`: section is now `relative`; the 80px accent quote badge is absolutely positioned at `top-0 -translate-y-1/2` so it overlays the boundary between the About and testimonial sections (no in-flow height). Slide widths changed to `w-[85%] md:w-[90%] lg:w-[45%]` for a 10–15% peek at each breakpoint (1-up mobile/tablet, 2-up desktop); no change to `offsetX`/`measureSlide`/`itemsPerView`.
+  - `components/TestimonialCard.vue`: quote box drops `aspect-[3/2]` + ratio-derived width in favor of `sm:min-w-[280px] sm:max-w-[360px]` (intrinsic, not `flex-1` per "don't stretch"), removed `flex-1` from the quote content wrapper so attribution sits directly below the text, reduced `line-clamp-5` → `line-clamp-4`, and removed `sm:justify-center` for a flush-left peek. Image box unchanged.
+- **Files touched**: `components/TestimonialSection.vue`, `components/TestimonialCard.vue`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run test` (4/4), and `npm run generate` (16 routes) pass.
+
+## 2026-09-17 — Gallery optimizer: detect newly added photos regardless of file mtime
+
+- **Summary**: Fixed `scripts/optimize-images.mjs` so newly added photos/videos in `public/photos/<category>/` are detected even when their modification timestamps are older than the manifest (which happens when files are copied into place and keep the source file's `LastWriteTime`). The staleness check now compares the on-disk file set against the manifest instead of relying on the single newest-mtime comparison alone.
+- **Changes**:
+  - `scripts/optimize-images.mjs`: replaced `newestSourceMtime()` with `listSourceEntries()`; `manifestOutdated()` now reads the existing manifest, builds the recorded `src` set, and triggers a rebuild when files are added/removed or any source is newer than the manifest.
+- **Files touched**: `scripts/optimize-images.mjs`, `docs/changelog.md`
+- **Verification**: `npm run optimize` regenerated a full gallery (448 files across 6 categories, 154 manifest entries — including `Pets/DSC00207 - Copy.webp` and `Pets/test-2.webm`); `npx eslint scripts/optimize-images.mjs` passes.
+
+## 2026-09-08 — Testimonial section: gray tint + section-level quote marker
+
+- **Summary**: Added section-to-section visual separation: the testimonial section background changed from pure white to `bg-gray-50`, and a large accent-filled circular quote-mark badge (80px, `#D8FBFD`) was added above the heading as a visual entry point. No off-brand colors introduced; all other approved fixes remain unchanged.
+- **Files touched**: `components/TestimonialSection.vue`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run test` (4/4), and `npm run generate` (16 routes) pass.
+
+## 2026-09-08 — Testimonial section: brand-compliant rebuild (quote dedup, layout, colors)
+
+- **Summary**: Rebuilt the testimonial section to match `docs/brand-guide.md` and fix the readability regressions: removed doubled quotation marks, moved the heading/intro to a full-width row, dropped the navy/blue color scheme for white + brand tokens, capped the carousel at 2-up desktop, and corrected the brand-guide typography reference.
+- **Changes**:
+  - `components/TestimonialCard.vue`: removed inline `&ldquo;/&rdquo;` so the quote renders once (the accent quote bubble is the sole glyph); quote → `text-gray-900` `text-base` `line-clamp-5`; bubble → `bg-accent text-gray-900`; card shadow → `shadow-sm`; shared height `sm:h-[clamp(220px,20vw,250px)]` with `sm:justify-center`; read-more recolored to neutral.
+  - `components/TestimonialSection.vue`: section is now white with `overflow-visible` (no navy/banner overlays); heading + intro moved to a full-width row above the carousel; inner container `max-w-7xl px-4 py-16 sm:px-8 lg:py-20`; slides `w-full lg:w-1/2`; controls recolored to `border-gray-200`/`text-gray-900` with `hover:bg-accent` and `outline-gray-900` focus rings; dots inactive `gray-300`, active `accent`.
+  - `composables/useTestimonials.ts`: restored responsive `itemsPerView` (2 at `lg`, 1 below) via a `1024px` media query, with `resolveItemsPerView` re-exported and index clamping re-added.
+  - `docs/brand-guide.md`: corrected the stale "Inter" typography reference to Noto Sans (the site-wide default since 2026-07-21).
+  - `composables/useTestimonials.test.ts`: added `resolveItemsPerView` coverage.
+- **Files touched**: `components/TestimonialCard.vue`, `components/TestimonialSection.vue`, `composables/useTestimonials.ts`, `composables/useTestimonials.test.ts`, `docs/brand-guide.md`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run test` (4/4), and `npm run generate` (16 routes) pass. Prerendered HTML confirms no `#062f6b`/`sky-*`/`blue-*` classes, a single (non-doubled) quote, and `w-full lg:w-1/2` slides.
+
+## 2026-09-08 — Testimonial card: fluid aspect-ratio sizing, stacked mobile
+
+- **Summary**: Sized both card boxes purely by aspect ratio from one shared fluid height, and stacked them on mobile for readability.
+- **Changes**:
+  - `components/TestimonialCard.vue`: article height is now a single fluid `clamp(200px,22vw,300px)`; removed all per-breakpoint fixed heights and `flex-basis` widths. Image box is `aspect-[4/5]` and quote box is `aspect-[3/2]`, each `h-full w-auto` on `sm+` (width derived from the shared height), and full-width stacked (`flex-col`) below `sm`.
+  - `composables/useTestimonials.ts`: removed responsive items-per-view logic — the card is intrinsically wide and only fits one per view, so `itemsPerView` is a constant `1`.
+  - `components/TestimonialSection.vue`: slides are `w-full` (one card per view) and the mobile cue now reads "Showing testimonial X of Y".
+  - `composables/useTestimonials.test.ts`: removed obsolete breakpoint tests.
+- **Files touched**: `components/TestimonialCard.vue`, `composables/useTestimonials.ts`, `components/TestimonialSection.vue`, `composables/useTestimonials.test.ts`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run test` (2/2), and `npm run generate` (16 routes) pass.
+
+## 2026-09-08 — Testimonial card: unified equal-height image/quote boxes
+
+- **Summary**: Reworked `TestimonialCard.vue` so the image and quote boxes share one fixed height and read as a single fused card instead of two independently sized boxes.
+- **Changes**: Removed `basis-2/5`/`basis-3/5`; the article now has a single fixed height per breakpoint (`240px`/`260px`/`280px`/`300px`), both boxes use `h-full`, the image box derives its width from `aspect-[4/5]` with `w-auto`, and the quote box fills the remaining space with `flex-1`. Removed `overflow-hidden` from the quote box and added top headroom to the carousel viewport so the `-top-4` quote bubble is no longer clipped.
+- **Files touched**: `components/TestimonialCard.vue`, `components/TestimonialSection.vue`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run test` (5/5), and `npm run generate` (16 routes) pass.
+
+## 2026-09-08 — Testimonial carousel: wider slides for the two-box card
+
+- **Summary**: Fixed cramped testimonial slides by widening them to `w-full sm:w-1/2 lg:w-2/5` so the image (`basis-2/5`) and quote panel (`basis-3/5`) each get comfortable readable width.
+- **Changes**:
+  - `components/TestimonialSection.vue`: slide width changed from `w-1/2 md:w-1/2 lg:w-1/3` to `w-full sm:w-1/2 lg:w-2/5`; slide offset now measures the first slide's real rendered width instead of `viewportWidth / itemsPerView`, so fractional layouts translate correctly.
+  - `composables/useTestimonials.ts`: `resolveItemsPerView` now returns 1 on mobile and 2 on `sm`/`lg` (breakpoint `md` query changed to `640px` to match `sm`), keeping dots/arrows/aria-hidden in sync with the new widths.
+  - `composables/useTestimonials.test.ts`: updated breakpoint expectations.
+- **Files touched**: `components/TestimonialSection.vue`, `composables/useTestimonials.ts`, `composables/useTestimonials.test.ts`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run test` (5/5), and `npm run generate` (16 routes) pass.
+
+## 2026-09-08 — Testimonial cards: fixed responsive heights and five-line clamp
+
+- **Summary**: Restored uniform card heights at `280px` mobile, `300px` small tablet, `330px` medium tablet, and `360px` desktop while retaining the side-by-side image/content layout.
+- **Changes**: The image remains an independent `basis-2/5` 4:5 box; the quote panel fills the card at `basis-3/5`; quote text uses `line-clamp-5`; a `ResizeObserver` only reveals Read more when the unclipped quote actually exceeds five lines.
+- **Files touched**: `components/TestimonialCard.vue`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run test` (5/5), and `npm run generate` (16 routes) pass.
+
+## 2026-09-08 — Testimonial card: independent image and content boxes
+
+- **Summary**: Rebuilt `TestimonialCard.vue` as two adjacent flex items on larger screens: an independent 4:5 image box and an independent bordered/shadowed content box. Mobile stacks the boxes without introducing fixed heights.
+- **Changes**: Removed all fixed pixel heights, changed desktop sizing to `basis-2/5` and `basis-3/5`, added `items-start`, and positioned the quote bubble relative to the content box at `-top-4 left-4`.
+- **Files touched**: `components/TestimonialCard.vue`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run test` (5/5), and `npm run generate` (16 routes) pass.
+
+## 2026-09-08 — Testimonial cards: vertical 4:5 stack
+
+- **Summary**: Restructured testimonial cards into the requested vertical layout: automatic content height, full-width 4:5 photo at the top, full-width content below, and a quote bubble positioned `-top-4 left-4` over the image/content seam.
+- **Preserved**: Logo conditional rendering, read-more/read-less behavior, quote content, and name/title attribution block.
+- **Files touched**: `components/TestimonialCard.vue`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run test` (5/5), and `npm run generate` (16 routes) pass.
+
+## 2026-09-08 — Testimonial cards: explicit responsive dimensions
+
+- **Summary**: Replaced fluid card aspect sizing with explicit responsive heights so every visible card has identical dimensions regardless of carousel width or quote content.
+- **Dimensions**: `330px` mobile, `380px` tablet, `433px` desktop. The image remains an independent exact 4:5 box on the left.
+- **Files touched**: `components/TestimonialCard.vue`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run test` (5/5), and `npm run generate` (16 routes) pass.
+
+## 2026-09-08 — Testimonial cards: fixed 2:3 boxes and concise copy
+
+- **Summary**: Matched the supplied card reference more closely by locking every testimonial card to a 2:3 aspect ratio while keeping the photo tile at a precise 4:5 ratio on the left.
+- **Changes**:
+  - `components/TestimonialCard.vue`: fixed card dimensions with `aspect-[2/3]`, image-left layout at all breakpoints, exact 4:5 photo tile, and no content-dependent card height changes.
+  - `composables/useTestimonials.ts`: shortened Sarah and Jenny's mock quotes to 15 words or fewer; preserved Jessica's requested quote exactly.
+- **Files touched**: `components/TestimonialCard.vue`, `composables/useTestimonials.ts`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run test` (5/5), and `npm run generate` (16 routes) pass.
+
+## 2026-09-08 — Testimonial card: compact 4:5 editorial treatment
+
+- **Summary**: Tuned testimonial cards toward the supplied reference: exact 4:5 photo tile, compact white quote panel, small overlapping quote badge, square corners, and crisp navy right/bottom edge.
+- **Files touched**: `components/TestimonialCard.vue`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run test` (5/5), and `npm run generate` (16 routes) pass.
+
+## 2026-09-08 — Testimonial section recreated as editorial dark carousel
+
+- **Summary**: Recreated the testimonial section around the supplied reference composition: dark blue photographic backdrop, editorial intro panel with oversized quote mark, white testimonial cards, left-side 4:5 hero image, and compact carousel controls.
+- **Changes**:
+  - `components/TestimonialSection.vue`: added layered `/banner.webp` backdrop, navy overlay, left intro panel, sky-blue quote mark, high-contrast controls, and preserved ARIA carousel/keyboard/swipe behavior.
+  - `components/TestimonialCard.vue`: changed cards to the reference-inspired white treatment with a left-side image, 4:5 image box, circular quote marker, and tighter content hierarchy.
+  - Mobile continues to show two cards simultaneously with an explicit swipe cue; desktop shows three cards.
+- **Files touched**: `components/TestimonialSection.vue`, `components/TestimonialCard.vue`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run test` (5/5), and `npm run generate` (16 routes) pass.
+
+## 2026-09-08 — Testimonial carousel: two-up mobile and locked image boxes
+
+- **Summary**: Updated the responsive testimonial layout so mobile shows two cards simultaneously, with an explicit swipe/arrows guidance cue. Hero imagery now uses a true 4:5 wrapper with an absolutely fitted `object-cover` image, making the aspect ratio part of the component's layout language and eliminating stretched backdrops.
+- **Changes**:
+  - `composables/useTestimonials.ts`: mobile visible count changed from 1 to 2; desktop remains 3-up and tablet remains 2-up.
+  - `components/TestimonialCard.vue`: 4:5 aspect ratio moved from the image element to the wrapper; image now fills that exact box with `absolute inset-0`, independent of card/text height.
+  - `components/TestimonialSection.vue`: mobile slides are 50% width and now show a live “Showing X–Y of Z · Swipe or use the arrows for more” cue.
+  - `composables/useTestimonials.test.ts`: updated responsive breakpoint expectations.
+- **Files touched**: `composables/useTestimonials.ts`, `components/TestimonialCard.vue`, `components/TestimonialSection.vue`, `composables/useTestimonials.test.ts`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run test` (5/5), and `npm run generate` (16 routes) pass.
+
+## 2026-09-08 — Testimonial section visual redesign
+
+- **Summary**: Refined the testimonial section using editorial portfolio patterns: accent-tinted section backdrop, tighter card proportions, fixed 4:5 hero image boxes aligned to the top, wider copy column, deterministic quote truncation, and improved outcome-led testimonial copy.
+- **Changes**:
+  - `components/TestimonialCard.vue`: removed vertical centering that created excessive blank space, reduced the image column to 38% / expanded copy to 62%, added a compact minimum card height, preserved the 4:5 image box, and made read-more behavior data-driven for quotes longer than 180 characters.
+  - `components/TestimonialSection.vue`: added concise supporting context and singular, descriptive navigation labels while retaining the required carousel semantics and accent backdrop.
+  - `composables/useTestimonials.ts`: refined mock copy to specific outcomes and kept each quote within the 20–50 word target, including Jessica's Keyin College result.
+- **Files touched**: `components/TestimonialCard.vue`, `components/TestimonialSection.vue`, `composables/useTestimonials.ts`, `docs/changelog.md`
+
+## 2026-09-08 — Testimonial card: hero image left, text right (split layout)
+
+- **Summary**: Restructured `TestimonialCard.vue` from a full-bleed top-image stack into a split layout: hero image on the left, logo + quote + attribution stacked on the right. Image occupies half the card on `sm:`+ (matches the half-width industry convention for testimonial cards), stacking vertically on mobile. Logo slot (conditional `logoUrl`) sits at the top of the text column, before the quote — as designed.
+- **Files touched**: `components/TestimonialCard.vue`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run test` (5/5), `npm run generate` all pass.
+
+## 2026-09-08 00:58 UTC — Homepage testimonial section (responsive carousel)
+
+- **Summary**: Added a responsive "What people are saying" testimonial section to the homepage, placed after the About section and before the "Outside of Events and Portraits" photo grid. Built as a WAI-ARIA carousel: 3 cards side-by-side on desktop (≥1024px), 2 on tablet (768–1023px), 1 swipeable on mobile (<768px). Manual navigation only (arrow buttons + dot indicators + swipe + keyboard) — no autoplay per owner decision.
+- **Changes**:
+  - `types/testimonial.ts` (new): `Testimonial` interface (`id`, nullable `logoUrl`, `quote`, `name`, `title`, `heroImageUrl`, `heroImageAlt`).
+  - `composables/useTestimonials.ts` (new): typed mock array (3 entries, structured for a later `useFetch`/`useAsyncData` swap) plus carousel state — `itemsPerView` (via `matchMedia`), `currentIndex`, `maxIndex`, `next`/`prev`/`goTo`, index clamping on breakpoint change, and a `prefers-reduced-motion` flag.
+  - `components/TestimonialCard.vue` (new): logo (conditional, no reserved space), quote, attribution, and a full-width `NuxtImg` hero image in a fixed `aspect-[4/3]` container; `h-full` flex column for equal row heights.
+  - `components/TestimonialSection.vue` (new): heading, `role="region"`/`aria-roledescription="carousel"` region, translateX track (measured via `ResizeObserver`), per-slide `aria-roledescription="slide"` + `aria-hidden`, arrow/dot controls with `aria-current`, keyboard nav (arrows/Home/End), pointer-based swipe, and reduced-motion handling.
+  - `pages/index.vue`: inserted `<TestimonialSection />`.
+- **Files touched**: `types/testimonial.ts`, `composables/useTestimonials.ts`, `components/TestimonialCard.vue`, `components/TestimonialSection.vue`, `pages/index.vue`, `docs/changelog.md`
+- **Verification**: `npm run lint`, `npm run typecheck`, `npm run generate` all pass (16 routes). Controls render only when testimonials exceed the visible count (desktop 3-up hides them; tablet/mobile show them). Hero images reuse existing `public/gallery/<category>/…@full.webp` assets with `loading="lazy"`.
+
 ## 2026-08-24 01:39 UTC — Hero "Next" control navigated instead of advancing on mobile
 
 - **Summary**: On mobile the hero's "Next" pill (bottom-right, vertically centered) was a decorative `pointer-events-none` element. In portrait pair-mode the two panels stack vertically, so the pill overlapped the top panel's category `NuxtLink` (its bottom gradient band), and a tap fell through to that link and navigated to `/photography` instead of advancing. Also, the pill was hover-only (`opacity-0 group-hover:opacity-100`), so it was invisible on touch devices.

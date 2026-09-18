@@ -88,7 +88,7 @@ watch(
       <div
         v-for="(img, i) in images"
         :key="img.src"
-        class="aspect-[3/2] rounded-lg overflow-hidden bg-gray-100 cursor-pointer group"
+        class="aspect-[3/2] rounded-lg overflow-hidden bg-gray-100 cursor-pointer group shadow-float transition-all duration-300 hover:-translate-y-1 hover:shadow-float-lg"
         @click="emit('open', i)"
       >
         <img
@@ -125,7 +125,7 @@ watch(
         <div
           v-for="item in row.items"
           :key="item.image.src"
-          class="relative flex-none overflow-hidden rounded-lg bg-gray-100 cursor-pointer group"
+          class="relative flex-none overflow-hidden rounded-lg bg-gray-100 cursor-pointer group shadow-float transition-all duration-300 hover:-translate-y-1 hover:shadow-float-lg"
           :style="{ width: `${item.width}px`, backgroundImage: item.image.placeholder ? `url(${item.image.placeholder})` : undefined, backgroundSize: 'cover', backgroundPosition: 'center' }"
           @click="emit('open', item.image.index)"
         >

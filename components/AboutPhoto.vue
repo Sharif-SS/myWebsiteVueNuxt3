@@ -29,13 +29,13 @@
   border-radius: 12px;
   overflow: hidden;
   background: #e5e7eb;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.12), 0 4px 12px -4px rgba(0, 0, 0, 0.06);
 }
 
 @container (max-width: 47.99rem) {
   .about-photo__frame {
     aspect-ratio: 4 / 5;
-    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.10), 0 3px 8px -3px rgba(0, 0, 0, 0.05);
   }
 }
 

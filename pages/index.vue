@@ -63,6 +63,8 @@ function isVideo(src: string): boolean {
       </div>
     </section>
 
+    <TestimonialSection />
+
     <section v-reveal class="max-w-6xl mx-auto px-4 py-12 md:py-14 border-t border-gray-100 [content-visibility:auto] reveal">
       <h2 v-reveal class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 reveal">Outside of Events and Portraits</h2>
       <p v-reveal class="text-gray-600 mb-10 max-w-xl reveal">
@@ -75,7 +77,7 @@ function isVideo(src: string): boolean {
           :key="slide.category"
           v-reveal
           to="/photography"
-          class="reveal group block overflow-hidden rounded-xl bg-gray-100 shadow-sm"
+          class="reveal fun-card group block overflow-hidden rounded-xl bg-gray-100 shadow-float hover:shadow-float-lg"
           :style="{ transitionDelay: `${i * 0.15}s` }"
         >
           <div class="relative aspect-[4/3]">
@@ -157,5 +159,13 @@ function isVideo(src: string): boolean {
     flex: 1;
     min-width: 0;
   }
+}
+
+/* The reveal animation owns `transform`, so lift the fun card on hover with a
+   higher-priority rule and a snappy, un-staggered transition. */
+.fun-card:hover {
+  transform: translateY(-6px) !important;
+  transition-delay: 0s !important;
+  transition-duration: 0.25s !important;
 }
 </style>

@@ -59,14 +59,14 @@ useHead({
             <NuxtImg
               src="/contact.webp"
               alt="Sharif in an old telephone booth"
-              class="w-full rounded-xl shadow-lg"
+              class="w-full rounded-xl shadow-float"
               loading="lazy"
             />
           </div>
 
           <!-- Form card -->
           <div class="w-full md:w-3/5 animate-bounce-card">
-            <div class="bg-white/80 backdrop-blur-md rounded-xl shadow-lg border-t-4 border-accent p-8">
+            <div class="bg-white/80 backdrop-blur-md rounded-xl shadow-float border-t-4 border-accent p-8">
               <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">Contact</h1>
               <p class="text-gray-600 mb-8 max-w-lg">
                 Have a project in mind or just want to say hello? Drop me a message.
