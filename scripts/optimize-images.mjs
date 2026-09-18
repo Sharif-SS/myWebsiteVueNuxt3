@@ -1,4 +1,4 @@
-import { readdir, stat, writeFile, mkdir, rm } from 'node:fs/promises'
+import { readdir, readFile, stat, writeFile, mkdir, rm } from 'node:fs/promises'
 import { join, relative, dirname, extname, basename } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
@@ -22,30 +22,52 @@ function galleryName(stem, suffix) {
   return `${stem}${suffix}.webp`
 }
 
-async function newestSourceMtime() {
-  let newest = 0
+async function listSourceEntries() {
+  const sources = []
   const entries = await readdir(PHOTOS, { withFileTypes: true })
   for (const entry of entries) {
     if (!entry.isDirectory()) continue
+    if (entry.name.toLowerCase() === 'thumbnails') continue
     const files = await readdir(join(PHOTOS, entry.name))
     for (const file of files) {
       const ext = extname(file).toLowerCase()
       if (!RASTER.has(ext) && !VIDEO.has(ext)) continue
-      const t = (await stat(join(PHOTOS, entry.name, file))).mtimeMs
-      if (t > newest) newest = t
+      const full = join(PHOTOS, entry.name, file)
+      sources.push({
+        src: `/photos/${entry.name}/${file}`,
+        mtimeMs: (await stat(full)).mtimeMs,
+      })
     }
   }
-  return newest
+  return sources
 }
 
 async function manifestOutdated() {
+  let manifest
   try {
-    const m = await stat(MANIFEST)
-    return m.mtimeMs < (await newestSourceMtime())
+    manifest = JSON.parse(await readFile(MANIFEST, 'utf-8'))
   }
   catch {
     return true
   }
+
+  const recorded = new Set()
+  for (const assets of Object.values(manifest.images ?? {})) {
+    for (const asset of assets) recorded.add(asset.src)
+  }
+
+  const sources = await listSourceEntries()
+  const current = new Set(sources.map(s => s.src))
+
+  // Added/removed files always trigger a rebuild, regardless of mtime (copied
+  // files keep their source timestamps, so mtime alone misses new additions).
+  if (current.size !== recorded.size) return true
+  for (const src of current) {
+    if (!recorded.has(src)) return true
+  }
+
+  const manifestMtime = (await stat(MANIFEST)).mtimeMs
+  return sources.some(s => s.mtimeMs > manifestMtime)
 }
 
 async function writeManifest(images) {
